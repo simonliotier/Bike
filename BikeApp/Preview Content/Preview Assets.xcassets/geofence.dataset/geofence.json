@@ -1,0 +1,13 @@
+{
+    "id": 9386,
+    "bike_id": 12303,
+    "user_id": 25743,
+    "name": "Impasse des Aubépines",
+    "center": {
+      "lat": 47.192473,
+      "lon": -1.481828
+    },
+    "radius": 150,
+    "active_state": 0,
+    "creation_date": "2023-09-23T14:34:53+0000"
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "id": 9386,
+    "bike_id": 12303,
+    "user_id": 25743,
+    "name": "Impasse des Aubépines",
+    "center": {
+      "lat": 47.192473,
+      "lon": -1.481828
+    },
+    "radius": 150,
+    "active_state": 0,
+    "creation_date": "2023-09-23T14:34:53+0000"
+  },
+  {
+    "id": 9589,
+    "bike_id": 12303,
+    "user_id": 25743,
+    "name": "iAdvize",
+    "center": {
+      "lat": 47.216946,
+      "lon": -1.538772
+    },
+    "radius": 517,
+    "active_state": 0,
+    "creation_date": "2023-10-03T09:08:37+0000"
+  },
+  {
+    "id": 9952,
+    "bike_id": 12303,
+    "user_id": 25743,
+    "name": "Mairie",
+    "center": {
+      "lat": 47.206037,
+      "lon": -1.501854
+    },
+    "radius": 150,
+    "active_state": 0,
+    "creation_date": "2023-10-19T18:59:43+0000"
+  },
+  {
+    "id": 9965,
+    "bike_id": 12303,
+    "user_id": 25743,
+    "name": "Boulevard des Tribunes",
+    "center": {
+      "lat": 47.246016,
+      "lon": -1.561658
+    },
+    "radius": 687,
+    "active_state": 0,
+    "creation_date": "2023-10-20T18:45:57+0000"
+  },
+  {
+    "id": 9967,
+    "bike_id": 12303,
+    "user_id": 25743,
+    "name": "Saint-Menoux",
+    "center": {
+      "lat": 46.581073,
+      "lon": 3.178916
+    },
+    "radius": 828,
+    "active_state": 0,
+    "creation_date": "2023-10-20T18:46:24+0000"
+  }
+]

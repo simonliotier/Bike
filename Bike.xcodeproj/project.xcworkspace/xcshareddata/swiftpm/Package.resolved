@@ -1,0 +1,24 @@
+{
+  "originHash" : "73f503f176db491af7e3096fa0850761d1c14f91fc0dfba223a67ed12d1c7289",
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire",
+      "state" : {
+        "revision" : "3dc6a42c7727c49bf26508e29b0a0b35f9c7e1ad",
+        "version" : "5.8.1"
+      }
+    },
+    {
+      "identity" : "oauth2",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/p2/OAuth2",
+      "state" : {
+        "branch" : "main",
+        "revision" : "3f6a18beb221636581e66d8d0cbec1a3948b4df3"
+      }
+    }
+  ],
+  "version" : 3
+}
