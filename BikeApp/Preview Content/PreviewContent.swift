@@ -5,7 +5,11 @@ import Foundation
 
 extension Decodable {
     static func previewAsset<T: Decodable>(named: String) -> T {
-        try! Bundle.main.decodeAsset(named: named, dateDecodingStrategy: .iso8601)
+        do {
+            return try Bundle.main.decodeAsset(named: named, dateDecodingStrategy: .iso8601)
+        } catch {
+            fatalError("Error decoding asset \(named): \(error)")
+        }
     }
 }
 

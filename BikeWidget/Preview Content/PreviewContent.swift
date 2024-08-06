@@ -37,7 +37,7 @@ extension BikeLocationWidget.Entry.State.Content.MapSnapshot {
         }
     }
 
-    init(resource: ImageResource, point: CGPoint) {
+    private init(resource: ImageResource, point: CGPoint) {
         let image = OSImage(resource: resource)
         #if os(iOS)
             let asset = image.imageAsset
@@ -45,10 +45,11 @@ extension BikeLocationWidget.Entry.State.Content.MapSnapshot {
             darkImage = asset?.image(with: .init(userInterfaceStyle: .dark)) ?? OSImage(resource: resource)
         #endif
         #if os(macOS)
-            lightImage = image // TODO:
-            darkImage = image // TODO:
+            // Does not matter as previews are not supported for macOS widgets.
+            lightImage = image
+            darkImage = image
         #endif
-        self.bikeMarkerPosition = point
+        bikeMarkerPosition = point
     }
 }
 

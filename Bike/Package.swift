@@ -16,7 +16,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire", .upToNextMajor(from: "5.7.0")),
-        .package(url: "https://github.com/p2/OAuth2", branch: "main")
+        .package(url: "https://github.com/p2/OAuth2", branch: "main"),
+        .package(url: "https://github.com/realm/SwiftLint", .upToNextMajor(from: "0.55.0"))
     ],
     targets: [
         .target(
@@ -24,11 +25,13 @@ let package = Package(
             dependencies: [
                 .product(name: "Alamofire", package: "Alamofire"),
                 .product(name: "OAuth2", package: "OAuth2")
-            ]
+            ],
+            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint")]
         ),
         .testTarget(
             name: "BikeTests",
-            dependencies: ["Bike"]
+            dependencies: ["Bike"],
+            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint")]
         )
     ]
 )

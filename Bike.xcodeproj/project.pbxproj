@@ -257,6 +257,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AD6C57E2C5FD6B5009F236D /* PBXTargetDependency */,
 				1ACF28742B543DA900020097 /* PBXTargetDependency */,
 			);
 			name = BikeApp;
@@ -278,6 +279,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AD6C5802C5FD872009F236D /* PBXTargetDependency */,
 			);
 			name = BikeWidgetExtension;
 			packageProductDependencies = (
@@ -316,6 +318,7 @@
 			);
 			mainGroup = 1A6EAD142AD56B420043E524;
 			packageReferences = (
+				1AD6C57C2C5FD6AE009F236D /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 1A6EAD1E2AD56B420043E524 /* Products */;
 			projectDirPath = "";
@@ -389,6 +392,14 @@
 			isa = PBXTargetDependency;
 			target = 1ACF28642B543DA700020097 /* BikeWidgetExtension */;
 			targetProxy = 1ACF28732B543DA900020097 /* PBXContainerItemProxy */;
+		};
+		1AD6C57E2C5FD6B5009F236D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AD6C57D2C5FD6B5009F236D /* SwiftLintBuildToolPlugin */;
+		};
+		1AD6C5802C5FD872009F236D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AD6C57F2C5FD872009F236D /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -700,6 +711,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		1AD6C57C2C5FD6AE009F236D /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		1A9A07292C0768DE0013E68D /* Bike */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -708,6 +730,16 @@
 		1A9A072B2C0769360013E68D /* Bike */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Bike;
+		};
+		1AD6C57D2C5FD6B5009F236D /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AD6C57C2C5FD6AE009F236D /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1AD6C57F2C5FD872009F236D /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AD6C57C2C5FD6AE009F236D /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

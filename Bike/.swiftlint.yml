@@ -1,0 +1,2 @@
+# Use the shared projet config.
+parent_config: ../.swiftlint.yml

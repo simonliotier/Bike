@@ -5,29 +5,29 @@ public struct User: Decodable, Hashable {
     public let id: Int?
     public let username: String?
     public let name: String?
-    public let display_name: String?
-    public let first_name: String?
-    public let last_name: String?
+    public let displayName: String?
+    public let firstName: String?
+    public let lastName: String?
     public let initials: String?
-    public let avatar_url: String?
+    public let avatarURL: String?
     public let address: String?
     public let city: String?
     public let country: String?
-    public let postal_code: String?
-    public let house_number: String?
-    public let house_number_addition: String?
-    public let phone_number: String?
-    public let phone_number_formatted: String?
+    public let postalCode: String?
+    public let houseNumber: String?
+    public let houseNumberAddition: String?
+    public let phoneNumber: String?
+    public let phoneNumberFormatted: String?
     public let gender: String?
-    public let is_email_verified: Bool?
-    public let creation_date: String?
+    public let isEmailVerified: Bool?
+    public let creationDate: String?
     public let timezone: String?
     public let location: Location?
-    public let registered_on_platform: String?
-    public let privacy_statement_accepted_on: String?
+    public let registeredOnPlatform: String?
+    public let privacyStatementAcceptedOn: String?
     public let email: String?
-    public let conneqtech_id: String?
-    public let is_demo_account: Bool?
+    public let conneqtechID: String?
+    public let isDemoAccount: Bool?
     public let permissions: [String]?
 
     public struct Location: Decodable, Hashable {
@@ -39,29 +39,29 @@ public struct User: Decodable, Hashable {
         case id
         case username
         case name
-        case display_name
-        case first_name
-        case last_name
+        case displayName = "display_name"
+        case firstName = "first_name"
+        case lastName = "last_name"
         case initials
-        case avatar_url
+        case avatarURL = "avatar_url"
         case address
         case city
         case country
-        case postal_code
-        case house_number
-        case house_number_addition
-        case phone_number
-        case phone_number_formatted
+        case postalCode = "postal_code"
+        case houseNumber = "house_number"
+        case houseNumberAddition = "house_number_addition"
+        case phoneNumber = "phone_number"
+        case phoneNumberFormatted = "phone_number_formatted"
         case gender
-        case is_email_verified
-        case creation_date
+        case isEmailVerified = "is_email_verified"
+        case creationDate = "creation_date"
         case timezone
         case location
-        case registered_on_platform
-        case privacy_statement_accepted_on
+        case registeredOnPlatform = "registered_on_platform"
+        case privacyStatementAcceptedOn = "privacy_statement_accepted_on"
         case email
-        case conneqtech_id
-        case is_demo_account
+        case conneqtechID = "conneqtech_id"
+        case isDemoAccount = "is_demo_account"
         case permissions
     }
 }
