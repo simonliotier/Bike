@@ -23,7 +23,6 @@ struct LoginView: View {
                 try await AuthenticationController.shared.authenticate()
                 authenticated = true
             } catch {
-                AuthenticationController.shared.logout()
                 print(error)
             }
         }
