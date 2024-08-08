@@ -1,5 +1,5 @@
 import Foundation
-import OAuth2
+@preconcurrency import OAuth2
 
 #if os(iOS)
     import UIKit
@@ -9,7 +9,7 @@ import OAuth2
 #endif
 
 /// Handle the authentication of the user through OAuth2.
-public class AuthenticationController {
+public final class AuthenticationController: Sendable {
     /// Shared instance.
     public static let shared = AuthenticationController()
 

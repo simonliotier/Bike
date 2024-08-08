@@ -64,7 +64,7 @@ extension CLLocation {
 }
 
 extension CNPostalAddress {
-    static let preview: CNPostalAddress = {
+    static var preview: CNPostalAddress {
         let address = CNMutablePostalAddress()
         address.street = "7 rue de Valmy"
         address.city = "Nantes"
@@ -75,7 +75,7 @@ extension CNPostalAddress {
         address.subAdministrativeArea = "Loire-Atlantique"
         address.subLocality = ""
         return address
-    }()
+    }
 }
 
 // MARK: - Error

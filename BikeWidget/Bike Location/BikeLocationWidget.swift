@@ -27,7 +27,7 @@ struct BikeLocationWidget: Widget {
 }
 
 extension BikeLocationWidget {
-    struct Entry: TimelineEntry {
+    struct Entry: TimelineEntry, Sendable {
         let date: Date
 
         let state: State
@@ -61,21 +61,25 @@ extension BikeLocationWidget {
             .init(date: .now, state: .loaded(.placeholder))
         }
 
-        func getSnapshot(in context: Context, completion: @escaping (Entry) -> Void) {
+        func getSnapshot(in context: Context, completion: @escaping @Sendable (Entry) -> Void) {
+            let configuration = Configuration(context: context)
+
             Task {
-                let entry = await getEntry(in: context)
+                let entry = await getEntry(for: configuration)
                 completion(entry)
             }
         }
 
-        func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+        func getTimeline(in context: Context, completion: @escaping @Sendable (Timeline<Entry>) -> Void) {
+            let configuration = Configuration(context: context)
+
             Task {
-                let entry = await getEntry(in: context)
+                let entry = await getEntry(for: configuration)
                 completion(.init(entries: [entry], policy: .atEnd))
             }
         }
 
-        private func getEntry(in context: Context) async -> Entry {
+        private func getEntry(for configuration: Configuration) async -> Entry {
             let state: Entry.State
 
             do {
@@ -84,7 +88,7 @@ extension BikeLocationWidget {
                 let coordinates = CLLocationCoordinate2D(latitude: bike.lastLocation.lat,
                                                          longitude: bike.lastLocation.lon)
 
-                let mapSnapshot = try await generateMapSnapshot(for: coordinates, context: context)
+                let mapSnapshot = try await generateMapSnapshot(for: coordinates, configuration: configuration)
                 let placemark = try await getPlacemark(for: coordinates)
 
                 state = .loaded(.init(date: bike.lastLocation.date,
@@ -114,14 +118,14 @@ extension BikeLocationWidget {
 
         /// Generate a map snapshot that is used as background in the widget, in light and dark mode.
         private func generateMapSnapshot(for coordinates: CLLocationCoordinate2D,
-                                         context: Context) async throws -> Entry.State.Content.MapSnapshot {
+                                         configuration: Configuration) async throws -> Entry.State.Content.MapSnapshot {
             print("Generating snapshot")
 
             // We rely on empiric values to closely match the Apple "Find my" widget.
             let delta: CLLocationDegrees
             let mapRectOffset: Double
 
-            switch context.family {
+            switch configuration.family {
             case .systemSmall:
                 delta = 0.004
                 mapRectOffset = 0.2
@@ -137,7 +141,7 @@ extension BikeLocationWidget {
             let options = MKMapSnapshotter.Options()
 
             // The snapshot will occupy the entire widget.
-            options.size = context.displaySize
+            options.size = configuration.displaySize
 
             // Setup the snapshotter `region` and `size`, centering on the coordinates. The snapshotter updates the
             // value in the `mapRect` property to match the corresponding area as closely as possible.
@@ -145,7 +149,7 @@ extension BikeLocationWidget {
             let approximateMapRect = options.mapRect
 
             // Compute a `mapRect` that exactly matches the aspect ratio of the desired image size.
-            let exactMapRect = MKMakeMapRect(aspectRatio: context.displaySize, insideRect: approximateMapRect)
+            let exactMapRect = MKMakeMapRect(aspectRatio: configuration.displaySize, insideRect: approximateMapRect)
 
             // The bike is offset from the center. Offset the `exactMapRect` by the desired proportion.
             options.mapRect = exactMapRect.offsetBy(dx: -mapRectOffset * exactMapRect.width, dy: 0)
@@ -182,6 +186,17 @@ extension BikeLocationWidget {
             print("Success getting placemark")
 
             return placemark
+        }
+    }
+
+    /// Wrapper around relevant `TimelineProviderContext` values, as `TimelineProviderContext` itself is not `Sendable`.
+    private struct Configuration {
+        let family: WidgetFamily
+        let displaySize: CGSize
+
+        init(context: TimelineProviderContext) {
+            family = context.family
+            displaySize = context.displaySize
         }
     }
 }

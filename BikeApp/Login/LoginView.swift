@@ -14,7 +14,6 @@ struct LoginView: View {
             }
     }
 
-    @MainActor
     private func authenticate() async {
         if AuthenticationController.shared.isAuthenticated {
             authenticated = true

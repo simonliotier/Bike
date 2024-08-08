@@ -40,7 +40,7 @@ struct BikeBatteryWidget: Widget {
 }
 
 extension BikeBatteryWidget {
-    struct Entry: TimelineEntry {
+    struct Entry: TimelineEntry, Sendable {
         let date: Date
 
         let state: State
@@ -65,14 +65,14 @@ extension BikeBatteryWidget {
             return .init(date: .now, state: .loaded(.placeholder))
         }
 
-        func getSnapshot(in context: Context, completion: @escaping (Entry) -> Void) {
+        func getSnapshot(in context: Context, completion: @escaping @Sendable (Entry) -> Void) {
             Task {
                 let entry = await getEntry()
                 completion(entry)
             }
         }
 
-        func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
+        func getTimeline(in context: Context, completion: @escaping @Sendable (Timeline<Entry>) -> Void) {
             Task {
                 let entry = await getEntry()
                 completion(.init(entries: [entry], policy: .atEnd))

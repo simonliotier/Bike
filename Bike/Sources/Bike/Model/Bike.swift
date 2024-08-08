@@ -1,7 +1,7 @@
 import Foundation
 
 /// Generated automatically from API response.
-public struct Bike: Decodable, Identifiable, Hashable {
+public struct Bike: Decodable, Identifiable, Hashable, Sendable {
     public let id: Int
     public let userId: Int
     public let userName: String

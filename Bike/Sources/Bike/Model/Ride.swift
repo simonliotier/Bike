@@ -1,7 +1,7 @@
 import Foundation
 
 /// Generated automatically from API response.
-public struct Ride: Decodable, Identifiable {
+public struct Ride: Decodable, Identifiable, Sendable {
     public let id: Int
     public let startDate: Date
     public let endDate: Date

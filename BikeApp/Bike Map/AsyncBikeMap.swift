@@ -3,7 +3,6 @@ import Foundation
 import SwiftUI
 
 /// Basic view displaying the last bike location on a map.
-@MainActor
 struct AsyncBikeMap: View {
     @State private var viewModel = ViewModel()
 

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Generated automatically from API response.
-public struct WeatherInfo: Decodable {
+public struct WeatherInfo: Decodable, Sendable {
     public let weatherType: String?
     public let temperature: String?
     public let temperatureApparent: String?

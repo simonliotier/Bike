@@ -2,7 +2,7 @@ import Alamofire
 import Foundation
 
 /// Perform requests to the Decathlon bike API.
-public class Client {
+public final class Client: Sendable {
     private let endPointURL = URL(string: "https://decathlon.api.bike.conneq.tech")!
 
     public init() {}

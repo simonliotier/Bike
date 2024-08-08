@@ -1,4 +1,4 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 6.0
 
 import PackageDescription
 
@@ -25,13 +25,33 @@ let package = Package(
             dependencies: [
                 .product(name: "Alamofire", package: "Alamofire"),
                 .product(name: "OAuth2", package: "OAuth2")
-            ],
-            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint")]
+            ]
         ),
         .testTarget(
             name: "BikeTests",
-            dependencies: ["Bike"],
-            plugins: [.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint")]
+            dependencies: ["Bike"]
         )
     ]
 )
+
+for target in package.targets {
+    // Enable SwiftLint on all targets.
+    target.addPlugin(.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint"))
+
+    // Enable Concurrency Checking (completed) on all targets.
+    target.enableCompletedStrictConcurrency()
+}
+
+private extension Target {
+    func addPlugin(_ plugin: PluginUsage) {
+        var plugins = plugins ?? []
+        plugins.append(plugin)
+        self.plugins = plugins
+    }
+
+    func enableCompletedStrictConcurrency() {
+        var swiftSettings = swiftSettings ?? []
+        swiftSettings.append(.enableExperimentalFeature("StrictConcurrency=completed"))
+        self.swiftSettings = swiftSettings
+    }
+}
