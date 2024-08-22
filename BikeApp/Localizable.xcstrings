@@ -1,7 +1,22 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-
+    "Logout" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logout"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se déconnecter"
+          }
+        }
+      }
+    }
   },
   "version" : "1.0"
 }
