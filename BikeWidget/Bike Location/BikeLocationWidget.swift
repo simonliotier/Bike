@@ -32,18 +32,18 @@ extension BikeLocationWidget {
 
         let state: State
 
-        enum State {
+        enum State: Sendable {
             case loaded(Content)
             case error(Error)
 
-            struct Content {
+            struct Content: Sendable {
                 let date: Date
                 let placemark: CLPlacemark?
                 let batteryPercentage: Double
                 let name: String
                 let mapSnapshot: MapSnapshot
 
-                struct MapSnapshot {
+                struct MapSnapshot: Sendable {
                     let lightImage: OSImage
                     let darkImage: OSImage
                     let bikeMarkerPosition: CGPoint
@@ -231,6 +231,7 @@ private extension CLPlacemark {
     typealias OSImage = UIImage
 #elseif os(macOS)
     typealias OSImage = NSImage
+    extension NSImage: @unchecked @retroactive Sendable {}
 #endif
 
 /// `MKMapRect` equivalent of `AVMakeRect(aspectRatio:insideRect:)`.
