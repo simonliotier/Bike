@@ -17,23 +17,6 @@
         }
       }
     },
-    "Deselect" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deselect"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Déselectionner"
-          }
-        }
-      }
-    },
     "Itinerary" : {
       "localizations" : {
         "en" : {
@@ -78,23 +61,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun vélo."
-          }
-        }
-      }
-    },
-    "Select" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Select"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sélectionner"
           }
         }
       }
