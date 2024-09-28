@@ -63,21 +63,6 @@ extension CLLocation {
     static let preview = CLLocation(latitude: 47.21342, longitude: -1.54440)
 }
 
-extension CNPostalAddress {
-    static var preview: CNPostalAddress {
-        let address = CNMutablePostalAddress()
-        address.street = "7 rue de Valmy"
-        address.city = "Nantes"
-        address.state = "Pays de la Loire"
-        address.postalCode = "44000"
-        address.country = "France"
-        address.isoCountryCode = "FR"
-        address.subAdministrativeArea = "Loire-Atlantique"
-        address.subLocality = ""
-        return address
-    }
-}
-
 // MARK: - Error
 
 struct PreviewError: Error {}

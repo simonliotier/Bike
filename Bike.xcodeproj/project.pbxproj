@@ -22,8 +22,11 @@
 		1A6F58322BD8538700986C23 /* PreviewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F58312BD8538700986C23 /* PreviewContent.swift */; };
 		1A6F58342BD85B9800986C23 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6F58332BD85B0000986C23 /* Preview Assets.xcassets */; };
 		1A751B442AE1AC100067F3EA /* BikeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A751B432AE1AC100067F3EA /* BikeMap.swift */; };
+		1A839B2B2C9AA04000379550 /* MapBikeLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A839B2A2C9AA04000379550 /* MapBikeLocationButton.swift */; };
 		1A9A072A2C0768DE0013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A07292C0768DE0013E68D /* Bike */; };
 		1A9A072C2C0769360013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A072B2C0769360013E68D /* Bike */; };
+		1A9B20AF2C879CBF005702E8 /* BikeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B20AE2C879CBF005702E8 /* BikeDetailsView.swift */; };
+		1A9B20B12C87A3A2005702E8 /* SelectablePinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B20B02C87A3A2005702E8 /* SelectablePinAnnotation.swift */; };
 		1ACF28682B543DA700020097 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28672B543DA700020097 /* WidgetKit.framework */; };
 		1ACF286A2B543DA700020097 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28692B543DA700020097 /* SwiftUI.framework */; };
 		1ACF286D2B543DA700020097 /* BikeWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACF286C2B543DA700020097 /* BikeWidgetBundle.swift */; };
@@ -81,7 +84,10 @@
 		1A6F58312BD8538700986C23 /* PreviewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContent.swift; sourceTree = "<group>"; };
 		1A6F58332BD85B0000986C23 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1A751B432AE1AC100067F3EA /* BikeMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeMap.swift; sourceTree = "<group>"; };
+		1A839B2A2C9AA04000379550 /* MapBikeLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBikeLocationButton.swift; sourceTree = "<group>"; };
 		1A9A07282C0768C40013E68D /* Bike */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Bike; sourceTree = "<group>"; };
+		1A9B20AE2C879CBF005702E8 /* BikeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeDetailsView.swift; sourceTree = "<group>"; };
+		1A9B20B02C87A3A2005702E8 /* SelectablePinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectablePinAnnotation.swift; sourceTree = "<group>"; };
 		1ACF28652B543DA700020097 /* BikeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BikeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACF28672B543DA700020097 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1ACF28692B543DA700020097 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -193,6 +199,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		1A6F6F922CA80C32008B5ADB /* Bike Details */ = {
+			isa = PBXGroup;
+			children = (
+				1A9B20AE2C879CBF005702E8 /* BikeDetailsView.swift */,
+			);
+			path = "Bike Details";
+			sourceTree = "<group>";
+		};
 		1A9A072D2C0771C10013E68D /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,9 +226,12 @@
 		1AAC036A2C5F8B9C0034E863 /* Bike Map */ = {
 			isa = PBXGroup;
 			children = (
+				1A6F6F922CA80C32008B5ADB /* Bike Details */,
 				1ADBB9AA2B4ABD32006965B7 /* AsyncBikeMap.swift */,
 				1ADBB9A82B4ABD14006965B7 /* AsyncContentView.swift */,
 				1A751B432AE1AC100067F3EA /* BikeMap.swift */,
+				1A9B20B02C87A3A2005702E8 /* SelectablePinAnnotation.swift */,
+				1A839B2A2C9AA04000379550 /* MapBikeLocationButton.swift */,
 			);
 			path = "Bike Map";
 			sourceTree = "<group>";
@@ -357,12 +374,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A9B20B12C87A3A2005702E8 /* SelectablePinAnnotation.swift in Sources */,
 				1A751B442AE1AC100067F3EA /* BikeMap.swift in Sources */,
 				1ADBB9AB2B4ABD32006965B7 /* AsyncBikeMap.swift in Sources */,
 				1A5C948A2ADAF12A00D8478D /* LoginView.swift in Sources */,
+				1A839B2B2C9AA04000379550 /* MapBikeLocationButton.swift in Sources */,
 				1A6EAD212AD56B420043E524 /* BikeApp.swift in Sources */,
 				1A5C94982ADB103900D8478D /* Bundle+Decode.swift in Sources */,
 				1A5C94962ADB0F4800D8478D /* PreviewContent.swift in Sources */,
+				1A9B20AF2C879CBF005702E8 /* BikeDetailsView.swift in Sources */,
 				1ADBB9A92B4ABD14006965B7 /* AsyncContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,6 +562,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Bike;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show where you are on the map.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -551,8 +572,8 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -580,6 +601,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Bike;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show where you are on the map.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -589,8 +611,8 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;

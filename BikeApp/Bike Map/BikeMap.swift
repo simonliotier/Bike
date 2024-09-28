@@ -2,21 +2,95 @@ import Bike
 import MapKit
 import SwiftUI
 
+/// A view displaying the user bike on a map.
+///
+/// The bike can be selected to display additional info in a bottom sheet.
 struct BikeMap: View {
-    let bikes: [Bike]
+    let bike: Bike
+
+    @State private var position: MapCameraPosition
+    @State private var selection: Bike?
+    @State private var bikeButtonVisible: Bool = false
+    @State private var isSheetPresented = false
+
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    private let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+
+    init(bike: Bike) {
+        self.bike = bike
+        position = .region(.init(center: bike.lastLocationCoordinate, span: defaultSpan))
+    }
 
     var body: some View {
-        if let bike = bikes.first {
-            Map(initialPosition: .region(.init(center: bike.lastLocationCoordinate,
-                                               span: .init(latitudeDelta: 0.01, longitudeDelta: 0.01)))) {
-                Marker(bike.markerName, systemImage: "bicycle", coordinate: bike.lastLocationCoordinate)
-                    .tag(bike)
-
+        Map(position: $position,
+            selection: $selection) {
                 UserAnnotation()
+                Annotation(bike.name, coordinate: bike.lastLocationCoordinate) {
+                    SelectablePinAnnotation(resource: .bike, isSelected: $isSheetPresented)
+                }
+                .annotationTitles(isSheetPresented ? .hidden : .visible)
+                .tag(bike)
             }
             .mapStyle(.standard)
+            .mapControls {
+                MapUserLocationButton()
+                MapPitchToggle()
+                MapCompass()
+            }
+            .onChange(of: selection, onSelectionChanged)
+            .onChange(of: isSheetPresented, onIsSheetPresentedChanged)
+            .onMapCameraChange(onMapCameraChanged)
+            .overlay(alignment: .bottomTrailing, content: bikeLocationButtonOverlay)
+            .sheet(isPresented: $isSheetPresented) {
+                BikeDetailsView(bike: bike)
+                    .presentationDetents(presentationDetents)
+            }
+    }
+
+    /// When the bike is selected/unselected, update the sheet.
+    private func onSelectionChanged(_ oldValue: Bike?, _ newValue: Bike?) {
+        withAnimation(.bouncy) {
+            isSheetPresented = (newValue == bike)
+        }
+    }
+
+    /// When the sheet is presented/dismissed, update the bike selection.
+    private func onIsSheetPresentedChanged(_ oldValue: Bool, _ newValue: Bool) {
+        if !newValue {
+            withAnimation(.bouncy) {
+                selection = nil
+            }
+        }
+    }
+
+    /// Button allowing the user to reset the map framing to the bike location.
+    ///
+    /// The button is only displayed if the bike annotation is not visible
+    @ViewBuilder private func bikeLocationButtonOverlay() -> some View {
+        if bikeButtonVisible {
+            MapBikeLocationButton {
+                withAnimation {
+                    position = .region(.init(center: bike.lastLocationCoordinate, span: defaultSpan))
+                }
+            }
+            .padding(.horizontal, 6)
+            .padding(.vertical)
+        }
+    }
+
+    /// When the map camera changed, update the bike location button visibility.
+    private func onMapCameraChanged(_ context: MapCameraUpdateContext) {
+        withAnimation {
+            bikeButtonVisible = !context.rect.contains(bike.lastLocationMapPoint)
+        }
+    }
+
+    private var presentationDetents: Set<PresentationDetent> {
+        return if horizontalSizeClass == .compact {
+            [.fraction(1.0 / 3.0), .largeWithoutDepth]
         } else {
-            EmptyView()
+            [.large]
         }
     }
 }
@@ -26,11 +100,20 @@ extension Bike {
         .init(latitude: lastLocation.lat, longitude: lastLocation.lon)
     }
 
+    var lastLocationMapPoint: MKMapPoint {
+        .init(lastLocationCoordinate)
+    }
+
     var markerName: String {
         "\(name) - \(batteryPercentage.formatted(.percent))"
     }
 }
 
+extension PresentationDetent {
+    /// A `PresentationDetent` as tall as the `large` `PresentationDetent`, without the depth effect.
+    static let largeWithoutDepth: PresentationDetent = .fraction(0.999)
+}
+
 #Preview {
-    BikeMap(bikes: .preview)
+    BikeMap(bike: .preview)
 }

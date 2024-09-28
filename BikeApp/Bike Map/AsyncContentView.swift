@@ -4,8 +4,7 @@ import SwiftUI
 /// Generic view for loading and displaying asynchronously loaded content.
 struct AsyncContentView<Content: AsyncContent, ContentView: View>: View {
     let asyncContent: Content
-    let contentView: (Content.Output) -> ContentView
-
+    @ViewBuilder let contentView: (Content.Output) -> ContentView
     @State private var isLoading = false
 
     var body: some View {
@@ -17,9 +16,6 @@ struct AsyncContentView<Content: AsyncContent, ContentView: View>: View {
                 Text(error.localizedDescription)
             case .loaded(let output):
                 contentView(output)
-                    .refreshable {
-                        await asyncContent.refresh()
-                    }
             }
         }
         .task {

@@ -8,7 +8,11 @@ struct AsyncBikeMap: View {
 
     var body: some View {
         AsyncContentView(asyncContent: viewModel) { bikes in
-            BikeMap(bikes: bikes)
+            if let bike = bikes.first {
+                BikeMap(bike: bike)
+            } else {
+                Text("No bike found.")
+            }
         }
     }
 }

@@ -26,6 +26,10 @@ extension [Bike] {
     static let preview: Self = .previewAsset(named: "bike")
 }
 
+extension Bike {
+    static let preview: Self = [Bike].preview.first!
+}
+
 extension Geofence {
     static let preview: Self = .previewAsset(named: "geofence")
 }
