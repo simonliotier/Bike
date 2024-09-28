@@ -3,41 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A1E487D2BE929D100BF8A46 /* BikeBatteryWidgetSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E487C2BE929D100BF8A46 /* BikeBatteryWidgetSystemView.swift */; };
-		1A5C948A2ADAF12A00D8478D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5C94892ADAF12A00D8478D /* LoginView.swift */; };
-		1A5C94962ADB0F4800D8478D /* PreviewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5C94952ADB0F4800D8478D /* PreviewContent.swift */; };
-		1A5C94982ADB103900D8478D /* Bundle+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5C94972ADB103900D8478D /* Bundle+Decode.swift */; };
-		1A6EAD212AD56B420043E524 /* BikeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6EAD202AD56B420043E524 /* BikeApp.swift */; };
-		1A6EAD292AD56B430043E524 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6EAD282AD56B430043E524 /* Preview Assets.xcassets */; };
-		1A6F58232BD6ECFD00986C23 /* BikeLocationWidgetSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F58222BD6ECFD00986C23 /* BikeLocationWidgetSystemView.swift */; };
-		1A6F58252BD6ED3900986C23 /* BikeBatteryWidgetCircularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F58242BD6ED3900986C23 /* BikeBatteryWidgetCircularView.swift */; };
-		1A6F58272BD6FEF800986C23 /* BikeBatteryWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F58262BD6FEF800986C23 /* BikeBatteryWidget.swift */; };
-		1A6F582A2BD7056600986C23 /* BikeBatteryWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F58292BD7056600986C23 /* BikeBatteryWidgetView.swift */; };
-		1A6F582D2BD84AF300986C23 /* BikeBatteryWidgetInlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F582C2BD84AF300986C23 /* BikeBatteryWidgetInlineView.swift */; };
-		1A6F582F2BD84F1200986C23 /* BikeBatteryWidgetRectangularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F582E2BD84F1200986C23 /* BikeBatteryWidgetRectangularView.swift */; };
-		1A6F58322BD8538700986C23 /* PreviewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F58312BD8538700986C23 /* PreviewContent.swift */; };
-		1A6F58342BD85B9800986C23 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6F58332BD85B0000986C23 /* Preview Assets.xcassets */; };
-		1A751B442AE1AC100067F3EA /* BikeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A751B432AE1AC100067F3EA /* BikeMap.swift */; };
-		1A839B2B2C9AA04000379550 /* MapBikeLocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A839B2A2C9AA04000379550 /* MapBikeLocationButton.swift */; };
 		1A9A072A2C0768DE0013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A07292C0768DE0013E68D /* Bike */; };
 		1A9A072C2C0769360013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A072B2C0769360013E68D /* Bike */; };
-		1A9B20AF2C879CBF005702E8 /* BikeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B20AE2C879CBF005702E8 /* BikeDetailsView.swift */; };
-		1A9B20B12C87A3A2005702E8 /* SelectablePinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B20B02C87A3A2005702E8 /* SelectablePinAnnotation.swift */; };
 		1ACF28682B543DA700020097 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28672B543DA700020097 /* WidgetKit.framework */; };
 		1ACF286A2B543DA700020097 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28692B543DA700020097 /* SwiftUI.framework */; };
-		1ACF286D2B543DA700020097 /* BikeWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACF286C2B543DA700020097 /* BikeWidgetBundle.swift */; };
-		1ACF286F2B543DA700020097 /* BikeLocationWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACF286E2B543DA700020097 /* BikeLocationWidget.swift */; };
-		1ACF28712B543DA900020097 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF28702B543DA900020097 /* Assets.xcassets */; };
 		1ACF28752B543DA900020097 /* BikeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1ACF28652B543DA700020097 /* BikeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1ACF289A2B5584F900020097 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A6EAD242AD56B430043E524 /* Assets.xcassets */; };
-		1ACF28B72B55913F00020097 /* BikeMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACF28952B5581E600020097 /* BikeMarker.swift */; };
-		1ADBB9A92B4ABD14006965B7 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADBB9A82B4ABD14006965B7 /* AsyncContentView.swift */; };
-		1ADBB9AB2B4ABD32006965B7 /* AsyncBikeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADBB9AA2B4ABD32006965B7 /* AsyncBikeMap.swift */; };
-		1AF497202ADBED97004DFAA4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1AF4971F2ADBED97004DFAA4 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,41 +39,27 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1A1041942BD445C700523200 /* BikeWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeWidgetExtension.entitlements; sourceTree = "<group>"; };
-		1A1E487C2BE929D100BF8A46 /* BikeBatteryWidgetSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBatteryWidgetSystemView.swift; sourceTree = "<group>"; };
-		1A5C94892ADAF12A00D8478D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		1A5C94952ADB0F4800D8478D /* PreviewContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewContent.swift; sourceTree = "<group>"; };
-		1A5C94972ADB103900D8478D /* Bundle+Decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Decode.swift"; sourceTree = "<group>"; };
 		1A6EAD1D2AD56B420043E524 /* BikeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A6EAD202AD56B420043E524 /* BikeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeApp.swift; sourceTree = "<group>"; };
-		1A6EAD242AD56B430043E524 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1A6EAD262AD56B430043E524 /* BikeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeApp.entitlements; sourceTree = "<group>"; };
-		1A6EAD282AD56B430043E524 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1A6F58222BD6ECFD00986C23 /* BikeLocationWidgetSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeLocationWidgetSystemView.swift; sourceTree = "<group>"; };
-		1A6F58242BD6ED3900986C23 /* BikeBatteryWidgetCircularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBatteryWidgetCircularView.swift; sourceTree = "<group>"; };
-		1A6F58262BD6FEF800986C23 /* BikeBatteryWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBatteryWidget.swift; sourceTree = "<group>"; };
-		1A6F58292BD7056600986C23 /* BikeBatteryWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBatteryWidgetView.swift; sourceTree = "<group>"; };
-		1A6F582C2BD84AF300986C23 /* BikeBatteryWidgetInlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBatteryWidgetInlineView.swift; sourceTree = "<group>"; };
-		1A6F582E2BD84F1200986C23 /* BikeBatteryWidgetRectangularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeBatteryWidgetRectangularView.swift; sourceTree = "<group>"; };
-		1A6F58312BD8538700986C23 /* PreviewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewContent.swift; sourceTree = "<group>"; };
-		1A6F58332BD85B0000986C23 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1A751B432AE1AC100067F3EA /* BikeMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeMap.swift; sourceTree = "<group>"; };
-		1A839B2A2C9AA04000379550 /* MapBikeLocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBikeLocationButton.swift; sourceTree = "<group>"; };
 		1A9A07282C0768C40013E68D /* Bike */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Bike; sourceTree = "<group>"; };
-		1A9B20AE2C879CBF005702E8 /* BikeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeDetailsView.swift; sourceTree = "<group>"; };
-		1A9B20B02C87A3A2005702E8 /* SelectablePinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectablePinAnnotation.swift; sourceTree = "<group>"; };
 		1ACF28652B543DA700020097 /* BikeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BikeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACF28672B543DA700020097 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1ACF28692B543DA700020097 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		1ACF286C2B543DA700020097 /* BikeWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeWidgetBundle.swift; sourceTree = "<group>"; };
-		1ACF286E2B543DA700020097 /* BikeLocationWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeLocationWidget.swift; sourceTree = "<group>"; };
-		1ACF28702B543DA900020097 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1ACF28722B543DA900020097 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1ACF28952B5581E600020097 /* BikeMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeMarker.swift; sourceTree = "<group>"; };
-		1ADBB9A82B4ABD14006965B7 /* AsyncContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
-		1ADBB9AA2B4ABD32006965B7 /* AsyncBikeMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncBikeMap.swift; sourceTree = "<group>"; };
-		1AF4971F2ADBED97004DFAA4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1AE4D5D82CA8681600BA8BB4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1ACF28642B543DA700020097 /* BikeWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1AE4D5A92CA8680600BA8BB4 /* BikeApp */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BikeApp; sourceTree = "<group>"; };
+		1AE4D5C92CA8681600BA8BB4 /* BikeWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1AE4D5D82CA8681600BA8BB4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BikeWidget; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1A6EAD1A2AD56B420043E524 /* Frameworks */ = {
@@ -127,8 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				1A9A07282C0768C40013E68D /* Bike */,
-				1A6EAD1F2AD56B420043E524 /* BikeApp */,
-				1ACF286B2B543DA700020097 /* BikeWidget */,
+				1AE4D5A92CA8680600BA8BB4 /* BikeApp */,
+				1AE4D5C92CA8681600BA8BB4 /* BikeWidget */,
 				1ACF28662B543DA700020097 /* Frameworks */,
 				1A6EAD1E2AD56B420043E524 /* Products */,
 			);
@@ -143,99 +103,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1A6EAD1F2AD56B420043E524 /* BikeApp */ = {
-			isa = PBXGroup;
-			children = (
-				1A6EAD262AD56B430043E524 /* BikeApp.entitlements */,
-				1A6EAD242AD56B430043E524 /* Assets.xcassets */,
-				1AF4971F2ADBED97004DFAA4 /* Localizable.xcstrings */,
-				1A9A072D2C0771C10013E68D /* App */,
-				1AAC036A2C5F8B9C0034E863 /* Bike Map */,
-				1A9A072E2C0771C80013E68D /* Login */,
-				1A6EAD272AD56B430043E524 /* Preview Content */,
-			);
-			path = BikeApp;
-			sourceTree = "<group>";
-		};
-		1A6EAD272AD56B430043E524 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				1A5C94972ADB103900D8478D /* Bundle+Decode.swift */,
-				1A5C94952ADB0F4800D8478D /* PreviewContent.swift */,
-				1A6EAD282AD56B430043E524 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		1A6F58282BD7031400986C23 /* Bike Battery */ = {
-			isa = PBXGroup;
-			children = (
-				1A6F58262BD6FEF800986C23 /* BikeBatteryWidget.swift */,
-				1A6F58242BD6ED3900986C23 /* BikeBatteryWidgetCircularView.swift */,
-				1A6F582C2BD84AF300986C23 /* BikeBatteryWidgetInlineView.swift */,
-				1A6F582E2BD84F1200986C23 /* BikeBatteryWidgetRectangularView.swift */,
-				1A1E487C2BE929D100BF8A46 /* BikeBatteryWidgetSystemView.swift */,
-				1A6F58292BD7056600986C23 /* BikeBatteryWidgetView.swift */,
-			);
-			path = "Bike Battery";
-			sourceTree = "<group>";
-		};
-		1A6F582B2BD706A700986C23 /* Bike Location */ = {
-			isa = PBXGroup;
-			children = (
-				1ACF286E2B543DA700020097 /* BikeLocationWidget.swift */,
-				1A6F58222BD6ECFD00986C23 /* BikeLocationWidgetSystemView.swift */,
-				1ACF28952B5581E600020097 /* BikeMarker.swift */,
-			);
-			path = "Bike Location";
-			sourceTree = "<group>";
-		};
-		1A6F58302BD8537500986C23 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				1A6F58332BD85B0000986C23 /* Preview Assets.xcassets */,
-				1A6F58312BD8538700986C23 /* PreviewContent.swift */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		1A6F6F922CA80C32008B5ADB /* Bike Details */ = {
-			isa = PBXGroup;
-			children = (
-				1A9B20AE2C879CBF005702E8 /* BikeDetailsView.swift */,
-			);
-			path = "Bike Details";
-			sourceTree = "<group>";
-		};
-		1A9A072D2C0771C10013E68D /* App */ = {
-			isa = PBXGroup;
-			children = (
-				1A6EAD202AD56B420043E524 /* BikeApp.swift */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		1A9A072E2C0771C80013E68D /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				1A5C94892ADAF12A00D8478D /* LoginView.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		1AAC036A2C5F8B9C0034E863 /* Bike Map */ = {
-			isa = PBXGroup;
-			children = (
-				1A6F6F922CA80C32008B5ADB /* Bike Details */,
-				1ADBB9AA2B4ABD32006965B7 /* AsyncBikeMap.swift */,
-				1ADBB9A82B4ABD14006965B7 /* AsyncContentView.swift */,
-				1A751B432AE1AC100067F3EA /* BikeMap.swift */,
-				1A9B20B02C87A3A2005702E8 /* SelectablePinAnnotation.swift */,
-				1A839B2A2C9AA04000379550 /* MapBikeLocationButton.swift */,
-			);
-			path = "Bike Map";
-			sourceTree = "<group>";
-		};
 		1ACF28662B543DA700020097 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,20 +110,6 @@
 				1ACF28692B543DA700020097 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1ACF286B2B543DA700020097 /* BikeWidget */ = {
-			isa = PBXGroup;
-			children = (
-				1A1041942BD445C700523200 /* BikeWidgetExtension.entitlements */,
-				1ACF28722B543DA900020097 /* Info.plist */,
-				1ACF286C2B543DA700020097 /* BikeWidgetBundle.swift */,
-				1ACF28702B543DA900020097 /* Assets.xcassets */,
-				1A6F58282BD7031400986C23 /* Bike Battery */,
-				1A6F582B2BD706A700986C23 /* Bike Location */,
-				1A6F58302BD8537500986C23 /* Preview Content */,
-			);
-			path = BikeWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +129,9 @@
 			dependencies = (
 				1AD6C57E2C5FD6B5009F236D /* PBXTargetDependency */,
 				1ACF28742B543DA900020097 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1AE4D5A92CA8680600BA8BB4 /* BikeApp */,
 			);
 			name = BikeApp;
 			packageProductDependencies = (
@@ -297,6 +153,9 @@
 			);
 			dependencies = (
 				1AD6C5802C5FD872009F236D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1AE4D5C92CA8681600BA8BB4 /* BikeWidget */,
 			);
 			name = BikeWidgetExtension;
 			packageProductDependencies = (
@@ -352,9 +211,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A6EAD292AD56B430043E524 /* Preview Assets.xcassets in Resources */,
-				1ACF289A2B5584F900020097 /* Assets.xcassets in Resources */,
-				1AF497202ADBED97004DFAA4 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,8 +218,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ACF28712B543DA900020097 /* Assets.xcassets in Resources */,
-				1A6F58342BD85B9800986C23 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,16 +228,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A9B20B12C87A3A2005702E8 /* SelectablePinAnnotation.swift in Sources */,
-				1A751B442AE1AC100067F3EA /* BikeMap.swift in Sources */,
-				1ADBB9AB2B4ABD32006965B7 /* AsyncBikeMap.swift in Sources */,
-				1A5C948A2ADAF12A00D8478D /* LoginView.swift in Sources */,
-				1A839B2B2C9AA04000379550 /* MapBikeLocationButton.swift in Sources */,
-				1A6EAD212AD56B420043E524 /* BikeApp.swift in Sources */,
-				1A5C94982ADB103900D8478D /* Bundle+Decode.swift in Sources */,
-				1A5C94962ADB0F4800D8478D /* PreviewContent.swift in Sources */,
-				1A9B20AF2C879CBF005702E8 /* BikeDetailsView.swift in Sources */,
-				1ADBB9A92B4ABD14006965B7 /* AsyncContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,17 +235,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A1E487D2BE929D100BF8A46 /* BikeBatteryWidgetSystemView.swift in Sources */,
-				1A6F58322BD8538700986C23 /* PreviewContent.swift in Sources */,
-				1ACF286F2B543DA700020097 /* BikeLocationWidget.swift in Sources */,
-				1A6F582F2BD84F1200986C23 /* BikeBatteryWidgetRectangularView.swift in Sources */,
-				1A6F58252BD6ED3900986C23 /* BikeBatteryWidgetCircularView.swift in Sources */,
-				1A6F58272BD6FEF800986C23 /* BikeBatteryWidget.swift in Sources */,
-				1ACF286D2B543DA700020097 /* BikeWidgetBundle.swift in Sources */,
-				1A6F58232BD6ECFD00986C23 /* BikeLocationWidgetSystemView.swift in Sources */,
-				1ACF28B72B55913F00020097 /* BikeMarker.swift in Sources */,
-				1A6F582D2BD84AF300986C23 /* BikeBatteryWidgetInlineView.swift in Sources */,
-				1A6F582A2BD7056600986C23 /* BikeBatteryWidgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
