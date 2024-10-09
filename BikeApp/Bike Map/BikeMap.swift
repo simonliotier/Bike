@@ -23,36 +23,36 @@ struct BikeMap: View {
     }
 
     var body: some View {
-        Map(position: $position,
-            selection: $selection) {
-                UserAnnotation()
-                Annotation(bike.name, coordinate: bike.lastLocationCoordinate) {
-                    SelectablePinAnnotation(resource: .bike, isSelected: $isSheetPresented)
+        Background {
+            Map(position: $position,
+                selection: $selection) {
+                    UserAnnotation()
+                    Annotation(bike.name, coordinate: bike.lastLocationCoordinate) {
+                        SelectablePinAnnotation(resource: .bike, isSelected: $isSheetPresented)
+                    }
+                    .annotationTitles(isSheetPresented ? .hidden : .visible)
+                    .tag(bike)
                 }
-                .annotationTitles(isSheetPresented ? .hidden : .visible)
-                .tag(bike)
-            }
-            .mapStyle(.standard)
-            .mapControls {
-                MapUserLocationButton()
-                MapPitchToggle()
-                MapCompass()
-            }
-            .onChange(of: selection, onSelectionChanged)
-            .onChange(of: isSheetPresented, onIsSheetPresentedChanged)
-            .onMapCameraChange(onMapCameraChanged)
-            .overlay(alignment: .bottomTrailing, content: bikeLocationButtonOverlay)
-            .sheet(isPresented: $isSheetPresented) {
-                BikeDetailsView(bike: bike)
-                    .presentationDetents(presentationDetents)
-            }
+                .mapStyle(.standard)
+                .mapControls {
+                    MapUserLocationButton()
+                    MapPitchToggle()
+                    MapCompass()
+                }
+                .onChange(of: selection, onSelectionChanged)
+                .onChange(of: isSheetPresented, onIsSheetPresentedChanged)
+                .onMapCameraChange(onMapCameraChanged)
+                .overlay(alignment: .bottomTrailing, content: bikeLocationButtonOverlay)
+                .sheet(isPresented: $isSheetPresented) {
+                    BikeDetailsView(bike: bike)
+                        .presentationDetents(presentationDetents)
+                }
+        }
     }
 
     /// When the bike is selected/unselected, update the sheet.
     private func onSelectionChanged(_ oldValue: Bike?, _ newValue: Bike?) {
-        withAnimation(.bouncy) {
-            isSheetPresented = (newValue == bike)
-        }
+        isSheetPresented = (newValue == bike)
     }
 
     /// When the sheet is presented/dismissed, update the bike selection.
@@ -88,7 +88,7 @@ struct BikeMap: View {
 
     private var presentationDetents: Set<PresentationDetent> {
         return if horizontalSizeClass == .compact {
-            [.fraction(1.0 / 3.0), .largeWithoutDepth]
+            [.fraction(1.0 / 3.0), .large]
         } else {
             [.large]
         }
@@ -107,11 +107,6 @@ extension Bike {
     var markerName: String {
         "\(name) - \(batteryPercentage.formatted(.percent))"
     }
-}
-
-extension PresentationDetent {
-    /// A `PresentationDetent` as tall as the `large` `PresentationDetent`, without the depth effect.
-    static let largeWithoutDepth: PresentationDetent = .fraction(0.999)
 }
 
 #Preview {

@@ -16,59 +16,52 @@ struct BikeDetailsView: View {
 
     @State private var postalAddress: Address?
     @State private var itinerary: Itinerary?
-
-    @Environment(\.dismiss) private var dismiss
+    @State private var rides: [Ride] = []
+    @State private var selectedRide: Ride?
+    @State private var allRidesPresented = false
 
     private let locationManager = CLLocationManager()
 
     var body: some View {
-        List {
-            Section {
-                itineraryButton
-            } header: {
-                header
+        NavigationStack {
+            List {
+                Section {
+                    itineraryButton
+                } header: {
+                    header
+                }
+                Section("Rides") {
+                    ForEach(rides, content: rideRow)
+                    Button("All rides") {
+                        allRidesPresented = true
+                    }
+                }
             }
-            .textCase(nil)
-            .font(nil)
+            .presentationBackgroundInteraction(.enabled)
+            .toolbar(content: toolbarContent)
+            .task(load)
+            .sheet(item: $selectedRide) { ride in
+                AsyncRideView(bike: bike, ride: ride)
+            }
+            .sheet(isPresented: $allRidesPresented) {
+                AsyncRideList(bike: bike)
+            }
         }
-        .scrollContentBackground(.hidden)
-        .presentationBackground(.regularMaterial)
-        .presentationBackgroundInteraction(.enabled)
-        .task(load)
     }
 
     var header: some View {
-        HStack(alignment: .top) {
-            VStack(alignment: .leading) {
-                Text(bike.name)
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundStyle(.primary)
-                Text(formattedAddress)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                HStack(spacing: 4) {
-                    Text(lastLocationDate)
-                    Image(batteryPercentage: Double(bike.batteryPercentage) / 100.0)
-                }
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
+        VStack(alignment: .leading) {
+            Text(formattedAddress)
+            HStack(spacing: 4) {
+                Text(lastLocationDate)
+                Image(batteryPercentage: Double(bike.batteryPercentage) / 100.0)
             }
-
-            Spacer()
-
-            Button {
-                dismiss()
-            } label: {
-                Label("Close", systemImage: "xmark.circle.fill")
-                    .labelStyle(.iconOnly)
-                    .font(.title2)
-            }
-            .foregroundStyle(.secondary)
         }
+        .font(.subheadline)
+        .foregroundStyle(.secondary)
         .textCase(nil)
-        .foregroundStyle(.primary)
         .listRowInsets(.init())
-        .padding(.vertical)
+        .padding(.bottom)
     }
 
     var itineraryButton: some View {
@@ -77,7 +70,7 @@ struct BikeDetailsView: View {
         } label: {
             VStack(alignment: .leading, spacing: 16) {
                 Image(systemName: "arrow.triangle.turn.up.right.circle.fill")
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(.accent)
                     .font(.largeTitle)
                 VStack(alignment: .leading) {
                     Text("Itinerary")
@@ -96,6 +89,26 @@ struct BikeDetailsView: View {
         .tint(.primary)
     }
 
+    private func rideRow(_ ride: Ride) -> some View {
+        Button {
+            selectedRide = ride
+        } label: {
+            RideRow(ride: ride)
+        }
+        .foregroundStyle(.primary)
+    }
+
+    @ToolbarContentBuilder private func toolbarContent() -> some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            Text(bike.name)
+                .font(.title2)
+                .bold()
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            DismissButton()
+        }
+    }
+
     private var formattedAddress: String {
         guard let postalAddress else { return "" }
         return [postalAddress.street, postalAddress.city].joined(separator: ", ")
@@ -110,14 +123,15 @@ struct BikeDetailsView: View {
         return [formattedDistance, formattedExpectedTravelTime].joined(separator: " • ")
     }
 
-    var lastLocationDate: String {
+    private var lastLocationDate: String {
         bike.lastLocation.date.formatted(.relative(presentation: .named)).capitalizedSentence
     }
 
     private func load() async {
         requestLocationAuthorization()
-        postalAddress = try? await provider.getAddress()
-        itinerary = try? await provider.getItinerary()
+        Task { postalAddress = try? await provider.getAddress() }
+        Task { itinerary = try? await provider.getItinerary() }
+        Task { rides = (try? await provider.getRides()) ?? [] }
     }
 
     private func requestLocationAuthorization() {
@@ -148,6 +162,7 @@ extension BikeDetailsView {
         var bike: Bike { get }
         func getAddress() async throws -> Address
         func getItinerary() async throws -> Itinerary
+        func getRides() async throws -> [Ride]
     }
 
     struct Address {
@@ -187,16 +202,22 @@ extension BikeDetailsView {
 
             return .init(distance: eta.distance, expectedTravelTime: eta.expectedTravelTime)
         }
+
+        func getRides() async throws -> [Ride] {
+            try await Client().getRides(for: bike.id, limit: 3).data
+        }
     }
 }
 
 #Preview {
     @Previewable @State var isPresented = true
 
-    Map()
-        .sheet(isPresented: $isPresented) {
-            BikeDetailsView(bike: .preview, provider: BikeDetailsView.PreviewProvider())
-        }
+    Background {
+        Map()
+            .sheet(isPresented: $isPresented) {
+                BikeDetailsView(bike: .preview, provider: BikeDetailsView.PreviewProvider())
+            }
+    }
 }
 
 extension BikeDetailsView {
@@ -209,6 +230,10 @@ extension BikeDetailsView {
 
         func getItinerary() async throws -> BikeDetailsView.Itinerary {
             .preview
+        }
+
+        func getRides() async throws -> [Ride] {
+            .preview(count: 3)
         }
     }
 }

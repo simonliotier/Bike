@@ -24,7 +24,7 @@ struct AsyncContentView<Content: AsyncContent, ContentView: View>: View {
             }
 
             self.isLoading = true
-            await asyncContent.load(isRefreshing: false)
+            await asyncContent.load()
         }
     }
 }
@@ -36,13 +36,13 @@ typealias RefreshAction = () async -> Void
 protocol AsyncContent {
     associatedtype Output
     var state: AsyncContentState<Output> { get }
-    func load(isRefreshing: Bool) async
+    func load() async
     func refresh() async
 }
 
 extension AsyncContent {
     func refresh() async {
-        await load(isRefreshing: true)
+        await load()
     }
 }
 
@@ -56,7 +56,7 @@ enum AsyncContentState<Value> {
 class AsyncContentExample: AsyncContent {
     @Published var state: AsyncContentState<String> = .loading
 
-    func load(isRefreshing: Bool) async {
+    func load() async {
         state = .loading
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {

@@ -21,18 +21,33 @@ public final class Client: Sendable {
     public func getRides(for bike: Int, limit: Int = 50, offset: Int = 0) async throws -> Rides {
         let path = "/v2/bike/\(bike)/ride"
 
-        let parameters: Parameters = [
-            "limit": limit,
-            "offset": offset,
-            "order[]": "start_date;desc"
+        struct Parameters: Encodable {
+            let limit: Int
+            let offset: Int
+            let order: String = "start_date;desc"
+        }
+
+        return try await fetch(path: path, parameters: Parameters(limit: limit, offset: offset))
+    }
+
+    /// Get bike locations between two dates.
+    public func getLocations(for bike: Int, from: Date, till: Date) async throws -> [Location] {
+        let path = "bike/\(bike)/location"
+
+        let parameters: Encodable = [
+            "from": from,
+            "till": till
         ]
 
         return try await fetch(path: path, parameters: parameters)
     }
 
     /// Perform a request to the Decathlon bike API.
-    private func fetch<T: Decodable>(path: String, parameters: Parameters? = nil) async throws -> T {
+    private func fetch<Value: Decodable>(path: String,
+                                         parameters: (any Encodable)? = nil) async throws -> Value {
         let url = endPointURL.appending(path: path)
+
+        let encoder = URLEncodedFormParameterEncoder(encoder: URLEncodedFormEncoder(dateEncoding: .iso8601))
 
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
@@ -43,11 +58,22 @@ public final class Client: Sendable {
 
         let oauth2 = AuthenticationController.shared.oauth2
 
-        return try await AF.request(url,
-                                    method: .get,
-                                    parameters: parameters,
-                                    interceptor: AuthenticationRequestInterceptor(oauth2: oauth2))
-            .serializingDecodable(T.self, decoder: decoder)
+        let request: DataRequest = {
+            if let parameters {
+                return AF.request(url,
+                                  method: .get,
+                                  parameters: parameters,
+                                  encoder: encoder,
+                                  interceptor: AuthenticationRequestInterceptor(oauth2: oauth2))
+            } else {
+                return AF.request(url,
+                                  method: .get,
+                                  interceptor: AuthenticationRequestInterceptor(oauth2: oauth2))
+            }
+        }()
+
+        return try await request
+            .serializingDecodable(Value.self, decoder: decoder)
             .value
     }
 }
