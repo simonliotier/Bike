@@ -55,7 +55,7 @@ extension BikeLocationWidget {
 
 extension BikeLocationWidget {
     struct Provider: TimelineProvider {
-        private let client = Client()
+        private let client = APIClient()
 
         func placeholder(in context: Context) -> Entry {
             .init(date: .now, state: .loaded(.placeholder))

@@ -5,15 +5,10 @@ import SwiftUI
 struct AsyncRideList: View {
     let bike: Bike
 
-    @State private var asyncContent: Content
-
-    init(bike: Bike) {
-        self.bike = bike
-        _asyncContent = State(initialValue: .init(bike: bike))
-    }
+    @Environment(\.client) private var client
 
     var body: some View {
-        AsyncContentView(asyncContent: asyncContent) { rides in
+        AsyncContentView(asyncContent: Content(bike: bike, client: client)) { rides in
             RideList(bike: bike, rides: rides)
         }
     }
@@ -23,18 +18,17 @@ extension AsyncRideList {
     @Observable
     class Content: AsyncContent {
         let bike: Bike
-
-        init(bike: Bike) {
-            self.bike = bike
-        }
-
+        let client: Client
         var state: AsyncContentState<[Ride]> = .loading
 
-        private let client = Client()
+        init(bike: Bike, client: Client) {
+            self.bike = bike
+            self.client = client
+        }
 
         func load() async {
             do {
-                let rides = try await client.getRides(for: bike.id)
+                let rides = try await client.getRides(for: bike.id, limit: 100, offset: 0)
                 state = .loaded(rides.data)
             } catch {
                 state = .failed(error)
@@ -45,4 +39,5 @@ extension AsyncRideList {
 
 #Preview {
     AsyncRideList(bike: .preview)
+        .environment(\.client, PreviewClient())
 }

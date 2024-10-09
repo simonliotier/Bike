@@ -3,7 +3,7 @@ import SwiftUI
 
 /// Generic view for loading and displaying asynchronously loaded content.
 struct AsyncContentView<Content: AsyncContent, ContentView: View>: View {
-    let asyncContent: Content
+    @State var asyncContent: Content
     @ViewBuilder let contentView: (Content.Output) -> ContentView
     @State private var isLoading = false
 

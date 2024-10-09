@@ -1,0 +1,32 @@
+{
+  "id": 25743,
+  "username": "00000000-0000-0000-0000-000000000000",
+  "name": "john.appleseed",
+  "display_name": "john.appleseed",
+  "first_name": null,
+  "last_name": null,
+  "initials": null,
+  "avatar_url": "https://cb4e5bc7a3dc43969015c331117f69c1.objectstore.eu/cnt/static/ic_no_avatar@3x.png",
+  "address": null,
+  "city": null,
+  "country": "FR",
+  "postal_code": null,
+  "house_number": null,
+  "house_number_addition": null,
+  "phone_number": null,
+  "phone_number_formatted": null,
+  "gender": null,
+  "is_email_verified": false,
+  "creation_date": "2023-09-10T16:02:25+0000",
+  "timezone": "Europe/Paris",
+  "location": {
+    "lat": null,
+    "lon": null
+  },
+  "registered_on_platform": null,
+  "privacy_statement_accepted_on": "2023-09-10T16:02:31+0000",
+  "email": "john.appleseed@example.com",
+  "conneqtech_id": "11111111-1111-1111-1111-111111111111",
+  "is_demo_account": false,
+  "permissions": []
+}

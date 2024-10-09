@@ -7,16 +7,15 @@ struct AsyncRideView: View {
     let bike: Bike
     let ride: Ride
 
-    @State private var asyncContent: Content
+    @Environment(\.client) private var client
 
     init(bike: Bike, ride: Ride) {
         self.bike = bike
         self.ride = ride
-        _asyncContent = State(initialValue: Content(bike: bike, ride: ride))
     }
 
     var body: some View {
-        AsyncContentView(asyncContent: asyncContent) { locations in
+        AsyncContentView(asyncContent: Content(bike: bike, ride: ride, client: client)) { locations in
             RideView(ride: ride, locations: locations)
         }
     }
@@ -27,15 +26,14 @@ extension AsyncRideView {
     class Content: AsyncContent {
         let bike: Bike
         let ride: Ride
-
-        init(bike: Bike, ride: Ride) {
-            self.bike = bike
-            self.ride = ride
-        }
-
+        let client: Client
         var state: AsyncContentState<[Location]> = .loading
 
-        private let client = Client()
+        init(bike: Bike, ride: Ride, client: Client) {
+            self.bike = bike
+            self.ride = ride
+            self.client = client
+        }
 
         func load() async {
             do {
@@ -46,4 +44,9 @@ extension AsyncRideView {
             }
         }
     }
+}
+
+#Preview {
+    AsyncRideView(bike: .preview, ride: .previewMorning)
+        .environment(\.client, PreviewClient())
 }

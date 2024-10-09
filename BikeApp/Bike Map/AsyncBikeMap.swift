@@ -4,10 +4,10 @@ import SwiftUI
 
 /// Loads and displays the last bike location on a map.
 struct AsyncBikeMap: View {
-    @State private var asyncContent = Content()
+    @Environment(\.client) var client: Client
 
     var body: some View {
-        AsyncContentView(asyncContent: asyncContent) { bikes in
+        AsyncContentView(asyncContent: Content(client: client)) { bikes in
             if let bike = bikes.first {
                 BikeMap(bike: bike)
             } else {
@@ -20,9 +20,12 @@ struct AsyncBikeMap: View {
 extension AsyncBikeMap {
     @Observable
     class Content: AsyncContent {
+        let client: Client
         var state: AsyncContentState<[Bike]> = .loading
 
-        private let client = Client()
+        init(client: Client) {
+            self.client = client
+        }
 
         func load() async {
             do {
@@ -33,4 +36,9 @@ extension AsyncBikeMap {
             }
         }
     }
+}
+
+#Preview {
+    AsyncBikeMap()
+        .environment(\.client, PreviewClient())
 }

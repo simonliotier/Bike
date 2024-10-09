@@ -20,6 +20,8 @@ struct BikeDetailsView: View {
     @State private var selectedRide: Ride?
     @State private var allRidesPresented = false
 
+    @Environment(\.client) private var client: Client
+
     private let locationManager = CLLocationManager()
 
     var body: some View {
@@ -131,7 +133,7 @@ struct BikeDetailsView: View {
         requestLocationAuthorization()
         Task { postalAddress = try? await provider.getAddress() }
         Task { itinerary = try? await provider.getItinerary() }
-        Task { rides = (try? await provider.getRides()) ?? [] }
+        Task { rides = (try? await client.getRides(for: bike.id, limit: 3, offset: 0).data) ?? [] }
     }
 
     private func requestLocationAuthorization() {
@@ -162,7 +164,6 @@ extension BikeDetailsView {
         var bike: Bike { get }
         func getAddress() async throws -> Address
         func getItinerary() async throws -> Itinerary
-        func getRides() async throws -> [Ride]
     }
 
     struct Address {
@@ -202,10 +203,6 @@ extension BikeDetailsView {
 
             return .init(distance: eta.distance, expectedTravelTime: eta.expectedTravelTime)
         }
-
-        func getRides() async throws -> [Ride] {
-            try await Client().getRides(for: bike.id, limit: 3).data
-        }
     }
 }
 
@@ -218,6 +215,7 @@ extension BikeDetailsView {
                 BikeDetailsView(bike: .preview, provider: BikeDetailsView.PreviewProvider())
             }
     }
+    .environment(\.client, PreviewClient())
 }
 
 extension BikeDetailsView {
@@ -230,10 +228,6 @@ extension BikeDetailsView {
 
         func getItinerary() async throws -> BikeDetailsView.Itinerary {
             .preview
-        }
-
-        func getRides() async throws -> [Ride] {
-            .preview(count: 3)
         }
     }
 }

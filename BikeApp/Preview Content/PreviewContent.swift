@@ -13,6 +13,10 @@ extension Decodable {
     }
 }
 
+extension User {
+    static let preview: Self = .previewAsset(named: "user")
+}
+
 extension Ride {
     static let previewMorning: Self = .previewAsset(named: "ride_morning")
     static let previewAfternoon: Self = .previewAsset(named: "ride_afternoon")

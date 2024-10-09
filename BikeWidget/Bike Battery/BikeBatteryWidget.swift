@@ -59,7 +59,7 @@ extension BikeBatteryWidget {
 
 extension BikeBatteryWidget {
     struct Provider: TimelineProvider {
-        private let client = Client()
+        private let client = APIClient()
 
         func placeholder(in context: Context) -> Entry {
             return .init(date: .now, state: .loaded(.placeholder))

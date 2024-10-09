@@ -1,3 +1,4 @@
+import Bike
 import SwiftUI
 import WidgetKit
 
