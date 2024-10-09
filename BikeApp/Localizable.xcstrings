@@ -69,9 +69,6 @@
         }
       }
     },
-    "Deselect" : {
-
-    },
     "Details" : {
       "localizations" : {
         "fr" : {
@@ -209,9 +206,6 @@
           }
         }
       }
-    },
-    "Select" : {
-
     },
     "Speed" : {
       "localizations" : {

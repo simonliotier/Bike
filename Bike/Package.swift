@@ -37,9 +37,6 @@ let package = Package(
 for target in package.targets {
     // Enable SwiftLint on all targets.
     target.addPlugin(.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLint"))
-
-    // Enable Concurrency Checking (completed) on all targets.
-    target.enableCompletedStrictConcurrency()
 }
 
 private extension Target {
@@ -47,11 +44,5 @@ private extension Target {
         var plugins = plugins ?? []
         plugins.append(plugin)
         self.plugins = plugins
-    }
-
-    func enableCompletedStrictConcurrency() {
-        var swiftSettings = swiftSettings ?? []
-        swiftSettings.append(.enableExperimentalFeature("StrictConcurrency=completed"))
-        self.swiftSettings = swiftSettings
     }
 }
