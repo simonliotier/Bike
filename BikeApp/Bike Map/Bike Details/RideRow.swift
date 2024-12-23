@@ -6,8 +6,11 @@ import SwiftUI
 struct RideRow: View {
     let ride: Ride
 
+    @Environment(\.client) private var client: Client
+
     var body: some View {
         HStack {
+            AsyncRideThumbnail(ride: ride)
             VStack(alignment: .leading) {
                 Text(ride.formattedTitle)
                     .font(.headline)
