@@ -14,7 +14,7 @@ final class PreviewClient: Client {
     }
 
     func getRides(for bike: Int, limit: Int, offset: Int) async throws -> Rides {
-        .preview
+        limit == 3 ? .previewLimit3 : .preview
     }
 
     func getLocations(for bike: Int, from: Date, till: Date) async throws -> [Location] {

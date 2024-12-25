@@ -24,14 +24,11 @@ extension Ride {
 
 extension [Ride] {
     static let preview: [Ride] = Rides.preview.data
-
-    static func preview(count: Int) -> [Ride] {
-        Array(Rides.preview.data.prefix(count))
-    }
 }
 
 extension Rides {
     static let preview: Self = .previewAsset(named: "rides")
+    static let previewLimit3: Self = .previewAsset(named: "rides_limit_3")
 }
 
 extension [Bike] {
