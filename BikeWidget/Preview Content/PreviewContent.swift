@@ -20,7 +20,6 @@ extension BikeLocationWidget.Entry.State.Content {
         return .init(date: date,
                      placemark: .preview,
                      batteryPercentage: 0.62,
-                     name: "Elops 920E",
                      mapSnapshot: .preview(for: family))
     }
 }

@@ -1,5 +1,4 @@
 import XCTest
-@testable import Bike
 
 final class BikeTests: XCTestCase {
     func testExample() throws {

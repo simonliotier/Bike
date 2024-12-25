@@ -40,7 +40,6 @@ extension BikeLocationWidget {
                 let date: Date
                 let placemark: CLPlacemark?
                 let batteryPercentage: Double
-                let name: String
                 let mapSnapshot: MapSnapshot
 
                 struct MapSnapshot: Sendable {
@@ -94,7 +93,6 @@ extension BikeLocationWidget {
                 state = .loaded(.init(date: bike.lastLocation.date,
                                       placemark: placemark,
                                       batteryPercentage: Double(bike.batteryPercentage) / 100.0,
-                                      name: bike.name,
                                       mapSnapshot: mapSnapshot))
 
             } catch {
@@ -205,7 +203,6 @@ private extension BikeLocationWidget.Entry.State.Content {
     static let placeholder = Self(date: .now,
                                   placemark: .placeholder,
                                   batteryPercentage: 0,
-                                  name: "Elops 920E",
                                   mapSnapshot: .init(lightImage: OSImage(),
                                                      darkImage: OSImage(),
                                                      bikeMarkerPosition: .zero))

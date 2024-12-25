@@ -1,0 +1,11 @@
+project: Bike.xcodeproj
+schemes:
+  - BikeApp
+  - BikeTests
+  - BikeWidgetExtension
+report_exclude: 
+# Exclude model files as they contain many unused properties.
+  - "**/Model/*.swift"
+build_arguments:
+  - -destination
+  - 'generic/platform=iOS'

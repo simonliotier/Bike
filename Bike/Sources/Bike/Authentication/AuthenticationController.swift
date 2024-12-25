@@ -31,10 +31,6 @@ public final class AuthenticationController: Sendable {
         oauth2.logger = OAuth2DebugLogger(.trace)
     }
 
-    public var accessToken: String? {
-        oauth2.accessToken
-    }
-
     public var isAuthenticated: Bool {
         oauth2.accessToken != nil
     }

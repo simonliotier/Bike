@@ -1,4 +1,7 @@
 import SwiftUI
+#if os(iOS)
+    import UIKit
+#endif
 
 /// A thumbnail for a bike ride.
 struct RideThumbnail {

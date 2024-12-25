@@ -8,7 +8,6 @@ struct BikeLocationWidgetSystemView: View {
     var entry: BikeLocationWidget.Entry
 
     @Environment(\.colorScheme) private var colorScheme
-    @Environment(\.redactionReasons) private var redactionReasons
 
     var body: some View {
         switch entry.state {

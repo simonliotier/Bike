@@ -103,10 +103,6 @@ extension Bike {
     var lastLocationMapPoint: MKMapPoint {
         .init(lastLocationCoordinate)
     }
-
-    var markerName: String {
-        "\(name) - \(batteryPercentage.formatted(.percent))"
-    }
 }
 
 #Preview {

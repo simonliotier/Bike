@@ -29,21 +29,12 @@ struct AsyncContentView<Content: AsyncContent, ContentView: View>: View {
     }
 }
 
-typealias RefreshAction = () async -> Void
-
 /// Objects implementing this protocol can load content asynchronously.
 @MainActor
 protocol AsyncContent {
     associatedtype Output
     var state: AsyncContentState<Output> { get }
     func load() async
-    func refresh() async
-}
-
-extension AsyncContent {
-    func refresh() async {
-        await load()
-    }
 }
 
 /// State when loading asynchronous content.
@@ -58,25 +49,15 @@ class AsyncContentExample: AsyncContent {
 
     func load() async {
         state = .loading
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.state = .loaded("Example")
-        }
-    }
-
-    func refresh() async {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.state = .loaded("Example")
-        }
+        try? await Task.sleep(for: .seconds(2))
+        state = .loaded("Example")
     }
 }
 
-struct AsyncContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        AsyncContentView(asyncContent: AsyncContentExample()) { string in
-            List {
-                Text(string)
-            }
+#Preview {
+    AsyncContentView(asyncContent: AsyncContentExample()) { string in
+        List {
+            Text(string)
         }
     }
 }
