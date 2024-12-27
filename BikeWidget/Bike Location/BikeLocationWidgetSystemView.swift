@@ -95,17 +95,6 @@ private extension BikeLocationWidget.Entry.State.Content.MapSnapshot {
     BikeLocationWidget.Entry(date: .now, state: .loaded(.preview(for: .systemMedium)))
 }
 
-extension Image {
-    init(osImage: OSImage) {
-        #if os(iOS)
-            self.init(uiImage: osImage)
-        #endif
-        #if os(macOS)
-            self.init(nsImage: osImage)
-        #endif
-    }
-}
-
 #if os(iOS)
     typealias OSColor = UIColor
 #endif

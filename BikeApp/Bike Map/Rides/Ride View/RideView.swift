@@ -23,7 +23,9 @@ struct RideView: View {
                     Text("Details")
                 }
             }
+            #if os(iOS)
             .toolbarBackground(.hidden, for: .navigationBar)
+            #endif
             .toolbar(content: toolbarContent)
         }
     }

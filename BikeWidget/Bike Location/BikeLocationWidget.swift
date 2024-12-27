@@ -224,13 +224,6 @@ private extension CLPlacemark {
     BikeLocationWidget.Entry(date: .now, state: .loaded(.preview(for: .systemMedium)))
 }
 
-#if os(iOS)
-    typealias OSImage = UIImage
-#elseif os(macOS)
-    typealias OSImage = NSImage
-    extension NSImage: @unchecked @retroactive Sendable {}
-#endif
-
 /// `MKMapRect` equivalent of `AVMakeRect(aspectRatio:insideRect:)`.
 private func MKMakeMapRect(aspectRatio: CGSize, insideRect boundingRect: MKMapRect) -> MKMapRect {
     let cgRect = AVMakeRect(aspectRatio: aspectRatio, insideRect: .init(x: boundingRect.origin.x,
@@ -241,30 +234,6 @@ private func MKMakeMapRect(aspectRatio: CGSize, insideRect boundingRect: MKMapRe
     return MKMapRect(x: cgRect.origin.x, y: cgRect.origin.y, width: cgRect.size.width, height: cgRect.size.height)
 }
 
-/// Convenience extension to configure snapshotter options for light/dark mode, on iOS and macOS.
-private extension MKMapSnapshotter.Options {
-    enum Style {
-        case light
-        case dark
-    }
-
-    func configure(for style: Style) {
-        #if os(iOS)
-            let userInterfaceStyle: UIUserInterfaceStyle = switch style {
-            case .light:
-                .light
-            case .dark:
-                .dark
-            }
-            traitCollection = .init(userInterfaceStyle: userInterfaceStyle)
-        #elseif os(macOS)
-            let appearanceName: NSAppearance.Name = switch style {
-            case .light:
-                .aqua
-            case .dark:
-                .darkAqua
-            }
-            appearance = .init(named: appearanceName)
-        #endif
-    }
-}
+#if canImport(AppKit)
+    extension NSImage: @unchecked @retroactive Sendable {}
+#endif

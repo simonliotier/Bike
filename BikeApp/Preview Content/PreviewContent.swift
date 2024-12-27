@@ -22,6 +22,10 @@ extension Ride {
     static let previewAfternoon: Self = .previewAsset(named: "ride_afternoon")
 }
 
+extension [CGPoint] {
+    static let rideThumbnailPoints: Self = .previewAsset(named: "ride_thumbnail_points")
+}
+
 extension [Ride] {
     static let preview: [Ride] = Rides.preview.data
 }

@@ -1,10 +1,11 @@
 import Foundation
 @preconcurrency import OAuth2
 
-#if os(iOS)
+#if canImport(UIKit)
     import UIKit
 #endif
-#if os(macOS)
+
+#if canImport(AppKit)
     import AppKit
 #endif
 

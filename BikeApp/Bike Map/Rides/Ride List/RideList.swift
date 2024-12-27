@@ -91,7 +91,9 @@ struct RideList: View {
                 }
             }
             .navigationTitle("All rides")
-            .navigationBarTitleDisplayMode(.inline)
+            #if os(iOS)
+                .navigationBarTitleDisplayMode(.inline)
+            #endif
         }
     }
 }

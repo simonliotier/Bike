@@ -155,7 +155,13 @@ struct BikeDetailsView: View {
             MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking
         ]
 
-        MKMapItem.openMaps(with: [bikeMapItem], launchOptions: launchOptions)
+        #if os(iOS)
+            MKMapItem.openMaps(with: [bikeMapItem], launchOptions: launchOptions)
+        #endif
+
+        #if os(macOS)
+            await MKMapItem.openMaps(with: [bikeMapItem], launchOptions: launchOptions)
+        #endif
     }
 }
 
@@ -256,4 +262,12 @@ extension Bike {
     enum Error: Swift.Error {
         case noPlacemarkFound
     }
+}
+
+extension ToolbarItemPlacement {
+    // Temporary, to fix macOS compilation.
+    #if os(macOS)
+        static var topBarLeading: ToolbarItemPlacement { .automatic }
+        static var topBarTrailing: ToolbarItemPlacement { .automatic }
+    #endif
 }

@@ -21,7 +21,7 @@ actor RideThumbnailGenerator {
     }
 
     /// Returns a thumbnail image for the given ride and color scheme, either from cache or by generating one.
-    private func image(for ride: Ride, colorScheme: ColorScheme) async throws -> UIImage {
+    private func image(for ride: Ride, colorScheme: ColorScheme) async throws -> OSImage {
         if let cachedImage = loadThumbnailImage(for: ride, colorScheme: colorScheme) {
             return cachedImage
         } else {
@@ -34,17 +34,17 @@ actor RideThumbnailGenerator {
     // MARK: - Cache
 
     /// Load a thumbnail image from the cache, if it exists.
-    private func loadThumbnailImage(for ride: Ride, colorScheme: ColorScheme) -> UIImage? {
+    private func loadThumbnailImage(for ride: Ride, colorScheme: ColorScheme) -> OSImage? {
         guard let fileURL = thumbnailImageFileURL(for: ride, colorScheme: colorScheme),
               let imageData = try? Data(contentsOf: fileURL) else {
             return nil
         }
 
-        return UIImage(data: imageData)
+        return OSImage(data: imageData)
     }
 
     /// Save a thumbnail image to the cache.
-    private func saveThumbnailImage(_ image: UIImage, for ride: Ride, colorScheme: ColorScheme) {
+    private func saveThumbnailImage(_ image: OSImage, for ride: Ride, colorScheme: ColorScheme) {
         guard let fileURL = thumbnailImageFileURL(for: ride, colorScheme: colorScheme),
               let pngData = image.pngData() else {
             return
@@ -76,7 +76,8 @@ actor RideThumbnailGenerator {
     // MARK: - Image generation
 
     /// Generate the image for a given ride and color scheme.
-    private func generateThumbnailImage(for ride: Ride, colorScheme: ColorScheme) async throws -> UIImage {
+    @MainActor
+    private func generateThumbnailImage(for ride: Ride, colorScheme: ColorScheme) async throws -> OSImage {
         let locations = try await client.getLocations(for: ride.bikeId, from: ride.startDate, till: ride.endDate)
 
         let options = MKMapSnapshotter.Options()
@@ -99,40 +100,24 @@ actor RideThumbnailGenerator {
         )
 
         options.region = MKCoordinateRegion(center: center, span: span)
-
-        options.traitCollection = .init(userInterfaceStyle: .init(colorScheme))
+        options.configure(for: colorScheme)
 
         let snapshotter = MKMapSnapshotter(options: options)
         let snapshot = try await snapshotter.start()
 
-        let renderer = UIGraphicsImageRenderer(size: options.size)
-
-        return renderer.image { context in
-            snapshot.image.draw(at: .zero)
-
-            context.cgContext.setStrokeColor(UIColor(Color.accent.color(for: colorScheme)).cgColor)
-            context.cgContext.setLineWidth(10)
-
-            for (index, location) in locations.enumerated() {
-                let point = snapshot.point(for: location.coordinate2D)
-
-                if index == 0 {
-                    context.cgContext.move(to: point)
-                } else {
-                    context.cgContext.addLine(to: point)
-                }
-            }
-
-            context.cgContext.strokePath()
+        let points = locations.map { location in
+            snapshot.point(for: location.coordinate2D)
         }
-    }
-}
 
-extension Color {
-    func color(for colorScheme: ColorScheme) -> Color {
-        var environment = EnvironmentValues()
-        environment.colorScheme = colorScheme
-        return Color(resolve(in: environment))
+        let renderer = ImageRenderer(content: RideThumbnailView(snapshotImage: snapshot.image,
+                                                                points: points,
+                                                                size: options.size))
+
+        guard let image = renderer.osImage else {
+            fatalError()
+        }
+
+        return image
     }
 }
 

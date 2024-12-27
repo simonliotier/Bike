@@ -1,14 +1,12 @@
+import Bike
 import SwiftUI
-#if os(iOS)
-    import UIKit
-#endif
 
 /// A thumbnail for a bike ride.
 struct RideThumbnail {
-    let lightImage: UIImage
-    let darkImage: UIImage
+    let lightImage: OSImage
+    let darkImage: OSImage
 
-    func image(for colorScheme: ColorScheme) -> UIImage {
+    func image(for colorScheme: ColorScheme) -> OSImage {
         switch colorScheme {
         case .light:
             lightImage

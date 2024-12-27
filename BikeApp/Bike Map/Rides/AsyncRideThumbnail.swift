@@ -15,7 +15,7 @@ struct AsyncRideThumbnail: View {
             Rectangle()
                 .foregroundStyle(.quinary)
             if let thumbnail {
-                Image(uiImage: thumbnail.image(for: colorScheme))
+                Image(osImage: thumbnail.image(for: colorScheme))
                     .resizable()
             }
         }

@@ -11,17 +11,22 @@ struct Background<Content: View>: View {
     @State private var isPresented = false
 
     var body: some View {
-        Color.clear.ignoresSafeArea()
-            .task {
-                var transaction = Transaction()
-                transaction.disablesAnimations = true
-                withTransaction(transaction) {
-                    isPresented = true
+        #if os(iOS)
+            Color.clear.ignoresSafeArea()
+                .task {
+                    var transaction = Transaction()
+                    transaction.disablesAnimations = true
+                    withTransaction(transaction) {
+                        isPresented = true
+                    }
                 }
-            }
-            .fullScreenCover(isPresented: $isPresented) {
-                content()
-            }
+                .fullScreenCover(isPresented: $isPresented) {
+                    content()
+                }
+
+        #elseif os(macOS)
+            content()
+        #endif
     }
 }
 

@@ -60,19 +60,13 @@ struct RideMap: View {
 
 private extension ShapeStyle where Self == Color {
     static var innerRidePath: Color {
-        let mixColor = Color(UIColor { traitCollection in
-            traitCollection.userInterfaceStyle == .dark ? .black : .white
-        })
-
-        return .accent.mix(with: mixColor, by: 0.2)
+        let mixColor = Color(light: Color.white, dark: Color.black)
+        return .accent.mix(with: mixColor, by: 0.1)
     }
 
     static var outerRidePath: Color {
-        let mixColor = Color(UIColor { traitCollection in
-            traitCollection.userInterfaceStyle == .dark ? .white : .black
-        })
-
-        return .accent.mix(with: mixColor, by: 0.2)
+        let mixColor = Color(light: Color.black, dark: Color.white)
+        return .accent.mix(with: mixColor, by: 0.1)
     }
 }
 
