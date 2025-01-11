@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A61FCC32D32DA9D00B95AF6 /* VariableBlur in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 1A61FCC22D32DA9D00B95AF6 /* VariableBlur */; };
 		1A9A072A2C0768DE0013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A07292C0768DE0013E68D /* Bike */; };
 		1A9A072C2C0769360013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A072B2C0769360013E68D /* Bike */; };
 		1ACF28682B543DA700020097 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28672B543DA700020097 /* WidgetKit.framework */; };
@@ -67,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A9A072A2C0768DE0013E68D /* Bike in Frameworks */,
+				1A61FCC32D32DA9D00B95AF6 /* VariableBlur in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +138,7 @@
 			name = BikeApp;
 			packageProductDependencies = (
 				1A9A07292C0768DE0013E68D /* Bike */,
+				1A61FCC22D32DA9D00B95AF6 /* VariableBlur */,
 			);
 			productName = Decathlon;
 			productReference = 1A6EAD1D2AD56B420043E524 /* BikeApp.app */;
@@ -195,6 +198,7 @@
 			mainGroup = 1A6EAD142AD56B420043E524;
 			packageReferences = (
 				1AD6C57C2C5FD6AE009F236D /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				1A61FCC12D32DA9D00B95AF6 /* XCRemoteSwiftPackageReference "VariableBlur" */,
 			);
 			productRefGroup = 1A6EAD1E2AD56B420043E524 /* Products */;
 			projectDirPath = "";
@@ -561,6 +565,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1A61FCC12D32DA9D00B95AF6 /* XCRemoteSwiftPackageReference "VariableBlur" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nikstar/VariableBlur";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		1AD6C57C2C5FD6AE009F236D /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint";
@@ -572,6 +584,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1A61FCC22D32DA9D00B95AF6 /* VariableBlur */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A61FCC12D32DA9D00B95AF6 /* XCRemoteSwiftPackageReference "VariableBlur" */;
+			productName = VariableBlur;
+		};
 		1A9A07292C0768DE0013E68D /* Bike */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Bike;

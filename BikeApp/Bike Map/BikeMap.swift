@@ -44,6 +44,7 @@ struct BikeMap: View {
                     MapPitchToggle()
                     MapCompass()
                 }
+                .blurredStatusBarBackground()
                 .onChange(of: selection, onSelectionChanged)
                 .onChange(of: isPopoverPresented, onIsSheetPresentedChanged)
                 .onMapCameraChange(onMapCameraChanged)
