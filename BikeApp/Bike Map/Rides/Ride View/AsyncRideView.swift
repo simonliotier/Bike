@@ -18,6 +18,7 @@ struct AsyncRideView: View {
         AsyncContentView(asyncContent: Content(bike: bike, ride: ride, client: client)) { locations in
             RideView(ride: ride, locations: locations)
         }
+        .navigationTitle(ride.formattedTitle)
     }
 }
 
@@ -43,6 +44,16 @@ extension AsyncRideView {
                 state = .failed(error)
             }
         }
+    }
+}
+
+private extension Ride {
+    var formattedTitle: String {
+        if !name.isEmpty {
+            return name
+        }
+
+        return startDate.formatted(date: .complete, time: .omitted).capitalizedSentence
     }
 }
 

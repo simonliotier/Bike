@@ -3,7 +3,7 @@ import Contacts
 import MapKit
 import SwiftUI
 
-/// View displayed as a sheet when the bike is selected on the map.
+/// View displayed as a popover when the bike is selected on the map.
 struct BikeDetailsView: View {
     let bike: Bike
 
@@ -21,6 +21,7 @@ struct BikeDetailsView: View {
     @State private var allRidesPresented = false
 
     @Environment(\.client) private var client: Client
+    @Environment(\.isInPopover) private var isInPopover
 
     private let locationManager = CLLocationManager()
 
@@ -34,21 +35,33 @@ struct BikeDetailsView: View {
                 }
                 Section("Rides") {
                     ForEach(rides, content: rideRow)
-                    Button("All rides") {
-                        allRidesPresented = true
-                    }
+                    allRidesRow()
                 }
             }
-            .presentationBackgroundInteraction(.enabled)
+            #if os(iOS)
+            // On iOS, popovers can handle custom navigation bar content, allowing us to display a custom left-aligned
+            // title.
             .toolbar(content: toolbarContent)
+            #elseif os(macOS)
+            // On macOS, popovers cannot handle custom navigation bar content. We use the navigation title to display
+            // the bike name.
+            .navigationTitle(bike.name)
+            // Use sidebar list style to avoid sticky headers on macOS.
+            .listStyle(.sidebar)
+            #endif
+            .presentationBackgroundInteraction(.enabled)
+            .navigationDestination(for: Route.self) { route in
+                switch route {
+                case .ride(let ride):
+                    AsyncRideView(bike: bike, ride: ride)
+                case .allRides:
+                    AsyncRideList(bike: bike)
+                }
+            }
             .task(load)
-            .sheet(item: $selectedRide) { ride in
-                AsyncRideView(bike: bike, ride: ride)
-            }
-            .sheet(isPresented: $allRidesPresented) {
-                AsyncRideList(bike: bike)
-            }
         }
+        // When the view is displayed in a popover, we must specify an appropriate size.
+        .frame(minWidth: isInPopover ? 320 : nil, minHeight: isInPopover ? 540 : nil)
     }
 
     var header: some View {
@@ -92,12 +105,15 @@ struct BikeDetailsView: View {
     }
 
     private func rideRow(_ ride: Ride) -> some View {
-        Button {
-            selectedRide = ride
-        } label: {
+        NavigationLink(value: Route.ride(ride)) {
             RideRow(ride: ride)
         }
-        .foregroundStyle(.primary)
+    }
+
+    private func allRidesRow() -> some View {
+        NavigationLink(value: Route.allRides) {
+            Text("All rides")
+        }
     }
 
     @ToolbarContentBuilder private func toolbarContent() -> some ToolbarContent {
@@ -106,8 +122,12 @@ struct BikeDetailsView: View {
                 .font(.title2)
                 .bold()
         }
-        ToolbarItem(placement: .topBarTrailing) {
-            DismissButton()
+
+        // Only display the the dismiss button if the view is displayed inside a sheet.
+        if !isInPopover {
+            ToolbarItem(placement: .topBarTrailing) {
+                DismissButton()
+            }
         }
     }
 
@@ -183,6 +203,11 @@ extension BikeDetailsView {
     }
 }
 
+enum Route: Hashable {
+    case ride(Ride)
+    case allRides
+}
+
 extension BikeDetailsView {
     struct APIProvider: Provider {
         let bike: Bike
@@ -217,8 +242,9 @@ extension BikeDetailsView {
 
     Background {
         Map()
-            .sheet(isPresented: $isPresented) {
+            .popover(isPresented: .constant(true), attachmentAnchor: .point(.center), arrowEdge: .trailing) {
                 BikeDetailsView(bike: .preview, provider: BikeDetailsView.PreviewProvider())
+                    .environment(\.isInPopover, true)
             }
     }
     .environment(\.client, PreviewClient())
@@ -270,4 +296,9 @@ extension ToolbarItemPlacement {
         static var topBarLeading: ToolbarItemPlacement { .automatic }
         static var topBarTrailing: ToolbarItemPlacement { .automatic }
     #endif
+}
+
+extension EnvironmentValues {
+    /// Indicate if the view is currently presented inside a popover (instead of a sheet).
+    @Entry var isInPopover: Bool = false
 }

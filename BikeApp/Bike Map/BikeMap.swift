@@ -4,14 +4,14 @@ import SwiftUI
 
 /// A view displaying the user bike on a map.
 ///
-/// The bike can be selected to display additional info in a bottom sheet.
+/// The bike can be selected to display additional info in a bottom sheet or popover.
 struct BikeMap: View {
     let bike: Bike
 
     @State private var position: MapCameraPosition
     @State private var selection: Bike?
     @State private var bikeButtonVisible: Bool = false
-    @State private var isSheetPresented = false
+    @State private var isPopoverPresented = true
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
@@ -28,9 +28,14 @@ struct BikeMap: View {
                 selection: $selection) {
                     UserAnnotation()
                     Annotation(bike.name, coordinate: bike.lastLocationCoordinate) {
-                        SelectablePinAnnotation(resource: .bike, isSelected: $isSheetPresented)
+                        SelectablePinAnnotation(resource: .bike, isSelected: $isPopoverPresented)
+                            .popover(isPresented: $isPopoverPresented, arrowEdge: .trailing) {
+                                BikeDetailsView(bike: bike)
+                                    .environment(\.isInPopover, horizontalSizeClass == .regular)
+                                    .presentationDetents(presentationDetents)
+                            }
                     }
-                    .annotationTitles(isSheetPresented ? .hidden : .visible)
+                    .annotationTitles(isPopoverPresented ? .hidden : .visible)
                     .tag(bike)
                 }
                 .mapStyle(.standard)
@@ -40,19 +45,15 @@ struct BikeMap: View {
                     MapCompass()
                 }
                 .onChange(of: selection, onSelectionChanged)
-                .onChange(of: isSheetPresented, onIsSheetPresentedChanged)
+                .onChange(of: isPopoverPresented, onIsSheetPresentedChanged)
                 .onMapCameraChange(onMapCameraChanged)
                 .overlay(alignment: .bottomTrailing, content: bikeLocationButtonOverlay)
-                .sheet(isPresented: $isSheetPresented) {
-                    BikeDetailsView(bike: bike)
-                        .presentationDetents(presentationDetents)
-                }
         }
     }
 
     /// When the bike is selected/unselected, update the sheet.
     private func onSelectionChanged(_ oldValue: Bike?, _ newValue: Bike?) {
-        isSheetPresented = (newValue == bike)
+        isPopoverPresented = (newValue == bike)
     }
 
     /// When the sheet is presented/dismissed, update the bike selection.
@@ -107,4 +108,5 @@ extension Bike {
 
 #Preview {
     BikeMap(bike: .preview)
+        .environment(\.client, PreviewClient())
 }

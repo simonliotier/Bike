@@ -12,8 +12,10 @@ struct AsyncContentView<Content: AsyncContent, ContentView: View>: View {
             switch asyncContent.state {
             case .loading:
                 ProgressView()
+                    .frame(maxHeight: .infinity)
             case .failed(let error):
                 Text(error.localizedDescription)
+                    .frame(maxHeight: .infinity)
             case .loaded(let output):
                 contentView(output)
             }

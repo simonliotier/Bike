@@ -6,8 +6,6 @@ struct RideList: View {
     let bike: Bike
     let rides: [Ride]
 
-    @State private var selectedRide: Ride?
-
     fileprivate struct MonthSection: Identifiable {
         let yearMonth: YearMonth
         let rides: [Ride]
@@ -67,33 +65,18 @@ struct RideList: View {
     }
 
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(sections) { section in
-                    Section(section.localizedName) {
-                        ForEach(section.rides) { ride in
-                            Button {
-                                selectedRide = ride
-                            } label: {
-                                RideRow(ride: ride)
-                            }
-                            .foregroundStyle(.primary)
+        List {
+            ForEach(sections) { section in
+                Section(section.localizedName) {
+                    ForEach(section.rides) { ride in
+                        NavigationLink(value: Route.ride(ride)) {
+                            RideRow(ride: ride)
                         }
+
+                        .foregroundStyle(.primary)
                     }
                 }
             }
-            .sheet(item: $selectedRide, content: { ride in
-                AsyncRideView(bike: bike, ride: ride)
-            })
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    DismissButton()
-                }
-            }
-            .navigationTitle("All rides")
-            #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
-            #endif
         }
     }
 }

@@ -39,7 +39,7 @@ struct SelectablePinAnnotation: View {
 }
 
 #Preview {
-    @Previewable @State var isSelected: Bool = false
+    @Previewable @State var isSelected = false
 
     ZStack {
         Map()

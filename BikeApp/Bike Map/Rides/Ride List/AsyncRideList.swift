@@ -11,6 +11,10 @@ struct AsyncRideList: View {
         AsyncContentView(asyncContent: Content(bike: bike, client: client)) { rides in
             RideList(bike: bike, rides: rides)
         }
+        .navigationTitle("All rides")
+        #if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 

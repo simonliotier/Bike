@@ -8,52 +8,24 @@ struct RideView: View {
     let locations: [Location]
 
     var body: some View {
-        NavigationStack {
-            List {
-                Section {
-                    RideMap(locations: locations)
-                        .aspectRatio(contentMode: .fit)
-                } header: {
-                    Text(ride.formattedTimeRange)
-                }
-                .listRowInsets(.init())
-                Section {
-                    RideDetailsView(ride: ride)
-                } header: {
-                    Text("Details")
-                }
+        List {
+            Section {
+                RideMap(locations: locations)
+                    .aspectRatio(contentMode: .fit)
+            } header: {
+                Text(ride.formattedTimeRange)
             }
-            #if os(iOS)
-            .toolbarBackground(.hidden, for: .navigationBar)
-            #endif
-            .toolbar(content: toolbarContent)
-        }
-    }
-
-    @ToolbarContentBuilder private func toolbarContent() -> some ToolbarContent {
-        ToolbarItem(placement: .topBarLeading) {
-            VStack {
-                Text(ride.formattedTitle)
-                    .font(.headline)
-                    .bold()
+            .listRowInsets(.init())
+            Section {
+                RideDetailsView(ride: ride)
+            } header: {
+                Text("Details")
             }
-        }
-
-        ToolbarItem(placement: .topBarTrailing) {
-            DismissButton()
         }
     }
 }
 
 private extension Ride {
-    var formattedTitle: String {
-        if !name.isEmpty {
-            return name
-        }
-
-        return startDate.formatted(date: .complete, time: .omitted).capitalizedSentence
-    }
-
     var formattedTimeRange: String {
         let range = startDate..<endDate
         return range.formatted(.interval.hour().minute())
@@ -61,7 +33,10 @@ private extension Ride {
 }
 
 #Preview {
-    SheetPreview {
-        RideView(ride: .previewMorning, locations: .preview)
-    }
+    Color.clear
+        .popover(isPresented: .constant(true), attachmentAnchor: .point(.center), arrowEdge: .trailing) {
+            NavigationStack {
+                RideView(ride: .previewMorning, locations: .preview)
+            }
+        }
 }

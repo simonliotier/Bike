@@ -16,7 +16,7 @@ struct SheetPreview<Content: View>: View {
                     isPresented = true
                 }
             }
-            .sheet(isPresented: $isPresented) {
+            .popover(isPresented: $isPresented, attachmentAnchor: .point(.center), arrowEdge: .trailing) {
                 content()
             }
     }

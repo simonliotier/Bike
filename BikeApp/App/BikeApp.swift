@@ -20,5 +20,8 @@ struct BikeApp: App {
                 WidgetCenter.shared.reloadAllTimelines()
             }
         }
+        #if os(macOS)
+        .windowStyle(.hiddenTitleBar)
+        #endif
     }
 }
