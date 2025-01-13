@@ -207,6 +207,15 @@
         }
       }
     },
+    "Show bike location" : {
+
+    },
+    "Show satellite map" : {
+
+    },
+    "Show standard map" : {
+
+    },
     "Speed" : {
       "localizations" : {
         "fr" : {

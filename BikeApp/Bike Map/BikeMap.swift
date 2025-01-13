@@ -10,8 +10,12 @@ struct BikeMap: View {
 
     @State private var position: MapCameraPosition
     @State private var selection: Bike?
+    @State private var mapStyle: MapStyleButton.MapStyle = .standard
     @State private var bikeButtonVisible: Bool = false
     @State private var isPopoverPresented = true
+    @State private var sheetHeight: CGFloat = 0
+
+    @Namespace private var mapScope
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
@@ -25,7 +29,8 @@ struct BikeMap: View {
     var body: some View {
         Background {
             Map(position: $position,
-                selection: $selection) {
+                selection: $selection,
+                scope: mapScope) {
                     UserAnnotation()
                     Annotation(bike.name, coordinate: bike.lastLocationCoordinate) {
                         SelectablePinAnnotation(resource: .bike, isSelected: $isPopoverPresented)
@@ -38,17 +43,14 @@ struct BikeMap: View {
                     .annotationTitles(isPopoverPresented ? .hidden : .visible)
                     .tag(bike)
                 }
-                .mapStyle(.standard)
-                .mapControls {
-                    MapUserLocationButton()
-                    MapPitchToggle()
-                    MapCompass()
-                }
+                .mapStyle(.init(mapStyle))
+                .mapControls(mapControls)
+                .customMapControls(customMapControls)
+                .mapScope(mapScope)
                 .blurredStatusBarBackground()
                 .onChange(of: selection, onSelectionChanged)
                 .onChange(of: isPopoverPresented, onIsSheetPresentedChanged)
                 .onMapCameraChange(onMapCameraChanged)
-                .overlay(alignment: .bottomTrailing, content: bikeLocationButtonOverlay)
         }
     }
 
@@ -66,25 +68,16 @@ struct BikeMap: View {
         }
     }
 
-    /// Button allowing the user to reset the map framing to the bike location.
-    ///
-    /// The button is only displayed if the bike annotation is not visible
-    @ViewBuilder private func bikeLocationButtonOverlay() -> some View {
-        if bikeButtonVisible {
-            MapBikeLocationButton {
-                withAnimation {
-                    position = .region(.init(center: bike.lastLocationCoordinate, span: defaultSpan))
-                }
-            }
-            .padding(.horizontal, 6)
-            .padding(.vertical)
-        }
-    }
-
     /// When the map camera changed, update the bike location button visibility.
     private func onMapCameraChanged(_ context: MapCameraUpdateContext) {
         withAnimation {
-            bikeButtonVisible = !context.rect.contains(bike.lastLocationMapPoint)
+            bikeButtonVisible = context.rect.contains(bike.lastLocationMapPoint)
+        }
+    }
+
+    private func onMapBikeLocationButtonTap() {
+        withAnimation {
+            position = .region(.init(center: bike.lastLocationCoordinate, span: defaultSpan))
         }
     }
 
@@ -93,6 +86,60 @@ struct BikeMap: View {
             [.fraction(1.0 / 3.0), .large]
         } else {
             [.large]
+        }
+    }
+
+    // MARK: - Map Controls
+
+    @ViewBuilder private func mapControls() -> some View {
+        // We need to explicitly hide the default Map compass since we already display it in our custom map controls.
+        MapCompass().mapControlVisibility(.hidden)
+    }
+
+    @ViewBuilder private func customMapControls() -> some View {
+        // Order the controls so they do not shift when one of them appear/disappear.
+        #if os(iOS)
+            mapUserLocationButton
+            mapStyleButton
+            mapPitchToggle
+            mapBikeLocationButton
+            mapCompass
+        #endif
+
+        #if os(macOS)
+            mapCompass
+            mapBikeLocationButton
+            mapUserLocationButton
+            mapStyleButton
+            mapPitchToggle
+        #endif
+    }
+
+    private var mapCompass: some View {
+        MapCompass(scope: mapScope)
+    }
+
+    private var mapUserLocationButton: some View {
+        MapUserLocationButton(scope: mapScope)
+            // Set same appearance as our other map controls.
+            .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+    }
+
+    private var mapStyleButton: some View {
+        MapStyleButton(mapStyle: $mapStyle)
+    }
+
+    private var mapPitchToggle: some View {
+        MapPitchToggle(scope: mapScope)
+            // Set same appearance as our other map controls.
+            .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+            // The background will stay visible even if the map hides the toggle so we keep it visible.
+            .mapControlVisibility(.visible)
+    }
+
+    @ViewBuilder private var mapBikeLocationButton: some View {
+        if !bikeButtonVisible {
+            MapBikeLocationButton(action: onMapBikeLocationButtonTap)
         }
     }
 }
