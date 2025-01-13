@@ -17,14 +17,16 @@ struct RideDetailsView: View {
     }
 
     private func rideDetailView(for rideDetail: RideDetail) -> some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             Label(rideDetail.type.localizedName, systemImage: rideDetail.type.systemImage)
-                .foregroundStyle(.accent)
+                .foregroundStyle(.primary)
+                .font(.body)
+                .bold()
                 .labelStyle(.titleAndIcon)
 
             Text(rideDetail.formattedValue)
-                .font(.headline)
-                .fontDesign(.rounded)
+                .font(.body)
+                .foregroundStyle(.secondary)
         }
     }
 
