@@ -1,6 +1,6 @@
+import Alamofire
 import Foundation
 import SwiftUI
-import Alamofire
 
 /// Implementation of the `Client` that performs requests to the Decathlon bike API.
 public final class APIClient: Client, Sendable {
@@ -8,17 +8,14 @@ public final class APIClient: Client, Sendable {
 
     public init() {}
 
-    /// Get user profile.
     public func getProfile() async throws -> User {
         try await fetch(path: "me")
     }
 
-    /// Get user bikes.
     public func getBikes() async throws -> [Bike] {
         try await fetch(path: "bike")
     }
 
-    /// Get bike rides.
     public func getRides(for bike: Int, limit: Int, offset: Int) async throws -> Rides {
         let path = "/v2/bike/\(bike)/ride"
 
@@ -31,7 +28,6 @@ public final class APIClient: Client, Sendable {
         return try await fetch(path: path, parameters: Parameters(limit: limit, offset: offset))
     }
 
-    /// Get bike locations between two dates.
     public func getLocations(for bike: Int, from: Date, till: Date) async throws -> [Location] {
         let path = "bike/\(bike)/location"
 
@@ -41,6 +37,19 @@ public final class APIClient: Client, Sendable {
         ]
 
         return try await fetch(path: path, parameters: parameters)
+    }
+
+    public func getStats(for bike: Int, from: Date, till: Date, granularity: StatsGranularity) async throws -> [Stat] {
+        let path = "bike/\(bike)/stats"
+
+        struct Parameters: Encodable {
+            let from: Date
+            let till: Date
+            let type: StatsGranularity
+            let tz: String = TimeZone.current.identifier // swiftlint:disable:this identifier_name
+        }
+
+        return try await fetch(path: path, parameters: Parameters(from: from, till: till, type: granularity))
     }
 
     /// Perform a request to the Decathlon bike API.
@@ -77,9 +86,4 @@ public final class APIClient: Client, Sendable {
             .serializingDecodable(Value.self, decoder: decoder)
             .value
     }
-}
-
-public extension EnvironmentValues {
-    /// Environment value for the `Client` used to fetch user data.
-    @Entry var client: Client = APIClient()
 }

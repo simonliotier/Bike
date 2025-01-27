@@ -54,3 +54,20 @@ extension [Geofence] {
 extension [Location] {
     static let preview: Self = .previewAsset(named: "locations")
 }
+
+extension [Stat] {
+    static let previewDay: Self = .previewAsset(named: "stats_day")
+    static let previewWeek: Self = .previewAsset(named: "stats_week")
+    static let previewMonth: Self = .previewAsset(named: "stats_month")
+
+    static func preview(for periodType: StatsPeriodType) -> Self {
+        switch periodType {
+        case .day:
+            .previewDay
+        case .week:
+            .previewWeek
+        case .month:
+            .previewMonth
+        }
+    }
+}

@@ -20,4 +20,21 @@ final class PreviewClient: Client {
     func getLocations(for bike: Int, from: Date, till: Date) async throws -> [Location] {
         .preview
     }
+
+    func getStats(for bike: Int, from: Date, till: Date, granularity: StatsGranularity) async throws -> [Stat] {
+        let days = Calendar.current.dateComponents([.day], from: from, to: till).day ?? 0
+
+        print(days)
+
+        let periodType: StatsPeriodType = switch days {
+        case 0..<1:
+            .day
+        case 1..<7:
+            .week
+        default:
+            .month
+        }
+
+        return .preview(for: periodType)
+    }
 }

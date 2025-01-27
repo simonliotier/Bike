@@ -3,18 +3,36 @@
   "strings" : {
     "%lld rides" : {
       "localizations" : {
-        "fr" : {
+        "en" : {
           "variations" : {
             "plural" : {
               "one" : {
                 "stringUnit" : {
                   "state" : "translated",
+                  "value" : "%lld ride"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld rides"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
                   "value" : "%lld trajet"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "translated",
+                  "state" : "needs_review",
                   "value" : "%lld trajets"
                 }
               }
@@ -45,15 +63,9 @@
     },
     "Close" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Close"
-          }
-        },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Fermer"
           }
         }
@@ -65,6 +77,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nuageux"
+          }
+        }
+      }
+    },
+    "Date" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date"
           }
         }
       }
@@ -141,31 +163,22 @@
     },
     "Itinerary" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Itinerary"
-          }
-        },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Itinéraire"
           }
         }
       }
     },
+    "Last 7 days" : {
+
+    },
     "Logout" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Logout"
-          }
-        },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Se déconnecter"
           }
         }
@@ -173,16 +186,20 @@
     },
     "No bike found." : {
       "localizations" : {
-        "en" : {
+        "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "No bike found."
+            "state" : "needs_review",
+            "value" : "Aucun vélo."
           }
-        },
+        }
+      }
+    },
+    "Period" : {
+      "localizations" : {
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucun vélo."
+            "value" : "Période"
           }
         }
       }
@@ -208,13 +225,34 @@
       }
     },
     "Show bike location" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Montrer la position du vélo"
+          }
+        }
+      }
     },
     "Show satellite map" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Montrer la vue satellite"
+          }
+        }
+      }
     },
     "Show standard map" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Montrer la vue standard"
+          }
+        }
+      }
     },
     "Speed" : {
       "localizations" : {
@@ -235,6 +273,19 @@
           }
         }
       }
+    },
+    "Stats" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stats"
+          }
+        }
+      }
+    },
+    "Today: 7,2 km" : {
+
     },
     "Weather" : {
       "localizations" : {

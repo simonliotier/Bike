@@ -37,6 +37,9 @@ struct BikeDetailsView: View {
                     ForEach(rides, content: rideRow)
                     allRidesRow()
                 }
+                Section {
+                    statsRow()
+                }
             }
             #if os(iOS)
             // On iOS, popovers can handle custom navigation bar content, allowing us to display a custom left-aligned
@@ -56,6 +59,8 @@ struct BikeDetailsView: View {
                     AsyncRideView(bike: bike, ride: ride)
                 case .allRides:
                     AsyncRideList(bike: bike)
+                case .stats:
+                    AsyncStatsView(bike: bike)
                 }
             }
             .task(load)
@@ -113,6 +118,12 @@ struct BikeDetailsView: View {
     private func allRidesRow() -> some View {
         NavigationLink(value: Route.allRides) {
             Text("All rides")
+        }
+    }
+
+    private func statsRow() -> some View {
+        NavigationLink(value: Route.stats) {
+            Label("Stats", systemImage: "chart.bar.xaxis")
         }
     }
 
@@ -206,6 +217,7 @@ extension BikeDetailsView {
 enum Route: Hashable {
     case ride(Ride)
     case allRides
+    case stats
 }
 
 extension BikeDetailsView {

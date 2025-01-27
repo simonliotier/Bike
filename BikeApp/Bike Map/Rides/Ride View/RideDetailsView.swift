@@ -116,7 +116,7 @@ private extension Ride {
     }
 
     var formattedCalories: String {
-        Measurement(value: Double(calories * 1000), unit: UnitEnergy.calories)
+        Measurement(value: Double(calories), unit: UnitEnergy.kilocalories)
             .formatted(.measurement(width: .wide, usage: .food))
     }
 

@@ -1,0 +1,93 @@
+[
+  {
+    "from": "2025-01-19T23:00:00+0000",
+    "till": "2025-01-20T22:59:59+0000",
+    "c02": 3287,
+    "calories": 289,
+    "avg_speed": 18,
+    "distance_traveled": 15702,
+    "avg_power_distribution": 0,
+    "shift_advice": 0,
+    "top_speed": 25,
+    "elevation_up": 201,
+    "elevation_down": 180
+  },
+  {
+    "from": "2025-01-20T23:00:00+0000",
+    "till": "2025-01-21T22:59:59+0000",
+    "c02": 1932,
+    "calories": 101,
+    "avg_speed": 21,
+    "distance_traveled": 5043,
+    "avg_power_distribution": 0,
+    "shift_advice": 0,
+    "top_speed": 27,
+    "elevation_up": 123,
+    "elevation_down": 118
+  },
+  {
+    "from": "2025-01-21T23:00:00+0000",
+    "till": "2025-01-22T22:59:59+0000",
+    "c02": 3114,
+    "calories": 229,
+    "avg_speed": 19,
+    "distance_traveled": 12505,
+    "avg_power_distribution": 0,
+    "shift_advice": 0,
+    "top_speed": 27,
+    "elevation_up": 305,
+    "elevation_down": 270
+  },
+  {
+    "from": "2025-01-22T23:00:00+0000",
+    "till": "2025-01-23T22:59:59+0000",
+    "c02": 0,
+    "calories": 0,
+    "avg_speed": 0,
+    "distance_traveled": 0,
+    "avg_power_distribution": 0,
+    "shift_advice": 0,
+    "top_speed": 0,
+    "elevation_up": 0,
+    "elevation_down": 0
+  },
+  {
+    "from": "2025-01-23T23:00:00+0000",
+    "till": "2025-01-24T22:59:59+0000",
+    "c02": 0,
+    "calories": 0,
+    "avg_speed": 0,
+    "distance_traveled": 0,
+    "avg_power_distribution": 0,
+    "shift_advice": 0,
+    "top_speed": 0,
+    "elevation_up": 0,
+    "elevation_down": 0
+  },
+  {
+    "from": "2025-01-24T23:00:00+0000",
+    "till": "2025-01-25T22:59:59+0000",
+    "c02": 0,
+    "calories": 0,
+    "avg_speed": 0,
+    "distance_traveled": 0,
+    "avg_power_distribution": 0,
+    "shift_advice": 0,
+    "top_speed": 0,
+    "elevation_up": 0,
+    "elevation_down": 0
+  },
+  {
+    "from": "2025-01-25T23:00:00+0000",
+    "till": "2025-01-26T22:59:59+0000",
+    "c02": 0,
+    "calories": 0,
+    "avg_speed": 0,
+    "distance_traveled": 0,
+    "avg_power_distribution": 0,
+    "shift_advice": 0,
+    "top_speed": 0,
+    "elevation_up": 0,
+    "elevation_down": 0
+  }
+]
