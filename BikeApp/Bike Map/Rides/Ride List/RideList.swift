@@ -6,6 +6,24 @@ struct RideList: View {
     let bike: Bike
     let rides: [Ride]
 
+    var body: some View {
+        List {
+            ForEach(sections) { section in
+                Section(section.localizedName) {
+                    ForEach(section.rides) { ride in
+                        NavigationLink(value: ride) {
+                            RideRow(ride: ride)
+                        }
+                        .foregroundStyle(.primary)
+                    }
+                }
+            }
+        }
+        .navigationDestination(for: Ride.self) { ride in
+            AsyncRideView(bike: bike, ride: ride)
+        }
+    }
+
     fileprivate struct MonthSection: Identifiable {
         let yearMonth: YearMonth
         let rides: [Ride]
@@ -26,6 +44,7 @@ struct RideList: View {
             }()
 
             return [yearMonth.localizedName, rideCount, formattedDistance].joined(separator: " • ")
+                .capitalizedSentence
         }
 
         struct YearMonth: Hashable, Comparable, Identifiable {
@@ -63,22 +82,6 @@ struct RideList: View {
         }
         .sorted(using: KeyPathComparator(\.yearMonth, order: .reverse))
     }
-
-    var body: some View {
-        List {
-            ForEach(sections) { section in
-                Section(section.localizedName) {
-                    ForEach(section.rides) { ride in
-                        NavigationLink(value: Route.ride(ride)) {
-                            RideRow(ride: ride)
-                        }
-
-                        .foregroundStyle(.primary)
-                    }
-                }
-            }
-        }
-    }
 }
 
 private extension Ride {
@@ -89,5 +92,7 @@ private extension Ride {
 }
 
 #Preview {
-    RideList(bike: .preview, rides: .preview)
+    NavigationStack {
+        RideList(bike: .preview, rides: .preview)
+    }
 }

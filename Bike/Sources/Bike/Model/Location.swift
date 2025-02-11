@@ -1,7 +1,7 @@
 import Foundation
 
 /// Generated automatically from API response.
-public struct Location: Decodable, Hashable, Identifiable, Sendable {
+public struct Location: Codable, Hashable, Identifiable, Sendable {
     public let id: String
     public let lat: Double
     public let lon: Double

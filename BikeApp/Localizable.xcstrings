@@ -1,6 +1,19 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "--" : {
+
+    },
+    "%@ • %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ • %2$@"
+          }
+        }
+      }
+    },
     "%lld rides" : {
       "localizations" : {
         "en" : {
@@ -37,16 +50,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "All rides" : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tous les trajets"
           }
         }
       }
@@ -141,6 +144,9 @@
         }
       }
     },
+    "Example" : {
+
+    },
     "Fog" : {
       "localizations" : {
         "fr" : {
@@ -171,9 +177,6 @@
         }
       }
     },
-    "Last 7 days" : {
-
-    },
     "Logout" : {
       "localizations" : {
         "fr" : {
@@ -184,15 +187,8 @@
         }
       }
     },
-    "No bike found." : {
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Aucun vélo."
-          }
-        }
-      }
+    "No bike selected" : {
+
     },
     "Period" : {
       "localizations" : {
@@ -284,8 +280,15 @@
         }
       }
     },
-    "Today: 7,2 km" : {
-
+    "This week" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette semaine"
+          }
+        }
+      }
     },
     "Weather" : {
       "localizations" : {

@@ -9,35 +9,32 @@ struct StatsView: View {
 
     var body: some View {
         ScrollView {
-            Text("Stats")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.largeTitle)
-                .bold()
+            VStack(alignment: .leading) {
+                Text(periodTitle)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.headline)
+                    .foregroundStyle(.secondary)
 
-            Text(periodTitle)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.headline)
-                .foregroundStyle(.secondary)
+                Picker("Period", selection: $periodType) {
+                    ForEach(StatsPeriodType.allCases) { periodType in
+                        Text(periodType.displayName)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
 
-            Picker("Period", selection: $periodType) {
-                ForEach(StatsPeriodType.allCases) { periodType in
-                    Text(periodType.displayName)
+                ForEach(StatsCategory.allCases) { category in
+                    StatsChart(data: .init(stats: allPeriodStats.stats(for: periodType),
+                                           periodType: periodType,
+                                           category: category))
+
+                    if category != StatsCategory.allCases.last {
+                        Divider()
+                    }
                 }
             }
-            .pickerStyle(.segmented)
-            .labelsHidden()
-
-            ForEach(StatsCategory.allCases) { category in
-                StatsChart(data: .init(stats: allPeriodStats.stats(for: periodType),
-                                       periodType: periodType,
-                                       category: category))
-
-                if category != StatsCategory.allCases.last {
-                    Divider()
-                }
-            }
+            .padding()
         }
-        .padding()
     }
 
     var periodTitle: String {

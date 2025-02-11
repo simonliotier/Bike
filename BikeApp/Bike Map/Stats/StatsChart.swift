@@ -1,4 +1,3 @@
-import Bike
 import Charts
 import SwiftUI
 

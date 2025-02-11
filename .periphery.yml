@@ -8,4 +8,4 @@ report_exclude:
   - "**/Model/*.swift"
 build_arguments:
   - -destination
-  - 'generic/platform=iOS'
+  - 'generic/platform=macOS'

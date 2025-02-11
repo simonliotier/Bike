@@ -11,6 +11,14 @@ struct AsyncStatsView: View {
         AsyncContentView(asyncContent: Content(bike: bike, client: client)) { allPeriodStats in
             StatsView(allPeriodStats: allPeriodStats)
         }
+        .navigationTitle("Stats")
+        .toolbar {
+            #if os(iOS)
+                ToolbarItem(placement: .topBarTrailing) {
+                    DismissButton()
+                }
+            #endif
+        }
     }
 }
 
@@ -66,8 +74,10 @@ extension AsyncStatsView {
 }
 
 #Preview {
-    AsyncStatsView(bike: .preview)
-        .environment(\.client, PreviewClient())
+    NavigationStack {
+        AsyncStatsView(bike: .preview)
+            .environment(\.client, PreviewClient())
+    }
 }
 
 /// A set of convenience properties to retrieve the start and end `Date`s for the current day, week, and month.
@@ -75,7 +85,7 @@ extension AsyncStatsView {
 /// **Note**: When calculating end dates, we subtract one second from the interval's `end` value. This ensures any
 /// range-based queries (e.g., daily/weekly/monthly stats) include the entire final calendar unit up to 23:59:59 on the
 /// last day, rather than spilling into the next day, week, or month.
-private extension Calendar {
+extension Calendar {
     var currentDayInterval: DateInterval? {
         dateInterval(of: .day, for: .now)
     }

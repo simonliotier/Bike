@@ -22,7 +22,7 @@ public struct Pin: View {
                 .offset(y: 3)
         }
         .compositingGroup()
-        .shadow(color: .black.opacity(0.1), radius: 3, x: 0, y: 1)
+        .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 1)
         .visualEffect { content, proxy in
             // Make the pin points to the center of the view.
             content.offset(y: -proxy.size.height / 2.0)

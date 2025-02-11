@@ -6,89 +6,90 @@ import SwiftUI
 /// View displayed as a popover when the bike is selected on the map.
 struct BikeDetailsView: View {
     let bike: Bike
-
-    let provider: Provider
-
-    init(bike: Bike, provider: (any BikeDetailsView.Provider)? = nil) {
-        self.bike = bike
-        self.provider = provider ?? APIProvider(bike: bike)
-    }
-
-    @State private var postalAddress: Address?
-    @State private var itinerary: Itinerary?
-    @State private var rides: [Ride] = []
-    @State private var selectedRide: Ride?
-    @State private var allRidesPresented = false
-
-    @Environment(\.client) private var client: Client
-    @Environment(\.isInPopover) private var isInPopover
+    let bikeDetails: BikeDetails
+    let itineraryProvider: ItineraryProvider
 
     private let locationManager = CLLocationManager()
 
-    var body: some View {
-        NavigationStack {
-            List {
-                Section {
-                    itineraryButton
-                } header: {
-                    header
-                }
-                Section("Rides") {
-                    ForEach(rides, content: rideRow)
-                    allRidesRow()
-                }
-                Section {
-                    statsRow()
-                }
-            }
-            #if os(iOS)
-            // On iOS, popovers can handle custom navigation bar content, allowing us to display a custom left-aligned
-            // title.
-            .toolbar(content: toolbarContent)
-            #elseif os(macOS)
-            // On macOS, popovers cannot handle custom navigation bar content. We use the navigation title to display
-            // the bike name.
-            .navigationTitle(bike.name)
-            // Use sidebar list style to avoid sticky headers on macOS.
-            .listStyle(.sidebar)
-            #endif
-            .presentationBackgroundInteraction(.enabled)
-            .navigationDestination(for: Route.self) { route in
-                switch route {
-                case .ride(let ride):
-                    AsyncRideView(bike: bike, ride: ride)
-                case .allRides:
-                    AsyncRideList(bike: bike)
-                case .stats:
-                    AsyncStatsView(bike: bike)
-                }
-            }
-            .task(load)
-        }
-        // When the view is displayed in a popover, we must specify an appropriate size.
-        .frame(minWidth: isInPopover ? 320 : nil, minHeight: isInPopover ? 540 : nil)
+    @State private var presentedSheetScreen: Screen?
+    @State private var postalAddress: Address?
+    @State private var itinerary: Itinerary?
+
+    @Environment(\.openWindow) private var openWindow
+
+    init(bike: Bike, bikeDetails: BikeDetails, itineraryProvider: (any ItineraryProvider)? = nil) {
+        self.bike = bike
+        self.bikeDetails = bikeDetails
+        self.itineraryProvider = itineraryProvider ?? AppItineraryProvider(bike: bike)
     }
 
-    var header: some View {
+    var body: some View {
         VStack(alignment: .leading) {
-            Text(formattedAddress)
-            HStack(spacing: 4) {
-                Text(lastLocationDate)
-                Image(batteryPercentage: Double(bike.batteryPercentage) / 100.0)
+            header
+            itineraryButton
+
+            HStack {
+                ridesButton
+                statsButton
             }
+            .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding()
+        .presentationBackground(.regularMaterial)
+        .presentationBackgroundInteraction(.enabled)
+        #if os(iOS)
+            // On iOS, we set an ideal width that will be used to size the popover on iPad, but will be ignored by the
+            // sheet on iPhone.
+            .frame(idealWidth: 400)
+        #elseif os(macOS)
+            // On macOS, we set an explicit width to prevent a layout issue occurring when using
+            // `fixedSize(horizontal:vertical:)`.
+            .frame(width: 400)
+        #endif
+        #if os(macOS)
+            // On macOS, keep the popover displayed when other windows are opened.
+            .interactiveDismissDisabled(true)
+        #endif
+            .fittedPresentationDetent()
+            .task(loadItinerary)
+            .sheet(item: $presentedSheetScreen) { destination in
+                NavigationStack {
+                    switch destination {
+                    case .rides:
+                        AsyncRideList(bike: bike)
+                    case .stats:
+                        AsyncStatsView(bike: bike)
+                    }
+                }
+            }
+    }
+
+    @ViewBuilder private var header: some View {
+        VStack(alignment: .leading) {
+            Text(bike.name)
+                .font(.title2)
+                .bold()
+
+            VStack(alignment: .leading) {
+                Text(formattedAddress)
+                HStack(spacing: 4) {
+                    Text(lastLocationDate)
+                    Image(batteryPercentage: Double(bike.batteryPercentage) / 100.0)
+                }
+            }
+            .foregroundStyle(.secondary)
         }
         .font(.subheadline)
-        .foregroundStyle(.secondary)
         .textCase(nil)
         .listRowInsets(.init())
         .padding(.bottom)
     }
 
-    var itineraryButton: some View {
+    @ViewBuilder private var itineraryButton: some View {
         Button {
             Task(operation: openDirection)
         } label: {
-            VStack(alignment: .leading, spacing: 16) {
+            HStack(alignment: .top, spacing: 16) {
                 Image(systemName: "arrow.triangle.turn.up.right.circle.fill")
                     .foregroundStyle(.accent)
                     .font(.largeTitle)
@@ -103,43 +104,30 @@ struct BikeDetailsView: View {
                     }
                 }
             }
-            .padding(4)
+            .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
+            .modifier(CardBackgroundModifier())
         }
         .tint(.primary)
+        .buttonStyle(.plain)
     }
 
-    private func rideRow(_ ride: Ride) -> some View {
-        NavigationLink(value: Route.ride(ride)) {
-            RideRow(ride: ride)
+    @ViewBuilder private var ridesButton: some View {
+        Button {
+            present(.rides)
+        } label: {
+            RidesCardView(rides: bikeDetails.lastRides)
         }
+        .buttonStyle(.plain)
     }
 
-    private func allRidesRow() -> some View {
-        NavigationLink(value: Route.allRides) {
-            Text("All rides")
+    @ViewBuilder private var statsButton: some View {
+        Button {
+            present(.stats)
+        } label: {
+            StatsCardView(stats: bikeDetails.weekStats)
         }
-    }
-
-    private func statsRow() -> some View {
-        NavigationLink(value: Route.stats) {
-            Label("Stats", systemImage: "chart.bar.xaxis")
-        }
-    }
-
-    @ToolbarContentBuilder private func toolbarContent() -> some ToolbarContent {
-        ToolbarItem(placement: .topBarLeading) {
-            Text(bike.name)
-                .font(.title2)
-                .bold()
-        }
-
-        // Only display the the dismiss button if the view is displayed inside a sheet.
-        if !isInPopover {
-            ToolbarItem(placement: .topBarTrailing) {
-                DismissButton()
-            }
-        }
+        .buttonStyle(.plain)
     }
 
     private var formattedAddress: String {
@@ -160,11 +148,10 @@ struct BikeDetailsView: View {
         bike.lastLocation.date.formatted(.relative(presentation: .named)).capitalizedSentence
     }
 
-    private func load() async {
+    private func loadItinerary() async {
         requestLocationAuthorization()
-        Task { postalAddress = try? await provider.getAddress() }
-        Task { itinerary = try? await provider.getItinerary() }
-        Task { rides = (try? await client.getRides(for: bike.id, limit: 3, offset: 0).data) ?? [] }
+        Task { postalAddress = try? await itineraryProvider.getAddress() }
+        Task { itinerary = try? await itineraryProvider.getItinerary() }
     }
 
     private func requestLocationAuthorization() {
@@ -194,58 +181,13 @@ struct BikeDetailsView: View {
             await MKMapItem.openMaps(with: [bikeMapItem], launchOptions: launchOptions)
         #endif
     }
-}
 
-extension BikeDetailsView {
-    protocol Provider: Sendable {
-        var bike: Bike { get }
-        func getAddress() async throws -> Address
-        func getItinerary() async throws -> Itinerary
-    }
-
-    struct Address {
-        let street: String
-        let city: String
-    }
-
-    struct Itinerary {
-        let distance: CLLocationDistance
-        let expectedTravelTime: TimeInterval
-    }
-}
-
-enum Route: Hashable {
-    case ride(Ride)
-    case allRides
-    case stats
-}
-
-extension BikeDetailsView {
-    struct APIProvider: Provider {
-        let bike: Bike
-
-        func getAddress() async throws -> BikeDetailsView.Address {
-            let placemark = try await bike.getPlacemark()
-            guard let postalAddress = placemark.postalAddress else { fatalError() }
-            return .init(street: postalAddress.street, city: postalAddress.city)
-        }
-
-        func getItinerary() async throws -> BikeDetailsView.Itinerary {
-            let currentLocationMapItem = MKMapItem.forCurrentLocation()
-            let bikePlacemark = try await bike.getPlacemark()
-            let bikeMapItem = MKMapItem(placemark: MKPlacemark(placemark: bikePlacemark))
-
-            let directionRequest = MKDirections.Request()
-            directionRequest.source = currentLocationMapItem
-            directionRequest.destination = bikeMapItem
-            directionRequest.transportType = .walking
-
-            let directions = MKDirections(request: directionRequest)
-
-            let eta = try await directions.calculateETA()
-
-            return .init(distance: eta.distance, expectedTravelTime: eta.expectedTravelTime)
-        }
+    private func present(_ screen: Screen) {
+        #if os(iOS)
+            presentedSheetScreen = screen
+        #elseif os(macOS)
+            openWindow(id: screen.rawValue, value: bike)
+        #endif
     }
 }
 
@@ -255,62 +197,10 @@ extension BikeDetailsView {
     Background {
         Map()
             .popover(isPresented: .constant(true), attachmentAnchor: .point(.center), arrowEdge: .trailing) {
-                BikeDetailsView(bike: .preview, provider: BikeDetailsView.PreviewProvider())
-                    .environment(\.isInPopover, true)
+                BikeDetailsView(bike: .preview,
+                                bikeDetails: .init(lastRides: .previewLast3, weekStats: .previewWeek),
+                                itineraryProvider: PreviewItineraryProvider())
+                    .environment(\.client, PreviewClient())
             }
     }
-    .environment(\.client, PreviewClient())
-}
-
-extension BikeDetailsView {
-    struct PreviewProvider: Provider {
-        let bike: Bike = .preview
-
-        func getAddress() async throws -> BikeDetailsView.Address {
-            .preview
-        }
-
-        func getItinerary() async throws -> BikeDetailsView.Itinerary {
-            .preview
-        }
-    }
-}
-
-extension BikeDetailsView.Address {
-    static let preview = BikeDetailsView.Address(street: "7 rue de Valmy", city: "Nantes")
-}
-
-extension BikeDetailsView.Itinerary {
-    static let preview = BikeDetailsView.Itinerary(distance: 1234, expectedTravelTime: 567)
-}
-
-extension Bike {
-    func getPlacemark() async throws -> CLPlacemark {
-        guard let placemark = try await CLGeocoder().reverseGeocodeLocation(lastCLLocation).first else {
-            throw Error.noPlacemarkFound
-        }
-
-        return placemark
-    }
-
-    var lastCLLocation: CLLocation {
-        .init(latitude: lastLocation.lat, longitude: lastLocation.lon)
-    }
-
-    enum Error: Swift.Error {
-        case noPlacemarkFound
-    }
-}
-
-extension ToolbarItemPlacement {
-    // Temporary, to fix macOS compilation.
-    #if os(macOS)
-        static var topBarLeading: ToolbarItemPlacement { .automatic }
-        static var topBarTrailing: ToolbarItemPlacement { .automatic }
-    #endif
-}
-
-extension EnvironmentValues {
-    /// Indicate if the view is currently presented inside a popover (instead of a sheet).
-    @Entry var isInPopover: Bool = false
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Generated automatically from API response.
-public struct Geofence: Decodable, Hashable, Identifiable, Sendable {
+public struct Geofence: Codable, Hashable, Identifiable, Sendable {
     public let id: Int
     public let bikeId: Int
     public let userId: Int
@@ -22,7 +22,7 @@ public struct Geofence: Decodable, Hashable, Identifiable, Sendable {
         case creationDate = "creation_date"
     }
 
-    public struct Location: Decodable, Hashable, Sendable {
+    public struct Location: Codable, Hashable, Sendable {
         let lat: Double?
         let lon: Double?
     }

@@ -11,7 +11,7 @@ struct RideView: View {
         List {
             Section {
                 RideMap(locations: locations)
-                    .aspectRatio(contentMode: .fit)
+                    .frame(idealHeight: 300)
             } header: {
                 Text(ride.formattedTimeRange)
             }
@@ -33,10 +33,5 @@ private extension Ride {
 }
 
 #Preview {
-    Color.clear
-        .popover(isPresented: .constant(true), attachmentAnchor: .point(.center), arrowEdge: .trailing) {
-            NavigationStack {
-                RideView(ride: .previewMorning, locations: .preview)
-            }
-        }
+    RideView(ride: .previewMorning, locations: .preview)
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Generated automatically from API response.
-public struct Rides: Decodable, Sendable {
+public struct Rides: Codable, Sendable {
     public let filters: [String]?
     public let orderClauses: [OrderClauses]
     public let meta: Meta
@@ -14,12 +14,12 @@ public struct Rides: Decodable, Sendable {
         case data
     }
 
-    public struct OrderClauses: Decodable, Sendable {
+    public struct OrderClauses: Codable, Sendable {
         public let fieldname: String?
         public let order: String?
     }
 
-    public struct Meta: Decodable, Sendable {
+    public struct Meta: Codable, Sendable {
         public let limit: Int?
         public let offset: Int?
         public let totalRecords: Int?

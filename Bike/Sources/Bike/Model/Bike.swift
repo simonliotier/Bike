@@ -1,7 +1,9 @@
 import Foundation
+import CoreLocation
+import MapKit
 
 /// Generated automatically from API response.
-public struct Bike: Decodable, Identifiable, Hashable, Sendable {
+public struct Bike: Codable, Identifiable, Hashable, Sendable {
     public let id: Int
     public let userId: Int
     public let userName: String
@@ -104,5 +106,15 @@ public struct Bike: Decodable, Identifiable, Hashable, Sendable {
         case vibration
         // case inviteCode = "invite_code"
         // case inviteCodeUri = "invite_code_uri"
+    }
+}
+
+public extension Bike {
+    var lastLocationCoordinate: CLLocationCoordinate2D {
+        .init(latitude: lastLocation.lat, longitude: lastLocation.lon)
+    }
+
+    var lastLocationMapPoint: MKMapPoint {
+        .init(lastLocationCoordinate)
     }
 }

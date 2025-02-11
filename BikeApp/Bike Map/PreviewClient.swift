@@ -14,7 +14,7 @@ final class PreviewClient: Client {
     }
 
     func getRides(for bike: Int, limit: Int, offset: Int) async throws -> Rides {
-        limit == 3 ? .previewLimit3 : .preview
+        limit == 3 ? .previewLast3 : .preview
     }
 
     func getLocations(for bike: Int, from: Date, till: Date) async throws -> [Location] {
@@ -23,8 +23,6 @@ final class PreviewClient: Client {
 
     func getStats(for bike: Int, from: Date, till: Date, granularity: StatsGranularity) async throws -> [Stat] {
         let days = Calendar.current.dateComponents([.day], from: from, to: till).day ?? 0
-
-        print(days)
 
         let periodType: StatsPeriodType = switch days {
         case 0..<1:

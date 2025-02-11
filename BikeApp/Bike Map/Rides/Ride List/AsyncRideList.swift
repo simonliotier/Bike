@@ -11,10 +11,14 @@ struct AsyncRideList: View {
         AsyncContentView(asyncContent: Content(bike: bike, client: client)) { rides in
             RideList(bike: bike, rides: rides)
         }
-        .navigationTitle("All rides")
-        #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-        #endif
+        .navigationTitle("Rides")
+        .toolbar {
+            #if os(iOS)
+                ToolbarItem(placement: .topBarTrailing) {
+                    DismissButton()
+                }
+            #endif
+        }
     }
 }
 
@@ -42,6 +46,8 @@ extension AsyncRideList {
 }
 
 #Preview {
-    AsyncRideList(bike: .preview)
-        .environment(\.client, PreviewClient())
+    NavigationStack {
+        AsyncRideList(bike: .preview)
+    }
+    .environment(\.client, PreviewClient())
 }

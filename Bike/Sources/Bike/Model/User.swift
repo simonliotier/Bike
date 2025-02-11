@@ -1,7 +1,7 @@
 import Foundation
 
 /// Generated automatically from API response.
-public struct User: Decodable, Hashable, Sendable {
+public struct User: Codable, Hashable, Sendable {
     public let id: Int?
     public let username: String?
     public let name: String?
@@ -30,7 +30,7 @@ public struct User: Decodable, Hashable, Sendable {
     public let isDemoAccount: Bool?
     public let permissions: [String]?
 
-    public struct Location: Decodable, Hashable, Sendable {
+    public struct Location: Codable, Hashable, Sendable {
         public let lat: Double?
         public let lon: Double?
     }

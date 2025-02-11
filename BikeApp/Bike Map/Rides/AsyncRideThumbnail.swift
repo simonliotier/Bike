@@ -14,13 +14,17 @@ struct AsyncRideThumbnail: View {
         ZStack {
             Rectangle()
                 .foregroundStyle(.quinary)
-            if let thumbnail {
-                Image(osImage: thumbnail.image(for: colorScheme))
-                    .resizable()
-            }
+                .overlay {
+                    if let thumbnail {
+                        Image(osImage: thumbnail.image(for: colorScheme))
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .clipped()
+                    }
+                }
         }
-        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 4, height: 4)))
-        .frame(width: 50, height: 50)
+        .clipped()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .task {
             guard let thumbnail = try? await generateThumbnail() else {
                 return
@@ -39,5 +43,6 @@ struct AsyncRideThumbnail: View {
 
 #Preview {
     AsyncRideThumbnail(ride: .previewAfternoon)
+        .frame(width: 100, height: 100)
         .environment(\.client, PreviewClient())
 }
