@@ -29,7 +29,7 @@ public final class AuthenticationController: Sendable {
         ]
 
         oauth2 = OAuth2CodeGrant(settings: settings)
-        oauth2.logger = OAuth2DebugLogger(.trace)
+        oauth2.logger = OAuth2DebugLogger(.warn)
     }
 
     public var isAuthenticated: Bool {
