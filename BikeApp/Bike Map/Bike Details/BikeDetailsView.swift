@@ -1,3 +1,4 @@
+import Alamofire
 import Bike
 import Contacts
 import MapKit
@@ -12,6 +13,8 @@ struct BikeDetailsView: View {
     private let locationManager = CLLocationManager()
 
     @State private var presentedSheetScreen: Screen?
+    @State private var pendingSheetScreen: Screen?
+    @State private var isSheetPresented: Bool = false
     @State private var postalAddress: Address?
     @State private var itinerary: Itinerary?
 
@@ -47,21 +50,22 @@ struct BikeDetailsView: View {
             .frame(width: 400)
         #endif
         #if os(macOS)
-            // On macOS, keep the popover displayed when other windows are opened.
-            .interactiveDismissDisabled(true)
+        // On macOS, keep the popover displayed when other windows are opened.
+        .interactiveDismissDisabled(true)
         #endif
-            .fittedPresentationDetent()
-            .task(loadItinerary)
-            .sheet(item: $presentedSheetScreen) { destination in
-                NavigationStack {
-                    switch destination {
-                    case .rides:
-                        AsyncRideList(bike: bike)
-                    case .stats:
-                        AsyncStatsView(bike: bike)
-                    }
+        .fittedPresentationDetent()
+        .task(loadItinerary)
+        .sheet(item: $presentedSheetScreen) { screen in
+            NavigationStack {
+                switch screen {
+                case .rides:
+                    AsyncRideList(bike: bike)
+                case .stats:
+                    AsyncStatsView(bike: bike)
                 }
             }
+            .onIsPresentedChange(perform: onSheetIsPresentedChange)
+        }
     }
 
     @ViewBuilder private var header: some View {
@@ -184,10 +188,27 @@ struct BikeDetailsView: View {
 
     private func present(_ screen: Screen) {
         #if os(iOS)
-            presentedSheetScreen = screen
+            if isSheetPresented {
+                pendingSheetScreen = screen
+            } else {
+                presentedSheetScreen = screen
+            }
+
         #elseif os(macOS)
             openWindow(id: screen.rawValue, value: bike)
         #endif
+    }
+
+    private func onSheetIsPresentedChange(_ isPresented: Bool) {
+        isSheetPresented = isPresented
+
+        // When trying to present a new sheet before the previous one is completely dismissed, SwiftUI triggers
+        // tasks cancellation on the new sheet. So we wait for the previous sheet to be completely dismissed
+        // before presenting the new one.
+        if !isPresented, let screen = pendingSheetScreen {
+            present(screen)
+            pendingSheetScreen = nil
+        }
     }
 }
 
@@ -202,5 +223,26 @@ struct BikeDetailsView: View {
                                 itineraryProvider: PreviewItineraryProvider())
                     .environment(\.client, PreviewClient())
             }
+    }
+}
+
+struct OnIsPresentedChangeModifier: ViewModifier {
+    var onIsPresentedChange: (Bool) -> Void
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear {
+                onIsPresentedChange(true)
+            }
+            .onDisappear {
+                onIsPresentedChange(false)
+            }
+    }
+}
+
+extension View {
+    /// Set the view detent so that it fits the view content.
+    func onIsPresentedChange(perform action: @escaping (Bool) -> Void) -> some View {
+        modifier(OnIsPresentedChangeModifier(onIsPresentedChange: action))
     }
 }
