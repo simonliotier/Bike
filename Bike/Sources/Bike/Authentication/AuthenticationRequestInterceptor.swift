@@ -1,11 +1,11 @@
 import Alamofire
 import Foundation
-import OAuth2
+@preconcurrency import OAuth2
 
 /// Adapt and retry Alamofire requests for authentication.
 ///
 /// Inspired by [OAuth2 wiki](https://github.com/p2/OAuth2/wiki/Alamofire-5).
-class AuthenticationRequestInterceptor: RequestInterceptor {
+final class AuthenticationRequestInterceptor: RequestInterceptor {
     let loader: OAuth2DataLoader
 
     init(oauth2: OAuth2) {

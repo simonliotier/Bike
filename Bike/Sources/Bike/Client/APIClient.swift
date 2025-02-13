@@ -31,7 +31,7 @@ public final class APIClient: Client, Sendable {
     public func getLocations(for bike: Int, from: Date, till: Date) async throws -> [Location] {
         let path = "bike/\(bike)/location"
 
-        let parameters: Encodable = [
+        let parameters: Encodable & Sendable = [
             "from": from,
             "till": till
         ]
@@ -53,8 +53,10 @@ public final class APIClient: Client, Sendable {
     }
 
     /// Perform a request to the Decathlon bike API.
-    private func fetch<Value: Decodable>(path: String,
-                                         parameters: (any Encodable)? = nil) async throws -> Value {
+    private func fetch<Value: Decodable & Sendable>(
+        path: String,
+        parameters: (any Encodable & Sendable)? = nil
+    ) async throws -> Value {
         let url = endPointURL.appending(path: path)
 
         let encoder = URLEncodedFormParameterEncoder(encoder: URLEncodedFormEncoder(dateEncoding: .iso8601))
@@ -83,7 +85,7 @@ public final class APIClient: Client, Sendable {
         }()
 
         return try await request
-            .serializingDecodable(Value.self, decoder: decoder)
+            .serializingDecodable(Value.self, automaticallyCancelling: true, decoder: decoder)
             .value
     }
 }

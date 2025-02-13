@@ -20,7 +20,7 @@ public protocol Client: Sendable {
 }
 
 /// Granularity specified when requesting stats.
-public enum StatsGranularity: String, Codable {
+public enum StatsGranularity: String, Codable, Sendable {
     case hourly
     case daily
 }
