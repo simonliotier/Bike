@@ -8,24 +8,18 @@ struct CardView<Title: View, Content: View>: View {
     @ScaledMetric private var titleHeight: CGFloat = 20
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 16) {
             HStack {
                 title
                     .font(.subheadline)
                     .bold()
                     .frame(height: titleHeight)
-
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .foregroundStyle(.tint)
-                    .fontWeight(.semibold)
             }
-            .padding(.init(top: 16, leading: 16, bottom: 8, trailing: 16))
-            Divider()
+
             content
-                .padding(.init(top: 8, leading: 16, bottom: 16, trailing: 16))
-                .frame(maxHeight: .infinity, alignment: .top)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
+        .padding(16)
         .modifier(CardBackgroundModifier())
     }
 }

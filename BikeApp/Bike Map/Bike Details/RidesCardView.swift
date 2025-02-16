@@ -32,6 +32,7 @@ struct RidesCardView: View {
                     .foregroundStyle(.secondary)
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

@@ -27,15 +27,16 @@ struct BikeDetailsView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             header
-            itineraryButton
-
-            HStack {
-                ridesButton
-                statsButton
+            VStack(alignment: .leading, spacing: 16) {
+                itineraryButton
+                HStack(spacing: 16) {
+                    ridesButton
+                    statsButton
+                }
+                .fixedSize(horizontal: false, vertical: true)
             }
-            .fixedSize(horizontal: false, vertical: true)
         }
         .padding()
         .presentationBackground(.regularMaterial)
