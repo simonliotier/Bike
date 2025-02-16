@@ -12,9 +12,8 @@ struct RideRow: View {
                 .frame(width: 50, height: 50)
                 .clipShape(RoundedRectangle(cornerSize: CGSize(width: 4, height: 4)))
             VStack(alignment: .leading) {
-                Text(ride.formattedTitle)
-                    .font(.headline)
                 Text(ride.formattedDate)
+                Text(ride.formattedTitle)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
@@ -34,7 +33,7 @@ private extension Ride {
     }
 
     var formattedDate: String {
-        startDate.formatted(.relative(presentation: .named, unitsStyle: .wide))
+        startDate.formatted(.dateTime.month(.wide).weekday(.wide).day().hour().minute())
             .capitalizedSentence
     }
 }

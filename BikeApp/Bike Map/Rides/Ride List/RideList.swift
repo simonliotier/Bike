@@ -6,21 +6,45 @@ struct RideList: View {
     let bike: Bike
     let rides: [Ride]
 
+    private var sections: [MonthSection] {
+        Dictionary(grouping: rides) { ride in
+            ride.yearMonth
+        }
+        .map { yearMonth, rides in
+            MonthSection(yearMonth: yearMonth, rides: rides)
+        }
+        .sorted(using: KeyPathComparator(\.yearMonth, order: .reverse))
+    }
+
     var body: some View {
         List {
             ForEach(sections) { section in
-                Section(section.localizedName) {
+                Section {
                     ForEach(section.rides) { ride in
                         NavigationLink(value: ride) {
                             RideRow(ride: ride)
                         }
-                        .foregroundStyle(.primary)
                     }
+                } header: {
+                    sectionHeader(for: section)
+                        .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
                 }
             }
         }
+        .headerProminence(.increased)
         .navigationDestination(for: Ride.self) { ride in
             AsyncRideView(bike: bike, ride: ride)
+        }
+    }
+
+    @ViewBuilder private func sectionHeader(for section: MonthSection) -> some View {
+        VStack(alignment: .leading) {
+            Text(section.yearMonth.localizedName)
+                .foregroundStyle(.primary)
+                .textCase(nil)
+            Text([section.formattedRideCount, section.formattedDistance].joined(separator: " • "))
+                .font(.callout)
+                .foregroundStyle(.secondary)
         }
     }
 
@@ -30,6 +54,17 @@ struct RideList: View {
 
         var id: String {
             yearMonth.id
+        }
+
+        var formattedDistance: String {
+            let distance = rides.map(\.distanceTraveled).reduce(0, +)
+
+            return Measurement(value: Double(distance), unit: UnitLength.meters)
+                .formatted(.measurement(width: .abbreviated, usage: .road))
+        }
+
+        var formattedRideCount: String {
+            String(localized: "\(rides.count) rides")
         }
 
         var localizedName: String {
@@ -60,7 +95,9 @@ struct RideList: View {
                     return ""
                 }
 
-                return date.formatted(Date.FormatStyle().year().month(.wide))
+                return date
+                    .formatted(Date.FormatStyle().year().month(.wide))
+                    .capitalizedSentence
             }
 
             static func < (lhs: YearMonth, rhs: YearMonth) -> Bool {
@@ -71,16 +108,6 @@ struct RideList: View {
                 return lhs.year < rhs.year
             }
         }
-    }
-
-    private var sections: [MonthSection] {
-        Dictionary(grouping: rides) { ride in
-            ride.yearMonth
-        }
-        .map { yearMonth, rides in
-            MonthSection(yearMonth: yearMonth, rides: rides)
-        }
-        .sorted(using: KeyPathComparator(\.yearMonth, order: .reverse))
     }
 }
 
