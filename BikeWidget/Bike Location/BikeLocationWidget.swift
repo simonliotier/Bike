@@ -13,8 +13,10 @@ import WidgetKit
 struct BikeLocationWidget: Widget {
     let kind: String = "BikeLocationWidget"
 
+    private let client = Client(client: APIClient(authenticationController: .init()))
+
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider(client: client)) { entry in
             BikeLocationWidgetSystemView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
@@ -54,7 +56,7 @@ extension BikeLocationWidget {
 
 extension BikeLocationWidget {
     struct Provider: TimelineProvider {
-        private let client = APIClient()
+        let client: Client
 
         func placeholder(in context: Context) -> Entry {
             .init(date: .now, state: .loaded(.placeholder))

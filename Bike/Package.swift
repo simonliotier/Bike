@@ -16,15 +16,18 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire", .upToNextMajor(from: "5.7.0")),
-        .package(url: "https://github.com/p2/OAuth2", branch: "main"),
-        .package(url: "https://github.com/realm/SwiftLint", .upToNextMajor(from: "0.55.0"))
+        .package(url: "https://github.com/realm/SwiftLint", .upToNextMajor(from: "0.55.0")),
+        .package(url: "https://github.com/openid/AppAuth-iOS.git", .upToNextMajor(from: "1.7.0")),
+        .package(url: "https://github.com/evgenyneu/keychain-swift.git", from: "24.0.0")
+
     ],
     targets: [
         .target(
             name: "Bike",
             dependencies: [
                 .product(name: "Alamofire", package: "Alamofire"),
-                .product(name: "OAuth2", package: "OAuth2")
+                .product(name: "AppAuth", package: "AppAuth-iOS"),
+                .product(name: "KeychainSwift", package: "keychain-swift")
             ]
         ),
         .testTarget(

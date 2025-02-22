@@ -67,21 +67,6 @@ struct RideList: View {
             String(localized: "\(rides.count) rides")
         }
 
-        var localizedName: String {
-            let rideCount = String(localized: "\(rides.count) rides")
-
-            let formattedDistance: String = {
-                let distance = rides.map(\.distanceTraveled).reduce(0, +)
-
-                return Measurement(value: Double(distance), unit: UnitLength.meters)
-                    .formatted(.measurement(width: .abbreviated, usage: .road))
-
-            }()
-
-            return [yearMonth.localizedName, rideCount, formattedDistance].joined(separator: " • ")
-                .capitalizedSentence
-        }
-
         struct YearMonth: Hashable, Comparable, Identifiable {
             let month: Int
             let year: Int

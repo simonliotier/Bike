@@ -182,5 +182,5 @@ struct BikeMap: View {
 
 #Preview {
     BikeMap(bike: .preview, content: .init(lastRides: .previewLast3, weekStats: .previewWeek))
-        .environment(\.client, PreviewClient())
+        .environment(PreviewClient())
 }

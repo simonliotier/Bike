@@ -1,5 +1,5 @@
 {
-  "originHash" : "b6d2fa4f0631f20fb705bce41f531e75805406e3de94aabf60a19d26ffc99601",
+  "originHash" : "457602963480de7b08448fa8e691d8e316de0c39734707ad7261ecda8f1f00ab",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "513364f870f6bfc468f9d2ff0a95caccc10044c5",
         "version" : "5.10.2"
+      }
+    },
+    {
+      "identity" : "appauth-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/openid/AppAuth-iOS.git",
+      "state" : {
+        "revision" : "2781038865a80e2c425a1da12cc1327bcd56501f",
+        "version" : "1.7.6"
       }
     },
     {
@@ -29,12 +38,12 @@
       }
     },
     {
-      "identity" : "oauth2",
+      "identity" : "keychain-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/p2/OAuth2",
+      "location" : "https://github.com/evgenyneu/keychain-swift.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "3f6a18beb221636581e66d8d0cbec1a3948b4df3"
+        "revision" : "5e1b02b6a9dac2a759a1d5dbc175c86bd192a608",
+        "version" : "24.0.0"
       }
     },
     {

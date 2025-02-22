@@ -1,12 +1,17 @@
 import Alamofire
+import AppAuth
 import Foundation
 import SwiftUI
 
 /// Implementation of the `Client` that performs requests to the Decathlon bike API.
-public final class APIClient: Client, Sendable {
+public final class APIClient: ClientProtocol, Sendable {
+    let authenticationController: AuthenticationController
+
     private let endPointURL = URL(string: "https://decathlon.api.bike.conneq.tech")!
 
-    public init() {}
+    public init(authenticationController: AuthenticationController) {
+        self.authenticationController = authenticationController
+    }
 
     public func getProfile() async throws -> User {
         try await fetch(path: "me")
@@ -64,11 +69,7 @@ public final class APIClient: Client, Sendable {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
 
-        // Ensure that we are authenticated, as advised on OAuth2 readme.
-        // https://github.com/p2/OAuth2?tab=readme-ov-file#8-re-authorize
-        try await AuthenticationController.shared.authenticate()
-
-        let oauth2 = AuthenticationController.shared.oauth2
+        let interceptor = AuthenticationRequestInterceptor(authenticationController: authenticationController)
 
         let request: DataRequest = {
             if let parameters {
@@ -76,11 +77,11 @@ public final class APIClient: Client, Sendable {
                                   method: .get,
                                   parameters: parameters,
                                   encoder: encoder,
-                                  interceptor: AuthenticationRequestInterceptor(oauth2: oauth2))
+                                  interceptor: interceptor)
             } else {
                 return AF.request(url,
                                   method: .get,
-                                  interceptor: AuthenticationRequestInterceptor(oauth2: oauth2))
+                                  interceptor: interceptor)
             }
         }()
 

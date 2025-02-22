@@ -26,7 +26,7 @@ struct RidesCardView: View {
                 Text(ride.formattedDate)
                     .font(.callout)
                     .fontDesign(.rounded)
-                Text("\(ride.formattedDistance) • \(ride.formattedDuration)")
+                Text(ride.formattedDetails)
                     .font(.footnote)
                     .fontDesign(.rounded)
                     .foregroundStyle(.secondary)
@@ -39,6 +39,10 @@ struct RidesCardView: View {
 private extension Ride {
     var formattedDate: String {
         startDate.formatted(.relative(presentation: .named, unitsStyle: .abbreviated)).capitalizedSentence
+    }
+
+    var formattedDetails: String {
+        [formattedDistance, formattedDuration].joined(separator: " • ")
     }
 
     var formattedDistance: String {

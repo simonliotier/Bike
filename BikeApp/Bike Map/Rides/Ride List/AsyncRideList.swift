@@ -5,7 +5,7 @@ import SwiftUI
 struct AsyncRideList: View {
     let bike: Bike
 
-    @Environment(\.client) private var client
+    @Environment(Client.self) private var client
 
     var body: some View {
         AsyncContentView(asyncContent: Content(bike: bike, client: client)) { rides in
@@ -49,5 +49,5 @@ extension AsyncRideList {
     NavigationStack {
         AsyncRideList(bike: .preview)
     }
-    .environment(\.client, PreviewClient())
+    .environment(PreviewClient())
 }

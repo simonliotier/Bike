@@ -7,7 +7,7 @@ struct AsyncRideView: View {
     let bike: Bike
     let ride: Ride
 
-    @Environment(\.client) private var client
+    @Environment(Client.self) private var client
 
     init(bike: Bike, ride: Ride) {
         self.bike = bike
@@ -59,5 +59,5 @@ private extension Ride {
 
 #Preview {
     AsyncRideView(bike: .preview, ride: .previewMorning)
-        .environment(\.client, PreviewClient())
+        .environment(PreviewClient())
 }

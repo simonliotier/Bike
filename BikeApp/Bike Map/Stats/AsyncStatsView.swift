@@ -5,7 +5,7 @@ import SwiftUI
 struct AsyncStatsView: View {
     let bike: Bike
 
-    @Environment(\.client) private var client
+    @Environment(Client.self) private var client
 
     var body: some View {
         AsyncContentView(asyncContent: Content(bike: bike, client: client)) { allPeriodStats in
@@ -76,7 +76,7 @@ extension AsyncStatsView {
 #Preview {
     NavigationStack {
         AsyncStatsView(bike: .preview)
-            .environment(\.client, PreviewClient())
+            .environment(PreviewClient())
     }
 }
 

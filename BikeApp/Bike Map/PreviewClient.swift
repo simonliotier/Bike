@@ -2,7 +2,8 @@ import Bike
 import Foundation
 
 /// Implementation of the `Client` that return mock data, to be used in previews.
-final class PreviewClient: Client {
+@Observable
+final class PreviewClient: ClientProtocol {
     init() {}
 
     func getProfile() async throws -> User {

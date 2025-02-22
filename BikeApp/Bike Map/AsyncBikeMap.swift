@@ -4,7 +4,7 @@ import SwiftUI
 
 /// Loads and displays the last bike location on a map.
 struct AsyncBikeMap: View {
-    @Environment(\.client) var client: Client
+    @Environment(Client.self) private var client
 
     var body: some View {
         AsyncContentView(asyncContent: Content(client: client)) { bike, content in
@@ -53,5 +53,5 @@ extension AsyncBikeMap {
 
 #Preview {
     AsyncBikeMap()
-        .environment(\.client, PreviewClient())
+        .environment(PreviewClient())
 }

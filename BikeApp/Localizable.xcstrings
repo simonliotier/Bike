@@ -2,14 +2,11 @@
   "sourceLanguage" : "en",
   "strings" : {
     "--" : {
-
-    },
-    "%@ • %@" : {
       "localizations" : {
-        "en" : {
+        "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ • %2$@"
+            "state" : "translated",
+            "value" : "--"
           }
         }
       }
@@ -39,13 +36,13 @@
             "plural" : {
               "one" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "%lld trajet"
                 }
               },
               "other" : {
                 "stringUnit" : {
-                  "state" : "needs_review",
+                  "state" : "translated",
                   "value" : "%lld trajets"
                 }
               }
@@ -68,7 +65,7 @@
       "localizations" : {
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Fermer"
           }
         }
@@ -145,7 +142,14 @@
       }
     },
     "Example" : {
-
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exemple"
+          }
+        }
+      }
     },
     "Fog" : {
       "localizations" : {
@@ -171,24 +175,21 @@
       "localizations" : {
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Itinéraire"
           }
         }
       }
     },
-    "Logout" : {
+    "No bike selected" : {
       "localizations" : {
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Se déconnecter"
+            "state" : "translated",
+            "value" : "Aucun vélo sélectionné"
           }
         }
       }
-    },
-    "No bike selected" : {
-
     },
     "Period" : {
       "localizations" : {
@@ -246,6 +247,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Montrer la vue standard"
+          }
+        }
+      }
+    },
+    "Sign in" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connexion"
+          }
+        }
+      }
+    },
+    "Sign out" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déconnexion"
           }
         }
       }

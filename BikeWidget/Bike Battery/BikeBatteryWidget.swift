@@ -12,8 +12,10 @@ import WidgetKit
 struct BikeBatteryWidget: Widget {
     let kind: String = "BikeBatteryWidget"
 
+    private let client = Client(client: APIClient(authenticationController: .init()))
+
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider(client: client)) { entry in
             BikeBatteryWidgetView(entry: entry)
                 .containerBackground(for: .widget) {
                     Rectangle().fill(.decathlon.gradient)
@@ -59,7 +61,7 @@ extension BikeBatteryWidget {
 
 extension BikeBatteryWidget {
     struct Provider: TimelineProvider {
-        private let client = APIClient()
+        let client: Client
 
         func placeholder(in context: Context) -> Entry {
             return .init(date: .now, state: .loaded(.placeholder))

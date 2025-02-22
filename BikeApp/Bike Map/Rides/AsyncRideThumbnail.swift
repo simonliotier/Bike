@@ -7,7 +7,8 @@ struct AsyncRideThumbnail: View {
 
     @State private var thumbnail: RideThumbnail?
 
-    @Environment(\.client) private var client
+    @Environment(Client.self) private var client
+
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
@@ -44,5 +45,5 @@ struct AsyncRideThumbnail: View {
 #Preview {
     AsyncRideThumbnail(ride: .previewAfternoon)
         .frame(width: 100, height: 100)
-        .environment(\.client, PreviewClient())
+        .environment(PreviewClient())
 }
