@@ -49,5 +49,5 @@ extension AsyncRideList {
     NavigationStack {
         AsyncRideList(bike: .preview)
     }
-    .environment(PreviewClient())
+    .environment(Client.preview)
 }

@@ -45,5 +45,5 @@ public extension ImageResource {
 }
 
 public extension Color {
-    static let pin = Color(.pin)
+    static let pinBackground = Color(.pin)
 }

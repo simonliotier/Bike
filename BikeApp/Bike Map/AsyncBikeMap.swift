@@ -53,5 +53,5 @@ extension AsyncBikeMap {
 
 #Preview {
     AsyncBikeMap()
-        .environment(PreviewClient())
+        .environment(Client.preview)
 }

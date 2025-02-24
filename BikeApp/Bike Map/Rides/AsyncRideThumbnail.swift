@@ -46,4 +46,5 @@ struct AsyncRideThumbnail: View {
     AsyncRideThumbnail(ride: .previewAfternoon)
         .frame(width: 100, height: 100)
         .environment(PreviewClient())
+        .environment(Client.preview)
 }

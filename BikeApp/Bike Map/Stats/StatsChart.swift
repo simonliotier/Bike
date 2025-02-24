@@ -1,5 +1,6 @@
 import Charts
 import SwiftUI
+import Bike
 
 /// Display the bike stats for a given category and period.
 struct StatsChart: View {

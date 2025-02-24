@@ -59,5 +59,5 @@ private extension Ride {
 
 #Preview {
     AsyncRideView(bike: .preview, ride: .previewMorning)
-        .environment(PreviewClient())
+        .environment(Client.preview)
 }

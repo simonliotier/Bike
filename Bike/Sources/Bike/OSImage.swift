@@ -11,7 +11,7 @@ import SwiftUI
     import AppKit
 #endif
 
-#if os(iOS)
+#if os(iOS) || os(watchOS)
     public typealias OSImage = UIImage
 #elseif os(macOS)
     public typealias OSImage = NSImage
@@ -20,7 +20,7 @@ import SwiftUI
 
 public extension Image {
     init(osImage: OSImage) {
-        #if os(iOS)
+        #if os(iOS) || os(watchOS)
             self.init(uiImage: osImage)
         #endif
         #if os(macOS)
@@ -54,7 +54,7 @@ public extension Image {
 public extension ImageRenderer {
     @MainActor
     var osImage: OSImage? {
-        #if os(iOS)
+        #if os(iOS) || os(watchOS)
             return uiImage
         #elseif os(macOS)
             return nsImage

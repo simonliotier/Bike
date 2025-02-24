@@ -82,4 +82,5 @@ struct StatsCardView: View {
     StatsCardView(stats: .previewWeek, today: [Stat].previewWeek[2].from)
         .fixedSize(horizontal: false, vertical: true)
         .padding()
+        .environment(Client.preview)
 }

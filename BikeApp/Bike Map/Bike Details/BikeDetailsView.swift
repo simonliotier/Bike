@@ -222,7 +222,7 @@ struct BikeDetailsView: View {
                 BikeDetailsView(bike: .preview,
                                 bikeDetails: .init(lastRides: .previewLast3, weekStats: .previewWeek),
                                 itineraryProvider: PreviewItineraryProvider())
-                    .environment(PreviewClient())
+                .environment(Client.preview)
             }
     }
 }

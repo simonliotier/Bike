@@ -107,4 +107,5 @@ private extension Ride {
     NavigationStack {
         RideList(bike: .preview, rides: .preview)
     }
+    .environment(Client.preview)
 }

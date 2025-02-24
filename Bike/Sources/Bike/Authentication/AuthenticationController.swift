@@ -1,4 +1,5 @@
 import AppAuth
+import AppAuthCore
 import Foundation
 import KeychainSwift
 import SwiftUI
@@ -30,10 +31,16 @@ public final class AuthenticationController: NSObject, @unchecked Sendable {
     /// The in-flight external user-agent session. We must keep a reference on it during authentication.
     private var currentAuthorizationFlow: OIDExternalUserAgentSession?
 
-    /// Keychain access. Synchronization is activated to share the auth state with other devices.
+    /// Keychain used to persist the auth state.
     private let keychain: KeychainSwift = {
         let keychain = KeychainSwift()
+
+        // Use access group to share
+        keychain.accessGroup = "5PPY38J7P4.tech.conneq.decathlon.shared"
+
+        // Synchronization is activated to share the auth state with other devices.
         keychain.synchronizable = true
+
         return keychain
     }()
 
@@ -148,7 +155,7 @@ public final class AuthenticationController: NSObject, @unchecked Sendable {
     private func saveAuthStateToKeychain(_ state: OIDAuthState) {
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: state, requiringSecureCoding: true)
-            keychain.set(data, forKey: .authState)
+            keychain.set(data, forKey: .authState, withAccess: .accessibleAfterFirstUnlock)
         } catch {
             print("Error archiving OIDAuthState: \(error)")
         }
@@ -219,6 +226,7 @@ private protocol SilenceDeprecation {
 private final class SilenceDeprecationImplementation: SilenceDeprecation {
     @available(iOS, deprecated: 18)
     @available(macOS, deprecated: 10.15)
+    @available(watchOS, deprecated: 11)
     func unarchiveTopLevelObjectWithData(_ data: Data) throws -> Any? {
         try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data)
     }

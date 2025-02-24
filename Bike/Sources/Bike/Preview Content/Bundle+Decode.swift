@@ -14,7 +14,7 @@ extension Bundle {
                                    named name: String,
                                    dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
                                    keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys) throws -> T {
-        guard let asset = NSDataAsset(name: name) else {
+        guard let asset = NSDataAsset(name: name, bundle: self) else {
             throw AssetError.assetNotFound
         }
 

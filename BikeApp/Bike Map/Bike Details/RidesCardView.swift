@@ -61,4 +61,5 @@ import MapKit
     RidesCardView(rides: .previewLast3)
         .fixedSize(horizontal: false, vertical: true)
         .padding()
+        .environment(Client.preview)
 }

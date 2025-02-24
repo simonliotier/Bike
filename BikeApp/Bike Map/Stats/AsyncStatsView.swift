@@ -76,7 +76,7 @@ extension AsyncStatsView {
 #Preview {
     NavigationStack {
         AsyncStatsView(bike: .preview)
-            .environment(PreviewClient())
+            .environment(Client.preview)
     }
 }
 

@@ -1,15 +1,15 @@
 import Foundation
 
-enum StatsPeriodType: Identifiable, CaseIterable {
+public enum StatsPeriodType: Identifiable, CaseIterable {
     case day
     case week
     case month
 
-    var id: Self {
+    public var id: Self {
         self
     }
 
-    var displayName: String {
+    public var displayName: String {
         switch self {
         case .day:
             return "Day"

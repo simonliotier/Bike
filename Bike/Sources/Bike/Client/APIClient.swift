@@ -90,3 +90,9 @@ public final class APIClient: ClientProtocol, Sendable {
             .value
     }
 }
+
+public extension Client {
+    static func api(_ authenticationController: AuthenticationController) -> Client {
+        .init(client: APIClient(authenticationController: authenticationController))
+    }
+}

@@ -44,4 +44,5 @@ private extension Ride {
             RideRow(ride: .previewMorning)
         }
     }
+    .environment(Client.preview)
 }

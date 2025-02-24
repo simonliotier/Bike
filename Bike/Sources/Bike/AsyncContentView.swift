@@ -2,12 +2,17 @@ import Foundation
 import SwiftUI
 
 /// Generic view for loading and displaying asynchronously loaded content.
-struct AsyncContentView<Content: AsyncContent, ContentView: View>: View {
+public struct AsyncContentView<Content: AsyncContent, ContentView: View>: View {
     @State var asyncContent: Content
     @ViewBuilder let contentView: (Content.Output) -> ContentView
     @State private var isLoading = false
 
-    var body: some View {
+    public init(asyncContent: Content, contentView: @escaping (Content.Output) -> ContentView) {
+        self.asyncContent = asyncContent
+        self.contentView = contentView
+    }
+
+    public var body: some View {
         Group {
             switch asyncContent.state {
             case .loading:
@@ -33,14 +38,14 @@ struct AsyncContentView<Content: AsyncContent, ContentView: View>: View {
 
 /// Objects implementing this protocol can load content asynchronously.
 @MainActor
-protocol AsyncContent {
+public protocol AsyncContent {
     associatedtype Output
     var state: AsyncContentState<Output> { get }
     func load() async
 }
 
 /// State when loading asynchronous content.
-enum AsyncContentState<Value> {
+public enum AsyncContentState<Value> {
     case loading
     case failed(Error)
     case loaded(Value)
