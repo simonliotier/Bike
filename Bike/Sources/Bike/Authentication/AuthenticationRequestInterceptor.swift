@@ -23,4 +23,11 @@ final class AuthenticationRequestInterceptor: RequestInterceptor, Sendable {
             }
         }
     }
+
+    func retry(_ request: Request,
+               for session: Session,
+               dueTo error: any Error,
+               completion: @escaping (RetryResult) -> Void) {
+        completion(request.retryCount < 1 ? .retryWithDelay(1.0) : .doNotRetry)
+    }
 }
