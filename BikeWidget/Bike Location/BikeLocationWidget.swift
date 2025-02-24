@@ -76,7 +76,15 @@ extension BikeLocationWidget {
 
             Task {
                 let entry = await getEntry(for: configuration)
-                completion(.init(entries: [entry], policy: .atEnd))
+
+                let timeInterval: Double = switch entry.state {
+                case .loaded(let content):
+                    15 * 60
+                case .error(let error):
+                    5 * 60
+                }
+
+                completion(.init(entries: [entry], policy: .after(.now.addingTimeInterval(timeInterval))))
             }
         }
 
