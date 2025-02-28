@@ -1,20 +1,25 @@
-import AppAuth
-import AppAuthCore
+@preconcurrency import AppAuth
+@preconcurrency import AppAuthCore
 import Foundation
 import KeychainSwift
 import SwiftUI
 
-/// Handle the authentication of the user through OAuth2.
-@Observable
-public final class AuthenticationController: NSObject, @unchecked Sendable {
+/// Handle the authentication of the user through OAuth.
+///
+/// User can sign-in in the iOS and macOS apps. The auth state, containing the access and refresh tokens, is then
+/// automatically shared with other apps and widgets using Keychain access group and iCloud synchronization.
+@Observable @MainActor public final class AuthenticationController: NSObject, @unchecked Sendable {
     /// Indicates if the user is currently authenticated.
     public var isAuthenticated: Bool {
-        authState?.isAuthorized ?? false
+        return authState?.isAuthorized ?? false
     }
 
     /// Provide a valid access token, refreshing it first, if needed.
     public var accessToken: String {
         get async throws {
+            // Another app or widget may have updated the auth state, reload it.
+            loadAuthState()
+
             guard let authState else {
                 throw AuthenticationError.missingAuthState
             }
@@ -35,7 +40,7 @@ public final class AuthenticationController: NSObject, @unchecked Sendable {
     private let keychain: KeychainSwift = {
         let keychain = KeychainSwift()
 
-        // Use access group to share
+        // Use access group to share auth state between app and widgets.
         keychain.accessGroup = "5PPY38J7P4.tech.conneq.decathlon.shared"
 
         // Synchronization is activated to share the auth state with other devices.
@@ -49,97 +54,107 @@ public final class AuthenticationController: NSObject, @unchecked Sendable {
     override public init() {
         super.init()
 
-        authState = loadAuthStateFromKeychain()
+        loadAuthState()
+    }
+
+    /// Update the `authState` property with the value stored in the Keychain.
+    ///
+    /// The Keychain is the source of truth for the shared authentication state between all apps and widget. Each of
+    /// them may update the auth state and save it in the Keychain.
+    private func loadAuthState() {
+        authState = readAuthStateFromKeychain()
         authState?.stateChangeDelegate = self
     }
 
     // MARK: - Sign In
 
-    #if os(macOS) || os(iOS)
-        /// Sign in the user by presenting the sign in interface, in order to get an access token.
-        @MainActor
-        public func signIn() async throws {
-            try await withCheckedThrowingContinuation { continuation in
-                self.signIn { result in
-                    continuation.resume(with: result)
-                }
+    /// Sign in the user by presenting the sign in interface, in order to get an access token.
+    @available(watchOS, unavailable)
+    public func signIn() async throws {
+        try await withCheckedThrowingContinuation { continuation in
+            self.signIn { result in
+                continuation.resume(with: result)
             }
         }
+    }
 
-        @MainActor
-        private func signIn(completion: @escaping (Result<Void, Error>) -> Void) {
-            let authorizationEndpoint = URL(string: "https://login.conneq.tech/v1/login")!
-            let tokenEndpoint = URL(string: "https://api.ids.conneq.tech/oauth")!
-            let configuration = OIDServiceConfiguration(authorizationEndpoint: authorizationEndpoint,
-                                                        tokenEndpoint: tokenEndpoint)
-            let clientId = "5c0d36ce-7396-46f0-bcc0-3c6e16c0d2b6"
-            let clientSecret = "_NU4.j2A!f!YawfpDFKdWBDQemuMtrYa"
-            let scopes = ["openid", "profile"]
-            let redirectURL = URL(string: "tech.conneq.decathlon://decathlon.app.ids.conneq.tech")!
-            let codeVerifier = OIDAuthorizationRequest.generateCodeVerifier()
-            let codeChallenge = OIDAuthorizationRequest.codeChallengeS256(forVerifier: codeVerifier)
+    @available(watchOS, unavailable)
+    private func signIn(completion: @escaping (Result<Void, Error>) -> Void) {
+        let authorizationEndpoint = URL(string: "https://login.conneq.tech/v1/login")!
+        let tokenEndpoint = URL(string: "https://api.ids.conneq.tech/oauth")!
+        let configuration = OIDServiceConfiguration(authorizationEndpoint: authorizationEndpoint,
+                                                    tokenEndpoint: tokenEndpoint)
+        let clientId = "5c0d36ce-7396-46f0-bcc0-3c6e16c0d2b6"
+        let clientSecret = "_NU4.j2A!f!YawfpDFKdWBDQemuMtrYa"
+        let scopes = ["openid", "profile"]
+        let redirectURL = URL(string: "tech.conneq.decathlon://decathlon.app.ids.conneq.tech")!
+        let codeVerifier = OIDAuthorizationRequest.generateCodeVerifier()
+        let codeChallenge = OIDAuthorizationRequest.codeChallengeS256(forVerifier: codeVerifier)
 
-            let request = OIDAuthorizationRequest(configuration: configuration,
-                                                  clientId: clientId,
-                                                  clientSecret: clientSecret,
-                                                  scope: OIDScopeUtilities.scopes(with: scopes),
-                                                  redirectURL: redirectURL,
-                                                  responseType: OIDResponseTypeCode,
-                                                  state: OIDAuthorizationRequest.generateState(),
-                                                  nonce: nil, // Nonce must be explicitly null.
-                                                  codeVerifier: codeVerifier,
-                                                  codeChallenge: codeChallenge,
-                                                  codeChallengeMethod: OIDOAuthorizationRequestCodeChallengeMethodS256,
-                                                  additionalParameters: nil)
+        let request = OIDAuthorizationRequest(configuration: configuration,
+                                              clientId: clientId,
+                                              clientSecret: clientSecret,
+                                              scope: OIDScopeUtilities.scopes(with: scopes),
+                                              redirectURL: redirectURL,
+                                              responseType: OIDResponseTypeCode,
+                                              state: OIDAuthorizationRequest.generateState(),
+                                              nonce: nil, // Nonce must be explicitly null.
+                                              codeVerifier: codeVerifier,
+                                              codeChallenge: codeChallenge,
+                                              codeChallengeMethod: OIDOAuthorizationRequestCodeChallengeMethodS256,
+                                              additionalParameters: nil)
 
-            guard let agent = platformExternalUserAgent() else {
-                completion(.failure(AuthenticationError.externalUserAgentCreationFailed))
+        guard let agent = platformExternalUserAgent() else {
+            completion(.failure(AuthenticationError.externalUserAgentCreationFailed))
+            return
+        }
+
+        currentAuthorizationFlow = OIDAuthState.authState(byPresenting: request,
+                                                          externalUserAgent: agent) { authState, error in
+            if let error {
+                print("Error during authorization: \(error)")
+                completion(.failure(error))
                 return
             }
 
-            currentAuthorizationFlow = OIDAuthState.authState(byPresenting: request,
-                                                              externalUserAgent: agent) { authState, error in
-                if let error {
-                    print("Error during authorization: \(error)")
-                    completion(.failure(error))
-                    return
-                }
-
-                guard let authState else {
-                    print("Error during authorization: \(AuthenticationError.missingAuthState)")
-                    completion(.failure(AuthenticationError.missingAuthState))
-                    return
-                }
-
-                authState.stateChangeDelegate = self
-                self.saveAuthStateToKeychain(authState)
-                self.authState = authState
-                completion(.success(()))
+            guard let authState else {
+                print("Error during authorization: \(AuthenticationError.missingAuthState)")
+                completion(.failure(AuthenticationError.missingAuthState))
+                return
             }
+
+            authState.stateChangeDelegate = self
+            self.writeAuthStateToKeychain(authState)
+            self.authState = authState
+            completion(.success(()))
         }
+    }
 
-        @MainActor
-        private func platformExternalUserAgent() -> OIDExternalUserAgent? {
-            #if os(macOS)
-                guard let window = NSApp.windows.first else {
-                    return nil
-                }
-                return OIDExternalUserAgentMac(presenting: window)
-            #endif
+    @available(watchOS, unavailable)
+    private func platformExternalUserAgent() -> OIDExternalUserAgent? {
+        #if os(macOS)
+            guard let window = NSApp.windows.first else {
+                return nil
+            }
+            return OIDExternalUserAgentMac(presenting: window)
+        #endif
 
-            #if os(iOS)
-                let scene = UIApplication.shared.connectedScenes.first
-                let windowScene = scene as? UIWindowScene
+        #if os(iOS)
+            let scene = UIApplication.shared.connectedScenes.first
+            let windowScene = scene as? UIWindowScene
 
-                guard let rootViewController = windowScene?.windows.first?.rootViewController,
-                      let userAgent = OIDExternalUserAgentIOS(presenting: rootViewController) else {
-                    return nil
-                }
+            guard let rootViewController = windowScene?.windows.first?.rootViewController,
+                  let userAgent = OIDExternalUserAgentIOS(presenting: rootViewController) else {
+                return nil
+            }
 
-                return userAgent
-            #endif
-        }
-    #endif
+            return userAgent
+        #endif
+
+        #if os(watchOS)
+            fatalError()
+        #endif
+    }
 
     // MARK: - Sign Out
 
@@ -152,7 +167,7 @@ public final class AuthenticationController: NSObject, @unchecked Sendable {
     // MARK: - Keychain
 
     /// Save the give auth state to the Keychain.
-    private func saveAuthStateToKeychain(_ state: OIDAuthState) {
+    private func writeAuthStateToKeychain(_ state: OIDAuthState) {
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: state, requiringSecureCoding: true)
             keychain.set(data, forKey: .authState, withAccess: .accessibleAfterFirstUnlock)
@@ -162,7 +177,7 @@ public final class AuthenticationController: NSObject, @unchecked Sendable {
     }
 
     /// Return an auth state from the Keychain, if it exists.
-    private func loadAuthStateFromKeychain() -> OIDAuthState? {
+    private func readAuthStateFromKeychain() -> OIDAuthState? {
         guard let data = keychain.getData(.authState) else {
             return nil
         }
@@ -191,8 +206,10 @@ public enum AuthenticationError: Error {
 
 extension AuthenticationController: OIDAuthStateChangeDelegate {
     /// Called when the authorization auth state changes. We update the auth state stored in the Keychain.
-    public func didChange(_ state: OIDAuthState) {
-        saveAuthStateToKeychain(state)
+    public nonisolated func didChange(_ state: OIDAuthState) {
+        Task {
+            await writeAuthStateToKeychain(state)
+        }
     }
 }
 

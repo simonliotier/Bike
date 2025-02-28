@@ -28,6 +28,6 @@ final class AuthenticationRequestInterceptor: RequestInterceptor, Sendable {
                for session: Session,
                dueTo error: any Error,
                completion: @escaping (RetryResult) -> Void) {
-        completion(request.retryCount < 1 ? .retryWithDelay(1.0) : .doNotRetry)
+        completion(request.retryCount < 3 ? .retryWithDelay(1.0) : .doNotRetry)
     }
 }
