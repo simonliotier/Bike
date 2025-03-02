@@ -1,6 +1,6 @@
 import SwiftUI
 #if os(iOS)
-    import VariableBlur
+import VariableBlur
 #endif
 
 extension View {
@@ -9,19 +9,18 @@ extension View {
     @ViewBuilder
     func blurredStatusBarBackground() -> some View {
         #if os(iOS)
-            overlay {
-                GeometryReader { proxy in
-                    // To create a real progressive blur, we rely on `VariableBlurView` which uses private APIs. It is
-                    // also possible to apply progressive blur on SwiftUI views using shaders, but this does not work
-                    // on `Map`.
-                    VariableBlurView(maxBlurRadius: 4, direction: .blurredTopClearBottom)
-                        .frame(height: proxy.safeAreaInsets.top)
-                        .ignoresSafeArea()
-                }
+        overlay {
+            GeometryReader { proxy in
+                // To create a real progressive blur, we rely on `VariableBlurView` which uses private APIs. It is also
+                // possible to apply progressive blur on SwiftUI views using shaders, but this does not work on `Map`.
+                VariableBlurView(maxBlurRadius: 4, direction: .blurredTopClearBottom)
+                    .frame(height: proxy.safeAreaInsets.top)
+                    .ignoresSafeArea()
             }
+        }
         #endif
         #if os(macOS)
-            self
+        self
         #endif
     }
 }

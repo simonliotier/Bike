@@ -109,13 +109,13 @@ actor RideThumbnailGenerator {
             let point = snapshot.point(for: location.coordinate2D)
 
             #if os(macOS)
-                // On macOS, the points provided by `MKMapSnapshot.point(for:)` are expressed in the macOS coordinate
-                // system. The y-coordinates must be flipped to be used in SwiftUI, which relies in the iOS coordinate
-                // system.
-                let flippedY = snapshot.image.size.height - point.y
-                return CGPoint(x: point.x, y: flippedY)
+            // On macOS, the points provided by `MKMapSnapshot.point(for:)` are expressed in the macOS coordinate
+            // system. The y-coordinates must be flipped to be used in SwiftUI, which relies in the iOS coordinate
+            // system.
+            let flippedY = snapshot.image.size.height - point.y
+            return CGPoint(x: point.x, y: flippedY)
             #else
-                return point
+            return point
             #endif
         }
 

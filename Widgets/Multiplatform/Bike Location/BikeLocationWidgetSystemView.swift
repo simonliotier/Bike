@@ -96,29 +96,29 @@ private extension BikeLocationWidget.Entry.State.Content.MapSnapshot {
 }
 
 #if os(iOS)
-    typealias OSColor = UIColor
+typealias OSColor = UIColor
 #endif
 
 #if os(macOS)
-    typealias OSColor = NSColor
+typealias OSColor = NSColor
 #endif
 
 extension Color {
     init(osColor: OSColor) {
         #if os(iOS)
-            self.init(osColor)
+        self.init(osColor)
         #endif
         #if os(macOS)
-            self.init(nsColor: osColor)
+        self.init(nsColor: osColor)
         #endif
     }
 
     static var systemBackground: Color {
         #if os(iOS)
-            return Color(osColor: .systemBackground)
+        return Color(osColor: .systemBackground)
         #endif
         #if os(macOS)
-            return Color(osColor: .textBackgroundColor)
+        return Color(osColor: .textBackgroundColor)
         #endif
     }
 }

@@ -12,9 +12,9 @@ extension View {
         overlay(alignment: .init(iOS: .topTrailing, macOS: .bottomTrailing)) {
             Group {
                 #if os(iOS)
-                    VStack(spacing: 8, content: content)
+                VStack(spacing: 8, content: content)
                 #else
-                    HStack(spacing: 4, content: content)
+                HStack(spacing: 4, content: content)
                 #endif
             }
             .padding()

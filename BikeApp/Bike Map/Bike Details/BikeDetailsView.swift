@@ -179,24 +179,24 @@ struct BikeDetailsView: View {
         ]
 
         #if os(iOS)
-            MKMapItem.openMaps(with: [bikeMapItem], launchOptions: launchOptions)
+        MKMapItem.openMaps(with: [bikeMapItem], launchOptions: launchOptions)
         #endif
 
         #if os(macOS)
-            await MKMapItem.openMaps(with: [bikeMapItem], launchOptions: launchOptions)
+        await MKMapItem.openMaps(with: [bikeMapItem], launchOptions: launchOptions)
         #endif
     }
 
     private func present(_ screen: Screen) {
         #if os(iOS)
-            if isSheetPresented {
-                pendingSheetScreen = screen
-            } else {
-                presentedSheetScreen = screen
-            }
+        if isSheetPresented {
+            pendingSheetScreen = screen
+        } else {
+            presentedSheetScreen = screen
+        }
 
         #elseif os(macOS)
-            openWindow(id: screen.rawValue, value: bike)
+        openWindow(id: screen.rawValue, value: bike)
         #endif
     }
 
@@ -222,7 +222,7 @@ struct BikeDetailsView: View {
                 BikeDetailsView(bike: .preview,
                                 bikeDetails: .init(lastRides: .previewLast3, weekStats: .previewWeek),
                                 itineraryProvider: PreviewItineraryProvider())
-                .environment(Client.preview)
+                    .environment(Client.preview)
             }
     }
 }

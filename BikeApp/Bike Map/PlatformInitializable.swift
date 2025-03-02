@@ -9,9 +9,9 @@ extension PlatformInitializable {
     /// Initialize the type with the given iOS or macOS value, depending on the current platform.
     init(iOS: Self, macOS: Self) {
         #if os(iOS)
-            self = iOS
+        self = iOS
         #elseif os(macOS)
-            self = macOS
+        self = macOS
         #endif
     }
 }
@@ -30,9 +30,9 @@ extension View {
     func foregroundStyle<IOSShapeStyle: ShapeStyle, MacOSShapeStyle: ShapeStyle>(iOS: IOSShapeStyle,
                                                                                  macOS: MacOSShapeStyle) -> some View {
         #if os(iOS)
-            foregroundStyle(iOS)
+        foregroundStyle(iOS)
         #elseif os(macOS)
-            foregroundStyle(macOS)
+        foregroundStyle(macOS)
         #endif
     }
 }

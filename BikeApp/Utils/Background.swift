@@ -12,20 +12,20 @@ struct Background<Content: View>: View {
 
     var body: some View {
         #if os(iOS)
-            Color.clear.ignoresSafeArea()
-                .task {
-                    var transaction = Transaction()
-                    transaction.disablesAnimations = true
-                    withTransaction(transaction) {
-                        isPresented = true
-                    }
+        Color.clear.ignoresSafeArea()
+            .task {
+                var transaction = Transaction()
+                transaction.disablesAnimations = true
+                withTransaction(transaction) {
+                    isPresented = true
                 }
-                .fullScreenCover(isPresented: $isPresented) {
-                    content()
-                }
+            }
+            .fullScreenCover(isPresented: $isPresented) {
+                content()
+            }
 
         #elseif os(macOS)
-            content()
+        content()
         #endif
     }
 }

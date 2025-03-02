@@ -32,13 +32,13 @@ struct BikeApp: App {
             #endif
 
             #if os(macOS)
-                WindowGroup(id: Screen.stats.rawValue, for: Bike.self) { $bike in
-                    Screen.stats.view(for: bike)
-                }
+            WindowGroup(id: Screen.stats.rawValue, for: Bike.self) { $bike in
+                Screen.stats.view(for: bike)
+            }
 
-                WindowGroup(id: Screen.rides.rawValue, for: Bike.self) { $bike in
-                    Screen.rides.view(for: bike)
-                }
+            WindowGroup(id: Screen.rides.rawValue, for: Bike.self) { $bike in
+                Screen.rides.view(for: bike)
+            }
             #endif
         }
         .environment(authenticationController)

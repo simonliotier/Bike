@@ -14,9 +14,9 @@ struct AsyncStatsView: View {
         .navigationTitle("Stats")
         .toolbar {
             #if os(iOS)
-                ToolbarItem(placement: .topBarTrailing) {
-                    DismissButton()
-                }
+            ToolbarItem(placement: .topBarTrailing) {
+                DismissButton()
+            }
             #endif
         }
     }

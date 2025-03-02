@@ -28,21 +28,21 @@ struct BikeBatteryWidgetMultiplatform: Widget {
 }
 
 #if os(iOS)
-    #Preview("Accessory Circular", as: .accessoryCircular) {
-        BikeBatteryWidgetMultiplatform()
-    } timeline: {
-        BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
-    }
+#Preview("Accessory Circular", as: .accessoryCircular) {
+    BikeBatteryWidgetMultiplatform()
+} timeline: {
+    BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
+}
 
-    #Preview("Accessory Rectangular", as: .accessoryRectangular) {
-        BikeBatteryWidgetMultiplatform()
-    } timeline: {
-        BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
-    }
+#Preview("Accessory Rectangular", as: .accessoryRectangular) {
+    BikeBatteryWidgetMultiplatform()
+} timeline: {
+    BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
+}
 
-    #Preview("Accessory Inline", as: .accessoryInline) {
-        BikeBatteryWidgetMultiplatform()
-    } timeline: {
-        BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
-    }
+#Preview("Accessory Inline", as: .accessoryInline) {
+    BikeBatteryWidgetMultiplatform()
+} timeline: {
+    BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
+}
 #endif

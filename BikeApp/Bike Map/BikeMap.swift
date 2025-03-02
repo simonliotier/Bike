@@ -135,19 +135,19 @@ struct BikeMap: View {
     @ViewBuilder private func customMapControls() -> some View {
         // Order the controls so they do not shift when one of them appear/disappear.
         #if os(iOS)
-            mapUserLocationButton
-            mapStyleButton
-            mapPitchToggle
-            mapBikeLocationButton
-            mapCompass
+        mapUserLocationButton
+        mapStyleButton
+        mapPitchToggle
+        mapBikeLocationButton
+        mapCompass
         #endif
 
         #if os(macOS)
-            mapCompass
-            mapBikeLocationButton
-            mapUserLocationButton
-            mapStyleButton
-            mapPitchToggle
+        mapCompass
+        mapBikeLocationButton
+        mapUserLocationButton
+        mapStyleButton
+        mapPitchToggle
         #endif
     }
 

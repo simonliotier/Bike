@@ -133,26 +133,26 @@ import SwiftUI
     @available(watchOS, unavailable)
     private func platformExternalUserAgent() -> OIDExternalUserAgent? {
         #if os(macOS)
-            guard let window = NSApp.windows.first else {
-                return nil
-            }
-            return OIDExternalUserAgentMac(presenting: window)
+        guard let window = NSApp.windows.first else {
+            return nil
+        }
+        return OIDExternalUserAgentMac(presenting: window)
         #endif
 
         #if os(iOS)
-            let scene = UIApplication.shared.connectedScenes.first
-            let windowScene = scene as? UIWindowScene
+        let scene = UIApplication.shared.connectedScenes.first
+        let windowScene = scene as? UIWindowScene
 
-            guard let rootViewController = windowScene?.windows.first?.rootViewController,
-                  let userAgent = OIDExternalUserAgentIOS(presenting: rootViewController) else {
-                return nil
-            }
+        guard let rootViewController = windowScene?.windows.first?.rootViewController,
+              let userAgent = OIDExternalUserAgentIOS(presenting: rootViewController) else {
+            return nil
+        }
 
-            return userAgent
+        return userAgent
         #endif
 
         #if os(watchOS)
-            fatalError()
+        fatalError()
         #endif
     }
 

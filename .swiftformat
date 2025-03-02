@@ -1,0 +1,25 @@
+# SwiftFormat custom rules and options.
+
+# Remove trailing comma from the last item in a collection literal.
+--commas inline
+
+# Only mark unused function arguments `_` in closures, not in methods.
+--stripunusedargs closure-only
+
+# Do not add space around ranges, as defined on https://docs.swift.org.
+--ranges no-space
+
+# Do not reposition let or var bindings within pattern.
+--disable hoistPatternLet
+
+# Keep braces on same line in multiline statements.
+--disable wrapMultilineStatementBraces
+
+# Allow to use `forEach` whenever we want.
+--disable preferForLoop
+
+# Do not convert struct to enum.
+--disable enumnamespaces
+
+# Do not indent code inside #if ... #endif.
+--ifdef no-indent

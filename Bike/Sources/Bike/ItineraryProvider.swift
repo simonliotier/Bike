@@ -6,7 +6,7 @@ public protocol ItineraryProvider: Sendable {
     func getAddress() async throws -> Address
 
     #if os(iOS) || os(macOS)
-        func getItinerary() async throws -> Itinerary
+    func getItinerary() async throws -> Itinerary
     #endif
 }
 
@@ -24,22 +24,22 @@ public struct AppItineraryProvider: ItineraryProvider {
     }
 
     #if os(iOS) || os(macOS)
-        public func getItinerary() async throws -> Itinerary {
-            let currentLocationMapItem = MKMapItem.forCurrentLocation()
-            let bikePlacemark = try await bike.getPlacemark()
-            let bikeMapItem = MKMapItem(placemark: MKPlacemark(placemark: bikePlacemark))
+    public func getItinerary() async throws -> Itinerary {
+        let currentLocationMapItem = MKMapItem.forCurrentLocation()
+        let bikePlacemark = try await bike.getPlacemark()
+        let bikeMapItem = MKMapItem(placemark: MKPlacemark(placemark: bikePlacemark))
 
-            let directionRequest = MKDirections.Request()
-            directionRequest.source = currentLocationMapItem
-            directionRequest.destination = bikeMapItem
-            directionRequest.transportType = .walking
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = currentLocationMapItem
+        directionRequest.destination = bikeMapItem
+        directionRequest.transportType = .walking
 
-            let directions = MKDirections(request: directionRequest)
+        let directions = MKDirections(request: directionRequest)
 
-            let eta = try await directions.calculateETA()
+        let eta = try await directions.calculateETA()
 
-            return .init(distance: eta.distance, expectedTravelTime: eta.expectedTravelTime)
-        }
+        return .init(distance: eta.distance, expectedTravelTime: eta.expectedTravelTime)
+    }
     #endif
 }
 

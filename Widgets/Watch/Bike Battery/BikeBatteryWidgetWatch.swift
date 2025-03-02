@@ -13,7 +13,7 @@ struct BikeBatteryWidgetWatch: Widget {
             .accessoryCircular,
             .accessoryCorner,
             .accessoryRectangular,
-            .accessoryInline,
+            .accessoryInline
         ]
     }
 }

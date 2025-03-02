@@ -1,6 +1,6 @@
+import Bike
 import Foundation
 import SwiftUI
-import Bike
 
 /// Describes a screen accessible from the main view.
 ///

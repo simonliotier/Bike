@@ -335,6 +335,7 @@
 			mainGroup = 1A6EAD142AD56B420043E524;
 			packageReferences = (
 				1A61FCC12D32DA9D00B95AF6 /* XCRemoteSwiftPackageReference "VariableBlur" */,
+				1AC1A7092D74FE9500B2E47D /* XCRemoteSwiftPackageReference "SwiftFormat" */,
 			);
 			productRefGroup = 1A6EAD1E2AD56B420043E524 /* Products */;
 			projectDirPath = "";
@@ -882,6 +883,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
+			};
+		};
+		1AC1A7092D74FE9500B2E47D /* XCRemoteSwiftPackageReference "SwiftFormat" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nicklockwood/SwiftFormat";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.5;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
