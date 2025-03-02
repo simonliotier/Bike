@@ -12,11 +12,13 @@ struct BikeBatteryWidgetView: View {
         case .systemSmall:
             BikeBatteryWidgetSystemView(entry: entry)
         case .accessoryCircular:
-            BikeBatteryWidgetCircularView(entry: entry)
+            BikeBatteryWidgetAccessoryCircularView(entry: entry)
+        case .accessoryCorner:
+            BikeBatteryWidgetAccessoryCornerView(entry: entry)
         case .accessoryInline:
-            BikeBatteryWidgetInlineView(entry: entry)
+            BikeBatteryWidgetAccessoryInlineView(entry: entry)
         case .accessoryRectangular:
-            BikeBatteryWidgetRectangularView(entry: entry)
+            BikeBatteryWidgetAccessoryRectangularView(entry: entry)
         default: EmptyView()
         }
     }

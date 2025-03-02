@@ -6,12 +6,6 @@ import MapKit
 import SwiftUI
 import WidgetKit
 
-// MARK: - Bike Battery
-
-extension BikeBatteryWidget.Entry.State.Content {
-    static let preview = Self(name: "Elops 920E", batteryPercentage: 0.62)
-}
-
 // MARK: - Bike location
 
 extension BikeLocationWidget.Entry.State.Content {
@@ -40,14 +34,14 @@ extension BikeLocationWidget.Entry.State.Content.MapSnapshot {
     private init(resource: ImageResource, point: CGPoint) {
         let image = OSImage(resource: resource)
         #if os(iOS)
-            let asset = image.imageAsset
-            lightImage = asset?.image(with: .init(userInterfaceStyle: .light)) ?? OSImage(resource: resource)
-            darkImage = asset?.image(with: .init(userInterfaceStyle: .dark)) ?? OSImage(resource: resource)
+        let asset = image.imageAsset
+        lightImage = asset?.image(with: .init(userInterfaceStyle: .light)) ?? OSImage(resource: resource)
+        darkImage = asset?.image(with: .init(userInterfaceStyle: .dark)) ?? OSImage(resource: resource)
         #endif
         #if os(macOS)
-            // Does not matter as previews are not supported for macOS widgets.
-            lightImage = image
-            darkImage = image
+        // Does not matter as previews are not supported for macOS widgets.
+        lightImage = image
+        darkImage = image
         #endif
         bikeMarkerPosition = point
     }
@@ -62,7 +56,3 @@ extension CLPlacemark {
 extension CLLocation {
     static let preview = CLLocation(latitude: 47.21342, longitude: -1.54440)
 }
-
-// MARK: - Error
-
-struct PreviewError: Error {}

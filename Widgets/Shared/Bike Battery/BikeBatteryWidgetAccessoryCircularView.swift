@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 import WidgetKit
 
-struct BikeBatteryWidgetCircularView: View {
+struct BikeBatteryWidgetAccessoryCircularView: View {
     var entry: BikeBatteryWidget.Entry
 
     var body: some View {
@@ -12,7 +12,6 @@ struct BikeBatteryWidgetCircularView: View {
                 ProgressView(value: content.batteryPercentage)
                     .progressViewStyle(.circular)
                 Image(systemName: "bicycle")
-                    .font(.system(size: 18))
                     .bold()
             }
         case .error:
@@ -20,17 +19,3 @@ struct BikeBatteryWidgetCircularView: View {
         }
     }
 }
-
-#if os(iOS)
-    #Preview("Loaded", as: .accessoryCircular) {
-        BikeBatteryWidget()
-    } timeline: {
-        BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
-    }
-
-    #Preview("Error", as: .accessoryCircular) {
-        BikeBatteryWidget()
-    } timeline: {
-        BikeBatteryWidget.Entry(date: .now, state: .error(PreviewError()))
-    }
-#endif

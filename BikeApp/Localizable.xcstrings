@@ -141,17 +141,6 @@
         }
       }
     },
-    "Example" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Exemple"
-          }
-        }
-      }
-    },
     "Fog" : {
       "localizations" : {
         "fr" : {

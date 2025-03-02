@@ -21,8 +21,8 @@ struct BikeLocationWidget: Widget {
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .contentMarginsDisabled()
-        .configurationDisplayName("Vélo")
-        .description("Consultez l'emplacement et le niveau de batterie de votre vélo.")
+        .configurationDisplayName("Bike")
+        .description("Check your bike's location and battery level.")
         .supportedFamilies([.systemSmall,
                             .systemMedium])
     }
@@ -78,9 +78,9 @@ extension BikeLocationWidget {
                 let entry = await getEntry(for: configuration)
 
                 let timeInterval: Double = switch entry.state {
-                case .loaded(let content):
+                case .loaded:
                     15 * 60
-                case .error(let error):
+                case .error:
                     5 * 60
                 }
 
@@ -245,5 +245,5 @@ private func MKMakeMapRect(aspectRatio: CGSize, insideRect boundingRect: MKMapRe
 }
 
 #if canImport(AppKit)
-    extension NSImage: @unchecked @retroactive Sendable {}
+extension NSImage: @unchecked @retroactive Sendable {}
 #endif

@@ -6,9 +6,14 @@ import WidgetKit
 ///
 /// This widget is available in the following sizes:
 /// - System small (iOS and macOS)
-/// - Accessory circular (iOS)
-/// - Accessory rectangular (iOS)
-/// - Accessory inline (iOS)
+/// - Accessory circular (iOS and watchOS)
+/// - Accessory corner (iOS and watchOS)
+/// - Accessory rectangular (iOS and watchOS)
+/// - Accessory inline (iOS and watchOS)
+///
+/// The implementation is shared between the Multiplatform Widget Extension and the Watch Widget Extension. To avoid a
+/// an issue with Xcode previews, it is then wrapped in platform specific widgets: ``BikeBatteryWidgetMultiplatform``
+/// and ``BikeBatteryWidgetWatch``.
 struct BikeBatteryWidget: Widget {
     let kind: String = "BikeBatteryWidget"
 
@@ -23,21 +28,7 @@ struct BikeBatteryWidget: Widget {
         }
         .contentMarginsDisabled()
         .configurationDisplayName("Charge")
-        .description("Consultez le niveau de charge de votre vélo.")
-        .supportedFamilies(supportedFamilies)
-    }
-
-    private var supportedFamilies: [WidgetFamily] {
-        #if os(iOS)
-            return [.systemSmall,
-                    .accessoryCircular,
-                    .accessoryRectangular,
-                    .accessoryInline]
-        #endif
-
-        #if os(macOS)
-            return [.systemSmall]
-        #endif
+        .description("Check your bike's charge level.")
     }
 }
 
@@ -63,25 +54,25 @@ extension BikeBatteryWidget {
     struct Provider: TimelineProvider {
         let client: Client
 
-        func placeholder(in context: Context) -> Entry {
+        func placeholder(in _: Context) -> Entry {
             return .init(date: .now, state: .loaded(.placeholder))
         }
 
-        func getSnapshot(in context: Context, completion: @escaping @Sendable (Entry) -> Void) {
+        func getSnapshot(in _: Context, completion: @escaping @Sendable (Entry) -> Void) {
             Task {
                 let entry = await getEntry()
                 completion(entry)
             }
         }
 
-        func getTimeline(in context: Context, completion: @escaping @Sendable (Timeline<Entry>) -> Void) {
+        func getTimeline(in _: Context, completion: @escaping @Sendable (Timeline<Entry>) -> Void) {
             Task {
                 let entry = await getEntry()
 
                 let timeInterval: Double = switch entry.state {
-                case .loaded(let content):
+                case .loaded:
                     15 * 60
-                case .error(let error):
+                case .error:
                     5 * 60
                 }
 
@@ -114,29 +105,3 @@ extension BikeBatteryWidget {
 private extension BikeBatteryWidget.Entry.State.Content {
     static let placeholder: Self = .init(name: "Elops 920E", batteryPercentage: 1)
 }
-
-#Preview("System Small", as: .systemSmall) {
-    BikeBatteryWidget()
-} timeline: {
-    BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
-}
-
-#if os(iOS)
-    #Preview("Accessory Circular", as: .accessoryCircular) {
-        BikeBatteryWidget()
-    } timeline: {
-        BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
-    }
-
-    #Preview("Accessory Rectangular", as: .accessoryRectangular) {
-        BikeBatteryWidget()
-    } timeline: {
-        BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
-    }
-
-    #Preview("Accessory Inline", as: .accessoryInline) {
-        BikeBatteryWidget()
-    } timeline: {
-        BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
-    }
-#endif

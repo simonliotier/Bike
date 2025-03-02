@@ -43,7 +43,3 @@ public struct Pin: View {
 public extension ImageResource {
     static let bike = ImageResource.elops920E
 }
-
-public extension Color {
-    static let pinBackground = Color(.pin)
-}

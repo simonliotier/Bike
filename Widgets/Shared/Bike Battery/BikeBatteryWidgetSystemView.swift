@@ -35,15 +35,3 @@ struct BikeBatteryWidgetSystemView: View {
         }
     }
 }
-
-#Preview("Loaded", as: .systemSmall) {
-    BikeBatteryWidget()
-} timeline: {
-    BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
-}
-
-#Preview("Error", as: .systemSmall) {
-    BikeBatteryWidget()
-} timeline: {
-    BikeBatteryWidget.Entry(date: .now, state: .error(PreviewError()))
-}

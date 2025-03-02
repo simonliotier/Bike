@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 import WidgetKit
 
-struct BikeBatteryWidgetRectangularView: View {
+struct BikeBatteryWidgetAccessoryRectangularView: View {
     var entry: BikeBatteryWidget.Entry
 
     var body: some View {
@@ -21,17 +21,3 @@ struct BikeBatteryWidgetRectangularView: View {
         }
     }
 }
-
-#if os(iOS)
-    #Preview("Loaded", as: .accessoryRectangular) {
-        BikeBatteryWidget()
-    } timeline: {
-        BikeBatteryWidget.Entry(date: .now, state: .loaded(.preview))
-    }
-
-    #Preview("Error", as: .accessoryRectangular) {
-        BikeBatteryWidget()
-    } timeline: {
-        BikeBatteryWidget.Entry(date: .now, state: .error(PreviewError()))
-    }
-#endif

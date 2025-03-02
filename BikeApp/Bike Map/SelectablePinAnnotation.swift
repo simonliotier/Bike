@@ -25,7 +25,7 @@ struct SelectablePinAnnotation: View {
     var body: some View {
         ZStack {
             Circle()
-                .fill(Color.pinBackground)
+                .fill(.pin)
             Image(resource)
                 .resizable()
                 .clipShape(Circle())
