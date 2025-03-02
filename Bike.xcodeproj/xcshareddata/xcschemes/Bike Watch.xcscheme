@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1600"
+   LastUpgradeVersion = "1620"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+      buildImplicitDependencies = "YES"
+      buildArchitectures = "Automatic">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,9 +15,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1A9190522D69E7A90053A846"
+               BuildableName = "Bike Watch.app"
+               BlueprintName = "Bike Watch"
+               ReferencedContainer = "container:Bike.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "1A6EAD1C2AD56B420043E524"
-               BuildableName = "BikeApp.app"
-               BlueprintName = "BikeApp"
+               BuildableName = "Bike Multiplatform.app"
+               BlueprintName = "Bike Multiplatform"
                ReferencedContainer = "container:Bike.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,9 +58,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A6EAD1C2AD56B420043E524"
-            BuildableName = "BikeApp.app"
-            BlueprintName = "BikeApp"
+            BlueprintIdentifier = "1A9190522D69E7A90053A846"
+            BuildableName = "Bike Watch.app"
+            BlueprintName = "Bike Watch"
             ReferencedContainer = "container:Bike.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -60,9 +75,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A6EAD1C2AD56B420043E524"
-            BuildableName = "BikeApp.app"
-            BlueprintName = "BikeApp"
+            BlueprintIdentifier = "1A9190522D69E7A90053A846"
+            BuildableName = "Bike Watch.app"
+            BlueprintName = "Bike Watch"
             ReferencedContainer = "container:Bike.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

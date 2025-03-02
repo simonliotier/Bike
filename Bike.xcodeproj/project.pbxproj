@@ -8,17 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		1A61FCC32D32DA9D00B95AF6 /* VariableBlur in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 1A61FCC22D32DA9D00B95AF6 /* VariableBlur */; };
-		1A9190602D69E7AA0053A846 /* Bike Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1A9190532D69E7A90053A846 /* Bike Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1A9190602D69E7AA0053A846 /* Bike Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1A9190532D69E7A90053A846 /* Bike Watch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1A9190662D69E7EB0053A846 /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9190652D69E7EB0053A846 /* Bike */; };
 		1A9A072A2C0768DE0013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A07292C0768DE0013E68D /* Bike */; };
 		1A9A072C2C0769360013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A072B2C0769360013E68D /* Bike */; };
 		1AC1A66B2D73C27800B2E47D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28672B543DA700020097 /* WidgetKit.framework */; };
 		1AC1A66C2D73C27800B2E47D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28692B543DA700020097 /* SwiftUI.framework */; };
-		1AC1A6752D73C27900B2E47D /* BikeWatchWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1AC1A66A2D73C27800B2E47D /* BikeWatchWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1AC1A6752D73C27900B2E47D /* Bike Widget Watch.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1AC1A66A2D73C27800B2E47D /* Bike Widget Watch.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1AC1A6D22D73C84600B2E47D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1AC1A6D12D73C84600B2E47D /* Bike */; };
 		1ACF28682B543DA700020097 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28672B543DA700020097 /* WidgetKit.framework */; };
 		1ACF286A2B543DA700020097 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28692B543DA700020097 /* SwiftUI.framework */; };
-		1ACF28752B543DA900020097 /* BikeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1ACF28652B543DA700020097 /* BikeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1ACF28752B543DA900020097 /* Bike Widget Multiplatform.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1ACF28652B543DA700020097 /* Bike Widget Multiplatform.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				1A9190602D69E7AA0053A846 /* Bike Watch App.app in Embed Watch Content */,
+				1A9190602D69E7AA0053A846 /* Bike Watch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,7 +63,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1AC1A6752D73C27900B2E47D /* BikeWatchWidgetsExtension.appex in Embed Foundation Extensions */,
+				1AC1A6752D73C27900B2E47D /* Bike Widget Watch.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,7 +74,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1ACF28752B543DA900020097 /* BikeWidgetExtension.appex in Embed Foundation Extensions */,
+				1ACF28752B543DA900020097 /* Bike Widget Multiplatform.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,11 +82,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1A6EAD1D2AD56B420043E524 /* BikeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A9190532D69E7A90053A846 /* Bike Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A6EAD1D2AD56B420043E524 /* Bike Multiplatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike Multiplatform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A9190532D69E7A90053A846 /* Bike Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9A07282C0768C40013E68D /* Bike */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Bike; sourceTree = "<group>"; };
-		1AC1A66A2D73C27800B2E47D /* BikeWatchWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BikeWatchWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		1ACF28652B543DA700020097 /* BikeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BikeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AC1A66A2D73C27800B2E47D /* Bike Widget Watch.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Bike Widget Watch.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ACF28652B543DA700020097 /* Bike Widget Multiplatform.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Bike Widget Multiplatform.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACF28672B543DA700020097 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1ACF28692B543DA700020097 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -107,7 +107,107 @@
 				Watch/Assets.xcassets,
 				"Watch/Bike Battery/BikeBatteryWidgetWatch.swift",
 			);
-			target = 1AC1A6692D73C27800B2E47D /* BikeWatchWidgetsExtension */;
+			target = 1AC1A6692D73C27800B2E47D /* Bike Widget Watch */;
+		};
+		1AC1A76F2D7503D100B2E47D /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Multiplatform/App/BikeApp.swift,
+				Multiplatform/Assets.xcassets,
+				"Multiplatform/Bike Map/AnimatableSafeAreaPadding.swift",
+				"Multiplatform/Bike Map/AsyncBikeMap.swift",
+				"Multiplatform/Bike Map/Bike Details/BikeDetails.swift",
+				"Multiplatform/Bike Map/Bike Details/BikeDetailsView.swift",
+				"Multiplatform/Bike Map/Bike Details/CardView.swift",
+				"Multiplatform/Bike Map/Bike Details/FittedPresentationDetentModifier.swift",
+				"Multiplatform/Bike Map/Bike Details/MaterialButtonStyle.swift",
+				"Multiplatform/Bike Map/Bike Details/OnHeightChangeModifier.swift",
+				"Multiplatform/Bike Map/Bike Details/RideRow.swift",
+				"Multiplatform/Bike Map/Bike Details/RidesCardView.swift",
+				"Multiplatform/Bike Map/Bike Details/StatsCardView.swift",
+				"Multiplatform/Bike Map/BikeMap.swift",
+				"Multiplatform/Bike Map/BlurredStatusBarBackground.swift",
+				"Multiplatform/Bike Map/CustomMapControls.swift",
+				"Multiplatform/Bike Map/MapBikeLocationButton.swift",
+				"Multiplatform/Bike Map/MapControlButtonStyle.swift",
+				"Multiplatform/Bike Map/MapStyleButton.swift",
+				"Multiplatform/Bike Map/PlatformInitializable.swift",
+				"Multiplatform/Bike Map/Rides/AsyncRideThumbnail.swift",
+				"Multiplatform/Bike Map/Rides/Ride List/AsyncRideList.swift",
+				"Multiplatform/Bike Map/Rides/Ride List/RideList.swift",
+				"Multiplatform/Bike Map/Rides/Ride View/AsyncRideView.swift",
+				"Multiplatform/Bike Map/Rides/Ride View/ColorExtensions.swift",
+				"Multiplatform/Bike Map/Rides/Ride View/RideDetailsView.swift",
+				"Multiplatform/Bike Map/Rides/Ride View/RideMap.swift",
+				"Multiplatform/Bike Map/Rides/Ride View/RideView.swift",
+				"Multiplatform/Bike Map/Rides/RideThumbnail.swift",
+				"Multiplatform/Bike Map/Rides/RideThumbnailGenerator.swift",
+				"Multiplatform/Bike Map/Rides/RideThumbnailView.swift",
+				"Multiplatform/Bike Map/Screen.swift",
+				"Multiplatform/Bike Map/SelectablePinAnnotation.swift",
+				"Multiplatform/Bike Map/Stats/AsyncStatsView.swift",
+				"Multiplatform/Bike Map/Stats/StatsCategory.swift",
+				"Multiplatform/Bike Map/Stats/StatsChart.swift",
+				"Multiplatform/Bike Map/Stats/StatsChartData.swift",
+				"Multiplatform/Bike Map/Stats/StatsView.swift",
+				Multiplatform/Localizable.xcstrings,
+				Multiplatform/Login/SignInView.swift,
+				"Multiplatform/Preview Content/Preview Assets.xcassets",
+				Multiplatform/Utils/Background.swift,
+				Multiplatform/Utils/DismissButton.swift,
+				Multiplatform/Utils/SheetPreview.swift,
+			);
+			target = 1A6EAD1C2AD56B420043E524 /* Bike Multiplatform */;
+		};
+		1AC1A7702D7503D100B2E47D /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Multiplatform/App/BikeApp.swift,
+				Multiplatform/Assets.xcassets,
+				"Multiplatform/Bike Map/AnimatableSafeAreaPadding.swift",
+				"Multiplatform/Bike Map/AsyncBikeMap.swift",
+				"Multiplatform/Bike Map/Bike Details/BikeDetails.swift",
+				"Multiplatform/Bike Map/Bike Details/BikeDetailsView.swift",
+				"Multiplatform/Bike Map/Bike Details/CardView.swift",
+				"Multiplatform/Bike Map/Bike Details/FittedPresentationDetentModifier.swift",
+				"Multiplatform/Bike Map/Bike Details/MaterialButtonStyle.swift",
+				"Multiplatform/Bike Map/Bike Details/OnHeightChangeModifier.swift",
+				"Multiplatform/Bike Map/Bike Details/RideRow.swift",
+				"Multiplatform/Bike Map/Bike Details/RidesCardView.swift",
+				"Multiplatform/Bike Map/Bike Details/StatsCardView.swift",
+				"Multiplatform/Bike Map/BikeMap.swift",
+				"Multiplatform/Bike Map/BlurredStatusBarBackground.swift",
+				"Multiplatform/Bike Map/CustomMapControls.swift",
+				"Multiplatform/Bike Map/MapBikeLocationButton.swift",
+				"Multiplatform/Bike Map/MapControlButtonStyle.swift",
+				"Multiplatform/Bike Map/MapStyleButton.swift",
+				"Multiplatform/Bike Map/PlatformInitializable.swift",
+				"Multiplatform/Bike Map/Rides/AsyncRideThumbnail.swift",
+				"Multiplatform/Bike Map/Rides/Ride List/AsyncRideList.swift",
+				"Multiplatform/Bike Map/Rides/Ride List/RideList.swift",
+				"Multiplatform/Bike Map/Rides/Ride View/AsyncRideView.swift",
+				"Multiplatform/Bike Map/Rides/Ride View/ColorExtensions.swift",
+				"Multiplatform/Bike Map/Rides/Ride View/RideDetailsView.swift",
+				"Multiplatform/Bike Map/Rides/Ride View/RideMap.swift",
+				"Multiplatform/Bike Map/Rides/Ride View/RideView.swift",
+				"Multiplatform/Bike Map/Rides/RideThumbnail.swift",
+				"Multiplatform/Bike Map/Rides/RideThumbnailGenerator.swift",
+				"Multiplatform/Bike Map/Rides/RideThumbnailView.swift",
+				"Multiplatform/Bike Map/Screen.swift",
+				"Multiplatform/Bike Map/SelectablePinAnnotation.swift",
+				"Multiplatform/Bike Map/Stats/AsyncStatsView.swift",
+				"Multiplatform/Bike Map/Stats/StatsCategory.swift",
+				"Multiplatform/Bike Map/Stats/StatsChart.swift",
+				"Multiplatform/Bike Map/Stats/StatsChartData.swift",
+				"Multiplatform/Bike Map/Stats/StatsView.swift",
+				Multiplatform/Localizable.xcstrings,
+				Multiplatform/Login/SignInView.swift,
+				"Multiplatform/Preview Content/Preview Assets.xcassets",
+				Multiplatform/Utils/Background.swift,
+				Multiplatform/Utils/DismissButton.swift,
+				Multiplatform/Utils/SheetPreview.swift,
+			);
+			target = 1A9190522D69E7A90053A846 /* Bike Watch */;
 		};
 		1AE4D5D82CA8681600BA8BB4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -117,13 +217,12 @@
 				"Watch/Bike Battery/BikeBatteryWidgetWatch.swift",
 				Watch/Info.plist,
 			);
-			target = 1ACF28642B543DA700020097 /* BikeWidgetExtension */;
+			target = 1ACF28642B543DA700020097 /* Bike Widget Multiplatform */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		1A9190542D69E7A90053A846 /* Bike Watch App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Bike Watch App"; sourceTree = "<group>"; };
-		1AE4D5A92CA8680600BA8BB4 /* BikeApp */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BikeApp; sourceTree = "<group>"; };
+		1AC1A70A2D7503C100B2E47D /* Apps */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1AC1A76F2D7503D100B2E47D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1AC1A7702D7503D100B2E47D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Apps; sourceTree = "<group>"; };
 		1AE4D5C92CA8681600BA8BB4 /* Widgets */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1AE4D5D82CA8681600BA8BB4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 1AC1A6812D73C28E00B2E47D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Widgets; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -172,9 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				1A9A07282C0768C40013E68D /* Bike */,
-				1AE4D5A92CA8680600BA8BB4 /* BikeApp */,
+				1AC1A70A2D7503C100B2E47D /* Apps */,
 				1AE4D5C92CA8681600BA8BB4 /* Widgets */,
-				1A9190542D69E7A90053A846 /* Bike Watch App */,
 				1ACF28662B543DA700020097 /* Frameworks */,
 				1A6EAD1E2AD56B420043E524 /* Products */,
 			);
@@ -183,10 +281,10 @@
 		1A6EAD1E2AD56B420043E524 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A6EAD1D2AD56B420043E524 /* BikeApp.app */,
-				1ACF28652B543DA700020097 /* BikeWidgetExtension.appex */,
-				1A9190532D69E7A90053A846 /* Bike Watch App.app */,
-				1AC1A66A2D73C27800B2E47D /* BikeWatchWidgetsExtension.appex */,
+				1A6EAD1D2AD56B420043E524 /* Bike Multiplatform.app */,
+				1ACF28652B543DA700020097 /* Bike Widget Multiplatform.appex */,
+				1A9190532D69E7A90053A846 /* Bike Watch.app */,
+				1AC1A66A2D73C27800B2E47D /* Bike Widget Watch.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,9 +301,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1A6EAD1C2AD56B420043E524 /* BikeApp */ = {
+		1A6EAD1C2AD56B420043E524 /* Bike Multiplatform */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A6EAD2C2AD56B430043E524 /* Build configuration list for PBXNativeTarget "BikeApp" */;
+			buildConfigurationList = 1A6EAD2C2AD56B430043E524 /* Build configuration list for PBXNativeTarget "Bike Multiplatform" */;
 			buildPhases = (
 				1A6EAD192AD56B420043E524 /* Sources */,
 				1A6EAD1A2AD56B420043E524 /* Frameworks */,
@@ -219,21 +317,18 @@
 				1ACF28742B543DA900020097 /* PBXTargetDependency */,
 				1A91905F2D69E7AA0053A846 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				1AE4D5A92CA8680600BA8BB4 /* BikeApp */,
-			);
-			name = BikeApp;
+			name = "Bike Multiplatform";
 			packageProductDependencies = (
 				1A9A07292C0768DE0013E68D /* Bike */,
 				1A61FCC22D32DA9D00B95AF6 /* VariableBlur */,
 			);
 			productName = Decathlon;
-			productReference = 1A6EAD1D2AD56B420043E524 /* BikeApp.app */;
+			productReference = 1A6EAD1D2AD56B420043E524 /* Bike Multiplatform.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1A9190522D69E7A90053A846 /* Bike Watch App */ = {
+		1A9190522D69E7A90053A846 /* Bike Watch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1A9190642D69E7AA0053A846 /* Build configuration list for PBXNativeTarget "Bike Watch App" */;
+			buildConfigurationList = 1A9190642D69E7AA0053A846 /* Build configuration list for PBXNativeTarget "Bike Watch" */;
 			buildPhases = (
 				1A91904F2D69E7A90053A846 /* Sources */,
 				1A9190502D69E7A90053A846 /* Frameworks */,
@@ -246,19 +341,19 @@
 				1AC1A6742D73C27900B2E47D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				1A9190542D69E7A90053A846 /* Bike Watch App */,
+				1AC1A70A2D7503C100B2E47D /* Apps */,
 			);
-			name = "Bike Watch App";
+			name = "Bike Watch";
 			packageProductDependencies = (
 				1A9190652D69E7EB0053A846 /* Bike */,
 			);
 			productName = "BikeWatch Watch App";
-			productReference = 1A9190532D69E7A90053A846 /* Bike Watch App.app */;
+			productReference = 1A9190532D69E7A90053A846 /* Bike Watch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1AC1A6692D73C27800B2E47D /* BikeWatchWidgetsExtension */ = {
+		1AC1A6692D73C27800B2E47D /* Bike Widget Watch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1AC1A6772D73C27900B2E47D /* Build configuration list for PBXNativeTarget "BikeWatchWidgetsExtension" */;
+			buildConfigurationList = 1AC1A6772D73C27900B2E47D /* Build configuration list for PBXNativeTarget "Bike Widget Watch" */;
 			buildPhases = (
 				1AC1A6662D73C27800B2E47D /* Sources */,
 				1AC1A6672D73C27800B2E47D /* Frameworks */,
@@ -268,17 +363,17 @@
 			);
 			dependencies = (
 			);
-			name = BikeWatchWidgetsExtension;
+			name = "Bike Widget Watch";
 			packageProductDependencies = (
 				1AC1A6D12D73C84600B2E47D /* Bike */,
 			);
 			productName = "Bike Watch WidgetsExtension";
-			productReference = 1AC1A66A2D73C27800B2E47D /* BikeWatchWidgetsExtension.appex */;
+			productReference = 1AC1A66A2D73C27800B2E47D /* Bike Widget Watch.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		1ACF28642B543DA700020097 /* BikeWidgetExtension */ = {
+		1ACF28642B543DA700020097 /* Bike Widget Multiplatform */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1ACF28792B543DA900020097 /* Build configuration list for PBXNativeTarget "BikeWidgetExtension" */;
+			buildConfigurationList = 1ACF28792B543DA900020097 /* Build configuration list for PBXNativeTarget "Bike Widget Multiplatform" */;
 			buildPhases = (
 				1ACF28612B543DA700020097 /* Sources */,
 				1ACF28622B543DA700020097 /* Frameworks */,
@@ -291,12 +386,12 @@
 			fileSystemSynchronizedGroups = (
 				1AE4D5C92CA8681600BA8BB4 /* Widgets */,
 			);
-			name = BikeWidgetExtension;
+			name = "Bike Widget Multiplatform";
 			packageProductDependencies = (
 				1A9A072B2C0769360013E68D /* Bike */,
 			);
 			productName = BikeWidgetExtension;
-			productReference = 1ACF28652B543DA700020097 /* BikeWidgetExtension.appex */;
+			productReference = 1ACF28652B543DA700020097 /* Bike Widget Multiplatform.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -341,10 +436,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1A6EAD1C2AD56B420043E524 /* BikeApp */,
-				1A9190522D69E7A90053A846 /* Bike Watch App */,
-				1ACF28642B543DA700020097 /* BikeWidgetExtension */,
-				1AC1A6692D73C27800B2E47D /* BikeWatchWidgetsExtension */,
+				1A6EAD1C2AD56B420043E524 /* Bike Multiplatform */,
+				1A9190522D69E7A90053A846 /* Bike Watch */,
+				1ACF28642B543DA700020097 /* Bike Widget Multiplatform */,
+				1AC1A6692D73C27800B2E47D /* Bike Widget Watch */,
 			);
 		};
 /* End PBXProject section */
@@ -415,17 +510,17 @@
 		1A91905F2D69E7AA0053A846 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
-			target = 1A9190522D69E7A90053A846 /* Bike Watch App */;
+			target = 1A9190522D69E7A90053A846 /* Bike Watch */;
 			targetProxy = 1A91905E2D69E7AA0053A846 /* PBXContainerItemProxy */;
 		};
 		1AC1A6742D73C27900B2E47D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1AC1A6692D73C27800B2E47D /* BikeWatchWidgetsExtension */;
+			target = 1AC1A6692D73C27800B2E47D /* Bike Widget Watch */;
 			targetProxy = 1AC1A6732D73C27900B2E47D /* PBXContainerItemProxy */;
 		};
 		1ACF28742B543DA900020097 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1ACF28642B543DA700020097 /* BikeWidgetExtension */;
+			target = 1ACF28642B543DA700020097 /* Bike Widget Multiplatform */;
 			targetProxy = 1ACF28732B543DA900020097 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -564,11 +659,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = BikeApp/BikeApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Apps/Multiplatform/BikeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"BikeApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Apps/Multiplatform/Preview Content\"";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -601,11 +696,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = BikeApp/BikeApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Apps/Multiplatform/BikeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"BikeApp/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Apps/Multiplatform/Preview Content\"";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -638,10 +733,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Bike Watch App/Bike Watch App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Apps/Watch/Bike Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Bike Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Apps/Watch/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Bike;
@@ -668,10 +763,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Bike Watch App/Bike Watch App.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Apps/Watch/Bike Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Bike Watch App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Apps/Watch/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Bike;
@@ -704,7 +799,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Watch/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Bike Watch Widgets";
+				INFOPLIST_KEY_CFBundleDisplayName = Bike;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -713,7 +808,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "tech.conneq.decathlon.watchkitapp.Bike-Watch-Widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = tech.conneq.decathlon.watchkitapp.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -734,7 +829,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Watch/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Bike Watch Widgets";
+				INFOPLIST_KEY_CFBundleDisplayName = Bike;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -743,7 +838,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "tech.conneq.decathlon.watchkitapp.Bike-Watch-Widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = tech.conneq.decathlon.watchkitapp.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -768,7 +863,7 @@
 				DEVELOPMENT_TEAM = 5PPY38J7P4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Multiplatform/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BikeWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = Bike;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -776,7 +871,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tech.conneq.decathlon.BikeWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.conneq.decathlon.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -803,7 +898,7 @@
 				DEVELOPMENT_TEAM = 5PPY38J7P4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Multiplatform/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = BikeWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = Bike;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -811,7 +906,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tech.conneq.decathlon.BikeWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.conneq.decathlon.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -838,7 +933,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A6EAD2C2AD56B430043E524 /* Build configuration list for PBXNativeTarget "BikeApp" */ = {
+		1A6EAD2C2AD56B430043E524 /* Build configuration list for PBXNativeTarget "Bike Multiplatform" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A6EAD2D2AD56B430043E524 /* Debug */,
@@ -847,7 +942,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1A9190642D69E7AA0053A846 /* Build configuration list for PBXNativeTarget "Bike Watch App" */ = {
+		1A9190642D69E7AA0053A846 /* Build configuration list for PBXNativeTarget "Bike Watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1A9190622D69E7AA0053A846 /* Debug */,
@@ -856,7 +951,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1AC1A6772D73C27900B2E47D /* Build configuration list for PBXNativeTarget "BikeWatchWidgetsExtension" */ = {
+		1AC1A6772D73C27900B2E47D /* Build configuration list for PBXNativeTarget "Bike Widget Watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1AC1A6782D73C27900B2E47D /* Debug */,
@@ -865,7 +960,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1ACF28792B543DA900020097 /* Build configuration list for PBXNativeTarget "BikeWidgetExtension" */ = {
+		1ACF28792B543DA900020097 /* Build configuration list for PBXNativeTarget "Bike Widget Multiplatform" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1ACF28772B543DA900020097 /* Debug */,

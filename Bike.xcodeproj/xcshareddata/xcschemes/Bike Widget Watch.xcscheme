@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1600"
+   LastUpgradeVersion = "1620"
    wasCreatedForAppExtension = "YES"
    version = "2.0">
    <BuildAction
@@ -16,9 +16,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1ACF28642B543DA700020097"
-               BuildableName = "BikeWidgetExtension.appex"
-               BlueprintName = "BikeWidgetExtension"
+               BlueprintIdentifier = "1AC1A6692D73C27800B2E47D"
+               BuildableName = "Bike Widget Watch.appex"
+               BlueprintName = "Bike Widget Watch"
+               ReferencedContainer = "container:Bike.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1A9190522D69E7A90053A846"
+               BuildableName = "Bike Watch.app"
+               BlueprintName = "Bike Watch"
                ReferencedContainer = "container:Bike.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,8 +45,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1A6EAD1C2AD56B420043E524"
-               BuildableName = "BikeApp.app"
-               BlueprintName = "BikeApp"
+               BuildableName = "Bike Multiplatform.app"
+               BlueprintName = "Bike Multiplatform"
                ReferencedContainer = "container:Bike.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -57,30 +71,29 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1ACF28642B543DA700020097"
-            BuildableName = "BikeWidgetExtension.appex"
-            BlueprintName = "BikeWidgetExtension"
+            BlueprintIdentifier = "1AC1A6692D73C27800B2E47D"
+            BuildableName = "Bike Widget Watch.appex"
+            BlueprintName = "Bike Widget Watch"
             ReferencedContainer = "container:Bike.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
+      </BuildableProductRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A6EAD1C2AD56B420043E524"
-            BuildableName = "BikeApp.app"
-            BlueprintName = "BikeApp"
+            BuildableName = "Bike Multiplatform.app"
+            BlueprintName = "Bike Multiplatform"
             ReferencedContainer = "container:Bike.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCWidgetKind"
-            value = "BikeBatteryWidget"
+            value = ""
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
@@ -90,7 +103,7 @@
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "_XCWidgetFamily"
-            value = "accessoryCircular"
+            value = "systemMedium"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
@@ -100,16 +113,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES"
-      askForAppToLaunch = "Yes"
-      launchAutomaticallySubstyle = "2">
+      debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A6EAD1C2AD56B420043E524"
-            BuildableName = "BikeApp.app"
-            BlueprintName = "BikeApp"
+            BlueprintIdentifier = "1AC1A6692D73C27800B2E47D"
+            BuildableName = "Bike Widget Watch.appex"
+            BlueprintName = "Bike Widget Watch"
             ReferencedContainer = "container:Bike.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
