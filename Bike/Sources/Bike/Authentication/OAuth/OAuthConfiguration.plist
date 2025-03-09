@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>5c0d36ce-7396-46f0-bcc0-3c6e16c0d2b6</string>
+	<key>CLIENT_SECRET</key>
+	<string>_NU4.j2A!f!YawfpDFKdWBDQemuMtrYa</string>
+	<key>AUTHORIZATION_ENDPOINT</key>
+	<string>https://login.conneq.tech/v1/login</string>
+	<key>TOKEN_ENDPOINT</key>
+	<string>https://api.ids.conneq.tech/oauth</string>
+	<key>REDIRECT_URI</key>
+	<string>tech.conneq.decathlon://decathlon.app.ids.conneq.tech</string>
+	<key>SCHEME</key>
+	<string>tech.conneq.decathlon</string>
+</dict>
+</plist>
