@@ -115,6 +115,7 @@ struct BikeDetailsView: View {
         }
         .tint(.primary)
         .buttonStyle(.plain)
+        .buttonBorderShape(.roundedRectangle(radius: 16))
     }
 
     @ViewBuilder private var ridesButton: some View {
@@ -124,6 +125,7 @@ struct BikeDetailsView: View {
             RidesCardView(rides: bikeDetails.lastRides)
         }
         .buttonStyle(.plain)
+        .buttonBorderShape(.roundedRectangle(radius: 16))
     }
 
     @ViewBuilder private var statsButton: some View {
@@ -133,6 +135,7 @@ struct BikeDetailsView: View {
             StatsCardView(stats: bikeDetails.weekStats)
         }
         .buttonStyle(.plain)
+        .buttonBorderShape(.roundedRectangle(radius: 16))
     }
 
     private var formattedAddress: String {
@@ -178,7 +181,7 @@ struct BikeDetailsView: View {
             MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking
         ]
 
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
         MKMapItem.openMaps(with: [bikeMapItem], launchOptions: launchOptions)
         #endif
 
@@ -195,7 +198,7 @@ struct BikeDetailsView: View {
             presentedSheetScreen = screen
         }
 
-        #elseif os(macOS)
+        #elseif os(macOS) || os(visionOS)
         openWindow(id: screen.rawValue, value: bike)
         #endif
     }

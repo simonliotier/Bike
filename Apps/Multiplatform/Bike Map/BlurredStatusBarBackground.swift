@@ -18,8 +18,7 @@ extension View {
                     .ignoresSafeArea()
             }
         }
-        #endif
-        #if os(macOS)
+        #else
         self
         #endif
     }

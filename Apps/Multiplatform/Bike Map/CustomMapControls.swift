@@ -9,11 +9,11 @@ extension View {
     /// - On iOS, they are displayed vertically in the top trailing corner.
     /// - On macOS, they are displayed horizontally in the bottom trailing corner.
     func customMapControls(@ViewBuilder _ content: () -> some View) -> some View {
-        overlay(alignment: .init(iOS: .topTrailing, macOS: .bottomTrailing)) {
+        overlay(alignment: .init(iOS: .topTrailing, macOS: .bottomTrailing, visionOS: .topTrailing)) {
             Group {
-                #if os(iOS)
+                #if os(iOS) || os(visionOS)
                 VStack(spacing: 8, content: content)
-                #else
+                #elseif os(macOS)
                 HStack(spacing: 4, content: content)
                 #endif
             }

@@ -1,11 +1,11 @@
 import MapKit
 import SwiftUI
 
-#if os(iOS) || os(macOS)
+#if !os(watchOS)
 public extension MKMapSnapshotter.Options {
     /// Convenience method to configure snapshotter options for light/dark mode, on iOS and macOS.
     func configure(for colorScheme: ColorScheme) {
-        #if os(iOS)
+        #if canImport(UIKit)
         let userInterfaceStyle: UIUserInterfaceStyle = switch colorScheme {
         case .light:
             .light
@@ -15,7 +15,7 @@ public extension MKMapSnapshotter.Options {
             .light
         }
         traitCollection = .init(userInterfaceStyle: userInterfaceStyle)
-        #elseif os(macOS)
+        #elseif canImport(AppKit)
         let appearanceName: NSAppearance.Name = switch colorScheme {
         case .light:
             .aqua

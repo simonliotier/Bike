@@ -5,7 +5,7 @@ public protocol ItineraryProvider: Sendable {
     var bike: Bike { get }
     func getAddress() async throws -> Address
 
-    #if os(iOS) || os(macOS)
+    #if !os(watchOS)
     func getItinerary() async throws -> Itinerary
     #endif
 }
@@ -23,7 +23,7 @@ public struct AppItineraryProvider: ItineraryProvider {
         return .init(street: postalAddress.street, city: postalAddress.city)
     }
 
-    #if os(iOS) || os(macOS)
+    #if !os(watchOS)
     public func getItinerary() async throws -> Itinerary {
         let currentLocationMapItem = MKMapItem.forCurrentLocation()
         let bikePlacemark = try await bike.getPlacemark()

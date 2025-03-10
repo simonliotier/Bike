@@ -1,6 +1,8 @@
 import Bike
 import SwiftUI
+#if canImport(WidgetKit)
 import WidgetKit
+#endif
 
 @main
 struct BikeApp: App {
@@ -31,7 +33,7 @@ struct BikeApp: App {
             .windowStyle(.hiddenTitleBar)
             #endif
 
-            #if os(macOS)
+            #if os(macOS) || os(visionOS)
             WindowGroup(id: Screen.stats.rawValue, for: Bike.self) { $bike in
                 Screen.stats.view(for: bike)
             }
@@ -43,8 +45,12 @@ struct BikeApp: App {
         }
         .environment(authenticationController)
         .environment(client)
-        .onChange(of: scenePhase) { _, _ in
-            WidgetCenter.shared.reloadAllTimelines()
-        }
+        .onChange(of: scenePhase, onChangeOfScenePhase)
+    }
+
+    private func onChangeOfScenePhase(_ oldValue: ScenePhase, _ newValue: ScenePhase) {
+        #if canImport(WidgetKit)
+        WidgetCenter.shared.reloadAllTimelines()
+        #endif
     }
 }

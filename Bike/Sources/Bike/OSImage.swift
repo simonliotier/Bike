@@ -11,25 +11,25 @@ import UIKit
 import AppKit
 #endif
 
-#if os(iOS) || os(watchOS)
+#if canImport(UIKit)
 public typealias OSImage = UIImage
-#elseif os(macOS)
+#elseif canImport(AppKit)
 public typealias OSImage = NSImage
 extension OSImage: @unchecked @retroactive Sendable {}
 #endif
 
 public extension Image {
     init(osImage: OSImage) {
-        #if os(iOS) || os(watchOS)
+        #if canImport(UIKit)
         self.init(uiImage: osImage)
         #endif
-        #if os(macOS)
+        #if canImport(AppKit)
         self.init(nsImage: osImage)
         #endif
     }
 }
 
-#if os(macOS)
+#if canImport(AppKit)
 public extension NSImage {
     func pngData() -> Data? {
         guard let cgImage = cgImage(forProposedRect: nil, context: nil, hints: nil) else {
@@ -54,9 +54,9 @@ public extension NSImage {
 public extension ImageRenderer {
     @MainActor
     var osImage: OSImage? {
-        #if os(iOS) || os(watchOS)
+        #if canImport(UIKit)
         return uiImage
-        #elseif os(macOS)
+        #elseif canImport(AppKit)
         return nsImage
         #endif
     }

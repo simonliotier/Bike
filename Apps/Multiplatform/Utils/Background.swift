@@ -24,7 +24,7 @@ struct Background<Content: View>: View {
                 content()
             }
 
-        #elseif os(macOS)
+        #else
         content()
         #endif
     }

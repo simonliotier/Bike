@@ -2,16 +2,18 @@ import SwiftUI
 
 /// Types implementing this protocol can be initialized with a different value, depending on the platform.
 protocol PlatformInitializable {
-    init(iOS: Self, macOS: Self)
+    init(iOS: Self, macOS: Self, visionOS: Self)
 }
 
 extension PlatformInitializable {
     /// Initialize the type with the given iOS or macOS value, depending on the current platform.
-    init(iOS: Self, macOS: Self) {
+    init(iOS: Self, macOS: Self, visionOS: Self) {
         #if os(iOS)
         self = iOS
         #elseif os(macOS)
         self = macOS
+        #elseif os(visionOS)
+        self = visionOS
         #endif
     }
 }
@@ -27,12 +29,17 @@ extension Alignment: PlatformInitializable {}
 extension View {
     /// Sets a view’s foreground elements to use a given style, depending on the platform.
     @ViewBuilder
-    func foregroundStyle<IOSShapeStyle: ShapeStyle, MacOSShapeStyle: ShapeStyle>(iOS: IOSShapeStyle,
-                                                                                 macOS: MacOSShapeStyle) -> some View {
+    func foregroundStyle<IOSShapeStyle: ShapeStyle, MacOSShapeStyle: ShapeStyle, VisionOSShapeStyle: ShapeStyle>(
+        iOS: IOSShapeStyle,
+        macOS: MacOSShapeStyle,
+        visionOS: VisionOSShapeStyle
+    ) -> some View {
         #if os(iOS)
         foregroundStyle(iOS)
         #elseif os(macOS)
         foregroundStyle(macOS)
+        #elseif os(visionOS)
+        foregroundStyle(visionOS)
         #endif
     }
 }
