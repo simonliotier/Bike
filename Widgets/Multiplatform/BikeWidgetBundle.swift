@@ -5,6 +5,6 @@ import WidgetKit
 struct BikeWidgetBundle: WidgetBundle {
     var body: some Widget {
         BikeLocationWidget()
-        BikeBatteryWidget()
+        BikeBatteryWidgetMultiplatform()
     }
 }
