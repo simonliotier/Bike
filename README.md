@@ -1,6 +1,8 @@
 # 🚲 Bike
 
-*Bike* is an iOS/macOS app allowing to track Decathlon connected bikes.
+![Header](Resources/header.png)
+
+*Bike* is a multi-platform app allowing to track Decathlon connected bikes. It is available on **iPhone, iPad, Mac, Apple Watch, Apple TV and Apple Vision**. It is entirely built with SwiftUI.
 
 It offers an alternative to the official Decathlon app: [Decathlon Geocover](https://apps.apple.com/fr/app/decathlon-geocover/id1552208973) (previously *Decathlon Mobility*).
 
@@ -8,22 +10,56 @@ As a [Decathlon Elops 920 E](https://www.decathlon.fr/p/velo-de-ville-electrique
 
 ## Features
 
-For the moment, the app essentially provides widgets showing the bike's **location** and **battery level** (the official Decathlon Geocover does not have widgets). The design is inspired from Apple *Find My* and *Battery* widgets.
+The app provides essential information about the bike: **location**, **battery level**, **ride details** and **statistics**.
 
-|     iOS Home Screen widgets: location and battery level      |
+|                  Location and battery level                  |                         Ride details                         |                          Statistics                          |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| <img src="Resources/features-location-battery.png" alt="drawing" width="300"/> | <img src="Resources/features-rides.png" alt="drawing" width="300"/> | <img src="Resources/features-stats.png" alt="drawing" width="300"/> |
+
+Location and battery level are also available as **widgets** (on iPhone, iPad, Mac and Apple Watch). The design is inspired by Apple *Find My* and *Battery* widgets.
+
+|                   iPhone/iPad Home Screen                    |                   iPhone/iPad Lock Screen                    |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| <img src="Resources/widgets-ios-home-screen.png" alt="drawing" width="400"/> | <img src="Resources/widgets-ios-lock-screen.png" alt="drawing" width="400"/> |
+
+|                             Mac                              |
 | :----------------------------------------------------------: |
-| ![iOS Home Screen Widgets](Resources/Widgets_iOS_Home_Screen.png) |
+| <img src="Resources/widgets-macos.png" alt="drawing" width="600"/> |
 
-|            iOS Lock Screen widgets: battery level            |
-| :----------------------------------------------------------: |
-| ![iOS Lock Screen Widgets](Resources/Widgets_iOS_Lock_Screen.png) |
+| Watch Accessory Circular                                     |                    Watch Accessory Corner                    |                 Watch Accessory Rectangular                  |                    Watch Accessory Inline                    |
+| ------------------------------------------------------------ | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| <img src="Resources/widgets-watch-accessory-circular.png" alt="drawing" width="200"/> | <img src="Resources/widgets-watch-accessory-corner.png" alt="drawing" width="200"/> | <img src="Resources/widgets-watch-accessory-rectangular.png" alt="drawing" width="200"/> | <img src="Resources/widgets-watch-accessory-inline.png" alt="drawing" width="200"/> |
 
-|   macOS widgets: location and battery level   |
-| :-------------------------------------------: |
-| ![mac0S Widgets](Resources/Widgets_macOS.png) |
+## Platforms
 
-More features may be added in the future.
+### iPhone
+
+<img src="Resources/platforms-iphone.png" alt="drawing" width="300"/>
+
+### iPad
+
+<img src="Resources/platforms-ipad.png" alt="drawing" width="700"/>
+
+### Mac
+
+<img src="Resources/platforms-mac.png" alt="drawing" width="800"/>
+
+### Apple Watch
+
+<img src="Resources/platforms-watch.png" alt="drawing" width="300"/>
+
+### Apple Vision
+
+<img src="Resources/platforms-vision.png" alt="drawing" width="800"/>
+
+### Apple TV
+
+<img src="Resources/platforms-tv.png" alt="drawing" width="800"/>
 
 ## Technical Stack
 
 The app is built using modern Apple technologies: SwiftUI, Swift 6, Swift Concurrency and Swift Package Manager.
+
+All platforms share the same codebase, thanks to the concept of [SwiftUI Multiplatform apps](https://developer.apple.com/documentation/xcode/configuring-a-multiplatform-app-target).
+
+![Destinations](Resources/destinations.png)
