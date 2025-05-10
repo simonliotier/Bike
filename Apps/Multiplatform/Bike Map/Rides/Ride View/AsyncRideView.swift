@@ -53,11 +53,13 @@ private extension Ride {
             return name
         }
 
-        return startDate.formatted(date: .complete, time: .omitted).capitalizedSentence
+        return startDate.formatted(date: .long, time: .omitted).capitalizedSentence
     }
 }
 
 #Preview {
-    AsyncRideView(bike: .preview, ride: .previewMorning)
-        .environment(Client.preview)
+    NavigationStack {
+        AsyncRideView(bike: .preview, ride: .previewMorning)
+            .environment(Client.preview)
+    }
 }
