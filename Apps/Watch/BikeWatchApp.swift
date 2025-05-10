@@ -3,17 +3,17 @@ import SwiftUI
 
 @main
 struct BikeWatch_Watch_AppApp: App {
-    private let authenticationController = AuthenticationController()
+    private let authenticator = Authenticator()
 
     var body: some Scene {
         WindowGroup {
-            if authenticationController.isAuthenticated {
+            if authenticator.isAuthenticated {
                 AsyncBikeView()
             } else {
                 Text("Not authenticated")
             }
         }
-        .environment(authenticationController)
-        .environmentObject(Client.api(authenticationController))
+        .environment(authenticator)
+        .environmentObject(Client(AppClient(authenticator: authenticator)))
     }
 }

@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import SwiftUI
 
 /// View presenting its content as a sheet, without animation when the view appears. It is useful to preview a view
@@ -21,3 +22,4 @@ struct SheetPreview<Content: View>: View {
             }
     }
 }
+#endif

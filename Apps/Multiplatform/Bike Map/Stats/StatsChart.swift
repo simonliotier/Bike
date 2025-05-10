@@ -17,7 +17,7 @@ struct StatsChart: View {
     }
 
     @ViewBuilder private var header: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: .zero) {
             Text(data.category.displayName)
                 .textCase(.uppercase)
                 .font(.footnote)

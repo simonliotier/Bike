@@ -35,10 +35,12 @@ struct RideDetailsView: View {
             rideDetailView(for: pair.0)
             rideDetailView(for: pair.1)
         }
+        #if !os(tvOS)
         // Make the separator trailing inset match the separator leading inset.
         .alignmentGuide(.listRowSeparatorTrailing) { viewDimensions in
             viewDimensions[.listRowSeparatorTrailing] - viewDimensions[.listRowSeparatorLeading]
         }
+        #endif
     }
 
     private struct RideDetail {

@@ -13,7 +13,7 @@ import WidgetKit
 struct BikeLocationWidget: Widget {
     let kind: String = "BikeLocationWidget"
 
-    private let client = Client(client: APIClient(authenticationController: .init()))
+    private let client = Client(AppClient(authenticator: .init(Authenticator(AppAuthenticator()))))
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider(client: client)) { entry in

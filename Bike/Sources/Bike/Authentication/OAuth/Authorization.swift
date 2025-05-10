@@ -16,6 +16,6 @@ struct Authorization: Codable {
 extension Authorization {
     /// Indicates if the access token is valid.
     var hasValidAccessToken: Bool {
-        .now < expiresAt
+        expiresAt > .now
     }
 }

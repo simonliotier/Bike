@@ -6,10 +6,10 @@ struct MapControlButtonStyle: ButtonStyle {
         configuration
             .label
             .labelStyle(.iconOnly)
-            .font(.init(iOS: .body, macOS: .callout, visionOS: .body))
-            .foregroundStyle(iOS: .tint, macOS: configuration.isPressed ? .primary : .secondary, visionOS: .tint)
-            .opacity(.init(iOS: configuration.isPressed ? 0.2 : 1.0, macOS: 1.0, visionOS: 1.0))
-            .frame(width: .init(iOS: 44, macOS: 36, visionOS: 44), height: .init(iOS: 44, macOS: 24, visionOS: 44))
+            .font(.init(default: .body, macOS: .callout))
+            .foregroundStyle(default: .tint, macOS: configuration.isPressed ? .primary : .secondary)
+            .opacity(.init(default: configuration.isPressed ? 0.2 : 1.0, macOS: 1.0))
+            .frame(width: .init(default: 44, macOS: 36), height: .init(default: 44, macOS: 24))
             .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 }

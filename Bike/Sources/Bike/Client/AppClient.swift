@@ -2,14 +2,14 @@ import Alamofire
 import Foundation
 import SwiftUI
 
-/// Implementation of the `Client` that performs requests to the Decathlon bike API.
-public final class APIClient: ClientProtocol, Sendable {
-    let authenticationController: AuthenticationController
+/// Implementation of the `ClientProtocol` protocol that performs requests to the Decathlon bike API.
+public final class AppClient: ClientProtocol, Sendable {
+    let authenticator: Authenticator
 
     private let endPointURL = URL(string: "https://decathlon.api.bike.conneq.tech")!
 
-    public init(authenticationController: AuthenticationController) {
-        self.authenticationController = authenticationController
+    public init(authenticator: Authenticator) {
+        self.authenticator = authenticator
     }
 
     public func getProfile() async throws -> User {
@@ -68,7 +68,7 @@ public final class APIClient: ClientProtocol, Sendable {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
 
-        let interceptor = AuthenticationRequestInterceptor(authenticationController: authenticationController)
+        let interceptor = AuthenticationRequestInterceptor(authenticator: authenticator)
 
         let request: DataRequest = {
             if let parameters {
@@ -87,11 +87,5 @@ public final class APIClient: ClientProtocol, Sendable {
         return try await request
             .serializingDecodable(Value.self, automaticallyCancelling: true, decoder: decoder)
             .value
-    }
-}
-
-public extension Client {
-    static func api(_ authenticationController: AuthenticationController) -> Client {
-        .init(client: APIClient(authenticationController: authenticationController))
     }
 }

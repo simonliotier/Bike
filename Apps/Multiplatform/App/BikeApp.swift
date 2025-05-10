@@ -6,14 +6,12 @@ import WidgetKit
 
 @main
 struct BikeApp: App {
-    @State private var authenticationController: AuthenticationController
-
+    private let authenticator: Authenticator
     private let client: Client
 
     init() {
-        let authenticationController = AuthenticationController()
-        self.authenticationController = authenticationController
-        client = Client(client: APIClient(authenticationController: authenticationController))
+        authenticator = .init()
+        client = .init(AppClient(authenticator: authenticator))
     }
 
     @Environment(\.scenePhase) private var scenePhase
@@ -22,7 +20,7 @@ struct BikeApp: App {
         Group {
             WindowGroup {
                 Group {
-                    if authenticationController.isAuthenticated {
+                    if authenticator.isAuthenticated {
                         AsyncBikeMap()
                     } else {
                         SignInView()
@@ -43,7 +41,7 @@ struct BikeApp: App {
             }
             #endif
         }
-        .environment(authenticationController)
+        .environment(authenticator)
         .environment(client)
         .onChange(of: scenePhase, onChangeOfScenePhase)
     }

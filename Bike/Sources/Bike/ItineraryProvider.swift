@@ -3,7 +3,9 @@ import MapKit
 
 public protocol ItineraryProvider: Sendable {
     var bike: Bike { get }
+    #if !os(tvOS)
     func getAddress() async throws -> Address
+    #endif
 
     #if !os(watchOS)
     func getItinerary() async throws -> Itinerary
@@ -17,11 +19,13 @@ public struct AppItineraryProvider: ItineraryProvider {
         self.bike = bike
     }
 
+    #if !os(tvOS)
     public func getAddress() async throws -> Address {
         let placemark = try await bike.getPlacemark()
         guard let postalAddress = placemark.postalAddress else { fatalError() }
         return .init(street: postalAddress.street, city: postalAddress.city)
     }
+    #endif
 
     #if !os(watchOS)
     public func getItinerary() async throws -> Itinerary {

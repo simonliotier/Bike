@@ -14,7 +14,11 @@ public extension MKMapSnapshotter.Options {
         @unknown default:
             .light
         }
-        traitCollection = .init(userInterfaceStyle: userInterfaceStyle)
+        traitCollection = traitCollection.modifyingTraits { mutableTraits in
+            mutableTraits.userInterfaceStyle = userInterfaceStyle
+            mutableTraits.displayScale = 1
+        }
+
         #elseif canImport(AppKit)
         let appearanceName: NSAppearance.Name = switch colorScheme {
         case .light:

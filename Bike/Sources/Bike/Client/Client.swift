@@ -9,7 +9,7 @@ import SwiftUI
 public final class Client: ClientProtocol {
     private let client: any ClientProtocol
 
-    public init(client: any ClientProtocol) {
+    public init(_ client: any ClientProtocol) {
         self.client = client
     }
 

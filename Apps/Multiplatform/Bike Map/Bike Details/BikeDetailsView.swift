@@ -1,6 +1,5 @@
 import Alamofire
 import Bike
-import Contacts
 import MapKit
 import SwiftUI
 
@@ -18,7 +17,9 @@ struct BikeDetailsView: View {
     @State private var postalAddress: Address?
     @State private var itinerary: Itinerary?
 
+    #if !os(tvOS)
     @Environment(\.openWindow) private var openWindow
+    #endif
 
     init(bike: Bike, bikeDetails: BikeDetails, itineraryProvider: (any ItineraryProvider)? = nil) {
         self.bike = bike
@@ -29,6 +30,15 @@ struct BikeDetailsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             header
+
+            #if os(tvOS)
+            VStack(spacing: 16) {
+                ridesButton
+                    .frame(maxHeight: .infinity)
+                statsButton
+                    .frame(maxHeight: .infinity)
+            }
+            #else
             VStack(alignment: .leading, spacing: 16) {
                 itineraryButton
                 HStack(spacing: 16) {
@@ -37,6 +47,8 @@ struct BikeDetailsView: View {
                 }
                 .fixedSize(horizontal: false, vertical: true)
             }
+
+            #endif
         }
         .padding()
         .presentationBackground(.regularMaterial)
@@ -45,8 +57,8 @@ struct BikeDetailsView: View {
             // On iOS, we set an ideal width that will be used to size the popover on iPad, but will be ignored by the
             // sheet on iPhone.
             .frame(idealWidth: 400)
-        #elseif os(macOS)
-            // On macOS, we set an explicit width to prevent a layout issue occurring when using
+        #elseif os(macOS) || os(visionOS)
+            // On macOS and visionOS, we set an explicit width to prevent a layout issue occurring when using
             // `fixedSize(horizontal:vertical:)`.
             .frame(width: 400)
         #endif
@@ -90,6 +102,7 @@ struct BikeDetailsView: View {
         .padding(.bottom)
     }
 
+    @available(tvOS, unavailable)
     @ViewBuilder private var itineraryButton: some View {
         Button {
             Task(operation: openDirection)
@@ -109,13 +122,9 @@ struct BikeDetailsView: View {
                     }
                 }
             }
-            .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
-            .modifier(CardBackgroundModifier())
         }
-        .tint(.primary)
-        .buttonStyle(.plain)
-        .buttonBorderShape(.roundedRectangle(radius: 16))
+        .buttonStyle(.material)
     }
 
     @ViewBuilder private var ridesButton: some View {
@@ -124,8 +133,7 @@ struct BikeDetailsView: View {
         } label: {
             RidesCardView(rides: bikeDetails.lastRides)
         }
-        .buttonStyle(.plain)
-        .buttonBorderShape(.roundedRectangle(radius: 16))
+        .buttonStyle(.material)
     }
 
     @ViewBuilder private var statsButton: some View {
@@ -134,8 +142,7 @@ struct BikeDetailsView: View {
         } label: {
             StatsCardView(stats: bikeDetails.weekStats)
         }
-        .buttonStyle(.plain)
-        .buttonBorderShape(.roundedRectangle(radius: 16))
+        .buttonStyle(.material)
     }
 
     private var formattedAddress: String {
@@ -158,7 +165,9 @@ struct BikeDetailsView: View {
 
     private func loadItinerary() async {
         requestLocationAuthorization()
+        #if !os(tvOS)
         Task { postalAddress = try? await itineraryProvider.getAddress() }
+        #endif
         Task { itinerary = try? await itineraryProvider.getItinerary() }
     }
 
@@ -172,6 +181,7 @@ struct BikeDetailsView: View {
     }
 
     /// Open Apple Maps to display direction to the bike.
+    @available(tvOS, unavailable)
     func openDirection() async throws {
         let bikeCLPlacemark = try await bike.getPlacemark()
         let bikeMKPlacemark = MKPlacemark(placemark: bikeCLPlacemark)
@@ -221,12 +231,22 @@ struct BikeDetailsView: View {
 
     Background {
         Map()
+        #if os(tvOS)
+            .overlay(alignment: .leading) {
+                BikeDetailsView(bike: .preview,
+                                bikeDetails: .init(lastRides: .previewLast3, weekStats: .previewWeek),
+                                itineraryProvider: PreviewItineraryProvider())
+                    .environment(Client.preview)
+            }
+        #else
+
             .popover(isPresented: .constant(true), attachmentAnchor: .point(.center), arrowEdge: .trailing) {
                 BikeDetailsView(bike: .preview,
                                 bikeDetails: .init(lastRides: .previewLast3, weekStats: .previewWeek),
                                 itineraryProvider: PreviewItineraryProvider())
                     .environment(Client.preview)
             }
+        #endif
     }
 }
 

@@ -27,12 +27,13 @@ struct AsyncRideThumbnail: View {
         .clipped()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .task {
-            guard let thumbnail = try? await generateThumbnail() else {
-                return
-            }
-
-            withAnimation {
-                self.thumbnail = thumbnail
+            do {
+                let thumbnail = try await generateThumbnail()
+                withAnimation {
+                    self.thumbnail = thumbnail
+                }
+            } catch {
+                print("Error generating thumbnail: \(error)")
             }
         }
     }
@@ -45,6 +46,5 @@ struct AsyncRideThumbnail: View {
 #Preview {
     AsyncRideThumbnail(ride: .previewAfternoon)
         .frame(width: 100, height: 100)
-        .environment(PreviewClient())
         .environment(Client.preview)
 }

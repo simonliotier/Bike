@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import Contacts
 
 public extension CNPostalAddress {
@@ -14,3 +15,4 @@ public extension CNPostalAddress {
         return address
     }
 }
+#endif

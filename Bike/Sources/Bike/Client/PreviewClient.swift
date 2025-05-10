@@ -1,6 +1,6 @@
 import Foundation
 
-/// Implementation of the `Client` that return mock data, to be used in previews.
+/// Implementation of the `Client` protocol that returns mock data, to be used in previews.
 @Observable
 public final class PreviewClient: ClientProtocol {
     public init() {}
@@ -39,6 +39,6 @@ public final class PreviewClient: ClientProtocol {
 
 public extension Client {
     static var preview: Client {
-        Client(client: PreviewClient())
+        Client(PreviewClient())
     }
 }

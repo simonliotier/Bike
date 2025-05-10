@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A61FCC32D32DA9D00B95AF6 /* VariableBlur in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 1A61FCC22D32DA9D00B95AF6 /* VariableBlur */; };
-		1A9190602D69E7AA0053A846 /* Bike Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1A9190532D69E7A90053A846 /* Bike Watch.app */; platformFilters = (ios, macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1A9190602D69E7AA0053A846 /* Bike Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1A9190532D69E7A90053A846 /* Bike Watch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1A9190662D69E7EB0053A846 /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9190652D69E7EB0053A846 /* Bike */; };
 		1A9A072A2C0768DE0013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A07292C0768DE0013E68D /* Bike */; };
 		1A9A072C2C0769360013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A072B2C0769360013E68D /* Bike */; };
@@ -511,10 +511,7 @@
 /* Begin PBXTargetDependency section */
 		1A91905F2D69E7AA0053A846 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilters = (
-				ios,
-				macos,
-			);
+			platformFilter = ios;
 			target = 1A9190522D69E7A90053A846 /* Bike Watch */;
 			targetProxy = 1A91905E2D69E7AA0053A846 /* PBXContainerItemProxy */;
 		};
@@ -667,6 +664,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=appletv*]" = tvOS;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Apps/Multiplatform/BikeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -695,10 +693,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.conneq.decathlon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2,3,7";
 			};
 			name = Debug;
 		};
@@ -706,6 +704,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=*]" = tvOS;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Apps/Multiplatform/BikeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -734,10 +733,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tech.conneq.decathlon;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2,3,7";
 			};
 			name = Release;
 		};

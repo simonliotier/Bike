@@ -5,7 +5,7 @@ import SwiftUI
 struct SignInView: View {
     @State private var state: LoginViewState = .idle
 
-    @Environment(AuthenticationController.self) private var authenticationController
+    @Environment(Authenticator.self) private var authenticator
 
     private enum LoginViewState {
         case idle
@@ -18,7 +18,9 @@ struct SignInView: View {
         case .idle:
             Button("Sign in", action: signIn)
                 .buttonStyle(.borderedProminent)
+            #if !os(tvOS)
                 .controlSize(.extraLarge)
+            #endif
         case .loading:
             ProgressView()
         case .error(let error):
@@ -34,7 +36,7 @@ struct SignInView: View {
             state = .loading
 
             do {
-                try await authenticationController.signIn()
+                try await authenticator.signIn()
             } catch {
                 self.state = .error(error)
             }
@@ -42,12 +44,12 @@ struct SignInView: View {
     }
 
     private func signOut() {
-        authenticationController.signOut()
+        authenticator.signOut()
         state = .idle
     }
 }
 
 #Preview {
     SignInView()
-        .environment(AuthenticationController())
+        .environment(Authenticator(PreviewAuthenticator(isAuthenticated: false)))
 }

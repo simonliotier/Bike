@@ -17,11 +17,11 @@ struct RidesCardView: View {
     }
 
     @ViewBuilder private func rideRow(_ ride: Ride) -> some View {
-        HStack {
+        HStack(spacing: rideRowSpacing) {
             AsyncRideThumbnail(ride: ride)
                 .aspectRatio(contentMode: .fit)
                 .clipShape(RoundedRectangle(cornerSize: .init(width: 4, height: 4)))
-                .frame(width: 40)
+                .frame(width: rideThumbnailWidth)
             VStack(alignment: .leading) {
                 Text(ride.formattedDate)
                     .font(.callout)
@@ -33,6 +33,22 @@ struct RidesCardView: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var rideThumbnailWidth: CGFloat {
+        #if os(tvOS)
+        return 80
+        #else
+        return 40
+        #endif
+    }
+
+    private var rideRowSpacing: CGFloat? {
+        #if os(tvOS)
+        return 16
+        #else
+        return nil
+        #endif
     }
 }
 
@@ -59,7 +75,6 @@ import MapKit
 
 #Preview {
     RidesCardView(rides: .previewLast3)
-        .fixedSize(horizontal: false, vertical: true)
-        .padding()
+        .fixedSize(horizontal: true, vertical: true)
         .environment(Client.preview)
 }

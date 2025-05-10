@@ -33,9 +33,11 @@ struct BikeMap: View {
     var body: some View {
         Background {
             Map(position: $position,
+                interactionModes: interactionModes,
                 selection: $selection,
                 scope: mapScope,
                 content: mapContent)
+                .focusable(false)
                 .modifier(AnimatableSafeAreaPadding(padding: bottomSafeAreaPadding))
                 .mapStyle(.init(mapStyle))
                 .mapControls(mapControls)
@@ -46,25 +48,55 @@ struct BikeMap: View {
                 .onChange(of: isPopoverPresented, onChangedOfIsPopoverPresented)
                 .onMapCameraChange(onMapCameraChanged)
                 .animation(.default, value: bottomSafeAreaPadding)
+                .overlay(alignment: .topLeading, content: overlay)
                 .onAppear {
                     selection = bike
                 }
         }
     }
 
+    private var interactionModes: MapInteractionModes {
+        #if os(tvOS)
+        return []
+        #else
+        return .all
+        #endif
+    }
+
     @MapContentBuilder private func mapContent() -> some MapContent {
         UserAnnotation()
         Annotation(bike.name, coordinate: bike.lastLocationCoordinate) {
             SelectablePinAnnotation(resource: .bike,
-                                    pinTransformationEnabled: horizontalSizeClass == .compact,
+                                    pinTransformationEnabled: pinTransformationEnabled,
                                     isSelected: $isPinSelected)
+            #if !os(tvOS)
                 .popover(isPresented: $isPopoverPresented, arrowEdge: .trailing) {
                     BikeDetailsView(bike: bike, bikeDetails: bikeDetails)
                         .onHeightChange(onChangeOfBikeDetailsViewHeight)
                 }
+            #endif
         }
         .annotationTitles(isPopoverPresented ? .hidden : .visible)
         .tag(bike)
+    }
+
+    private func overlay() -> some View {
+        #if os(tvOS)
+        BikeDetailsView(bike: bike, bikeDetails: bikeDetails)
+            .padding()
+            .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 16))
+            .frame(width: 500)
+        #else
+        EmptyView()
+        #endif
+    }
+
+    private var pinTransformationEnabled: Bool {
+        #if os(tvOS)
+        true
+        #else
+        horizontalSizeClass == .compact
+        #endif
     }
 
     /// Returns the safe area padding added at the bottom of the map to take in account the sheet.

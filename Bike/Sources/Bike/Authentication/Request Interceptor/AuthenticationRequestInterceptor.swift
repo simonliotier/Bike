@@ -3,10 +3,10 @@ import Foundation
 
 /// Adapt and retry Alamofire requests for authentication.
 final class AuthenticationRequestInterceptor: RequestInterceptor, Sendable {
-    let authenticationController: AuthenticationController
+    let authenticator: Authenticator
 
-    init(authenticationController: AuthenticationController) {
-        self.authenticationController = authenticationController
+    init(authenticator: Authenticator) {
+        self.authenticator = authenticator
     }
 
     func adapt(_ urlRequest: URLRequest,
@@ -14,7 +14,7 @@ final class AuthenticationRequestInterceptor: RequestInterceptor, Sendable {
                completion: @escaping @Sendable (Result<URLRequest, any Error>) -> Void) {
         Task {
             do {
-                let accessToken = try await authenticationController.accessToken
+                let accessToken = try await authenticator.accessToken
                 var request = urlRequest
                 request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
                 completion(.success(request))

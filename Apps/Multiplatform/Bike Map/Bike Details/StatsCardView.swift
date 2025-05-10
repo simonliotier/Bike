@@ -25,7 +25,7 @@ struct StatsCardView: View {
     }
 
     @ViewBuilder private var header: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: .zero) {
             Text("This week")
                 .font(.caption)
             Text(formattedDistance)
@@ -42,7 +42,7 @@ struct StatsCardView: View {
                 BarMark(
                     x: .value("Date", stat.from, unit: .day),
                     y: .value("Distance", stat.distanceTraveled),
-                    width: 6
+                    width: .ratio(0.3)
                 )
                 .foregroundStyle(.accent.gradient)
                 .clipShape(Capsule())
@@ -80,7 +80,6 @@ struct StatsCardView: View {
 
 #Preview {
     StatsCardView(stats: .previewWeek, today: [Stat].previewWeek[2].from)
-        .fixedSize(horizontal: false, vertical: true)
-        .padding()
+        .fixedSize(horizontal: true, vertical: true)
         .environment(Client.preview)
 }

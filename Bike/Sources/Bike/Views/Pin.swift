@@ -6,6 +6,8 @@ public struct Pin: View {
     /// Image resource displayed in the pin.
     public let resource: ImageResource
 
+    @Environment(\.colorScheme) private var colorScheme
+
     public init(resource: ImageResource = .bike) {
         self.resource = resource
     }
@@ -22,7 +24,7 @@ public struct Pin: View {
                 .offset(y: 3)
         }
         .compositingGroup()
-        .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 1)
+        .shadow(color: .black.opacity(0.6), radius: 12, x: 0, y: 4)
         .visualEffect { content, proxy in
             // Make the pin points to the center of the view.
             content.offset(y: -proxy.size.height / 2.0)

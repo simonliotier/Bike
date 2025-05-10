@@ -19,25 +19,13 @@ struct CardView<Title: View, Content: View>: View {
             content
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
-        .padding(16)
-        .modifier(CardBackgroundModifier())
     }
 }
 
 #Preview {
-    ZStack {
-        Color.teal
-        Rectangle()
-            .foregroundStyle(.regularMaterial)
-    }
-    .ignoresSafeArea()
-    .overlay {
-        CardView {
-            Label("Title", systemImage: "star")
-        } content: {
-            Text("This is the card content.")
-        }
-        .fixedSize(horizontal: false, vertical: true)
-        .padding()
+    CardView {
+        Label("Title", systemImage: "star")
+    } content: {
+        Text("This is the card content.")
     }
 }
