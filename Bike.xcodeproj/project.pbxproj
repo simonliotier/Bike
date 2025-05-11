@@ -84,7 +84,6 @@
 /* Begin PBXFileReference section */
 		1A2F63A22DD0A2080067BB2B /* Bike.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Bike.xcconfig; sourceTree = "<group>"; };
 		1A6EAD1D2AD56B420043E524 /* Bike Multiplatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike Multiplatform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A7C91F62D7DAD6700C44F6A /* Bike-Multiplatform-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Bike-Multiplatform-Info.plist"; sourceTree = "<group>"; };
 		1A9190532D69E7A90053A846 /* Bike Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9A07282C0768C40013E68D /* Bike */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Bike; sourceTree = "<group>"; };
 		1AC1A66A2D73C27800B2E47D /* Bike Widget Watch.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Bike Widget Watch.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +201,7 @@
 				"Multiplatform/Bike Map/Stats/StatsChart.swift",
 				"Multiplatform/Bike Map/Stats/StatsChartData.swift",
 				"Multiplatform/Bike Map/Stats/StatsView.swift",
+				"Multiplatform/Bike-Multiplatform-Info.plist",
 				Multiplatform/Localizable.xcstrings,
 				Multiplatform/Login/SignInView.swift,
 				"Multiplatform/Preview Content/Preview Assets.xcassets",
@@ -273,7 +273,6 @@
 			isa = PBXGroup;
 			children = (
 				1A2F63A22DD0A2080067BB2B /* Bike.xcconfig */,
-				1A7C91F62D7DAD6700C44F6A /* Bike-Multiplatform-Info.plist */,
 				1A9A07282C0768C40013E68D /* Bike */,
 				1AC1A70A2D7503C100B2E47D /* Apps */,
 				1AE4D5C92CA8681600BA8BB4 /* Widgets */,
@@ -572,6 +571,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5PPY38J7P4;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -640,6 +640,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5PPY38J7P4;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -676,7 +677,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Bike-Multiplatform-Info.plist";
+				INFOPLIST_FILE = "Apps/Multiplatform/Bike-Multiplatform-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Bike;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show where you are on the map.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -716,7 +717,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Bike-Multiplatform-Info.plist";
+				INFOPLIST_FILE = "Apps/Multiplatform/Bike-Multiplatform-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Bike;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show where you are on the map.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
