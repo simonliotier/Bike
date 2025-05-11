@@ -28,9 +28,6 @@ import SwiftUI
     private let keychain: KeychainSwift = {
         let keychain = KeychainSwift()
 
-        // Use access group to share auth state between app and widgets.
-        keychain.accessGroup = "5PPY38J7P4.tech.conneq.decathlon.shared"
-
         // Synchronization is activated to share the auth state with other devices.
         keychain.synchronizable = true
 

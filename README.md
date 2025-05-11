@@ -63,3 +63,15 @@ The app is built using modern Apple technologies: SwiftUI, Swift 6, Swift Concur
 All platforms share the same codebase, thanks to the concept of [SwiftUI Multiplatform apps](https://developer.apple.com/documentation/xcode/configuring-a-multiplatform-app-target).
 
 ![Destinations](Resources/destinations.png)
+
+## Building the project
+
+You need to set up your Team ID before building the project.
+
+1. In the project directory, run the following command to generate the required Xcode Build Configuration file:
+
+```bash
+cp Bike.xcconfig.template Bike.xcconfig
+```
+
+2. Replace `YOUR_TEAM_ID` by your actual Team ID in the generated `Bike.xcconfig` file.
