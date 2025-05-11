@@ -1,5 +1,5 @@
 {
-  "originHash" : "b86b603d50ba640c5676ad2908df1ef44119cf0f641d52e31252f022c67e7816",
+  "originHash" : "45316314b42b9c6414b6e108be712d51d85c5ed757e0455387e7ab0937c8b3e9",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -105,8 +105,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nikstar/VariableBlur",
       "state" : {
-        "revision" : "41698eecb3373550b2100dbcd308d886501d7033",
-        "version" : "1.2.0"
+        "revision" : "c8dc0ada195dfd47354cec5994c2dd434aa6c146",
+        "version" : "1.2.1"
       }
     },
     {
