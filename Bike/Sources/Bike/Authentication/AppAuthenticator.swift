@@ -6,7 +6,7 @@ import SwiftUI
 ///
 /// User can sign-in in the iOS and macOS apps. The authorization, containing the access and refresh tokens, is then
 /// automatically shared with other apps and widgets using Keychain access group and iCloud synchronization.
-@Observable @MainActor public final class AppAuthenticator: AuthenticatorProtocol, @unchecked Sendable {
+@Observable @MainActor public final class AppAuthenticator: AuthenticatorProtocol {
     /// Indicates if the user is currently authenticated.
     public var isAuthenticated: Bool {
         authorization != nil
