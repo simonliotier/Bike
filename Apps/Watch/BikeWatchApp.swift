@@ -2,7 +2,7 @@ import Bike
 import SwiftUI
 
 @main
-struct BikeWatch_Watch_AppApp: App {
+struct BikeWatchApp: App {
     private let authenticator = Authenticator()
 
     var body: some Scene {

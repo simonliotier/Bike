@@ -317,6 +317,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AEF37732DD0C033007FC229 /* PBXTargetDependency */,
 				1ACF28742B543DA900020097 /* PBXTargetDependency */,
 				1A91905F2D69E7AA0053A846 /* PBXTargetDependency */,
 			);
@@ -341,6 +342,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AEF37752DD0C039007FC229 /* PBXTargetDependency */,
 				1AC1A6742D73C27900B2E47D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -365,6 +367,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AEF37792DD0C041007FC229 /* PBXTargetDependency */,
 			);
 			name = "Bike Widget Watch";
 			packageProductDependencies = (
@@ -385,6 +388,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1AEF37772DD0C03D007FC229 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				1AE4D5C92CA8681600BA8BB4 /* Widgets */,
@@ -434,6 +438,7 @@
 			packageReferences = (
 				1A61FCC12D32DA9D00B95AF6 /* XCRemoteSwiftPackageReference "VariableBlur" */,
 				1AC1A7092D74FE9500B2E47D /* XCRemoteSwiftPackageReference "SwiftFormat" */,
+				1AEF37712DD0C01B007FC229 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 1A6EAD1E2AD56B420043E524 /* Products */;
 			projectDirPath = "";
@@ -529,6 +534,22 @@
 			);
 			target = 1ACF28642B543DA700020097 /* Bike Widget Multiplatform */;
 			targetProxy = 1ACF28732B543DA900020097 /* PBXContainerItemProxy */;
+		};
+		1AEF37732DD0C033007FC229 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AEF37722DD0C033007FC229 /* SwiftLintBuildToolPlugin */;
+		};
+		1AEF37752DD0C039007FC229 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AEF37742DD0C039007FC229 /* SwiftLintBuildToolPlugin */;
+		};
+		1AEF37772DD0C03D007FC229 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AEF37762DD0C03D007FC229 /* SwiftLintBuildToolPlugin */;
+		};
+		1AEF37792DD0C041007FC229 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1AEF37782DD0C041007FC229 /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1001,6 +1022,14 @@
 				minimumVersion = 0.55.5;
 			};
 		};
+		1AEF37712DD0C01B007FC229 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.59.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1024,6 +1053,26 @@
 		1AC1A6D12D73C84600B2E47D /* Bike */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Bike;
+		};
+		1AEF37722DD0C033007FC229 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AEF37712DD0C01B007FC229 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1AEF37742DD0C039007FC229 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AEF37712DD0C01B007FC229 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1AEF37762DD0C03D007FC229 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AEF37712DD0C01B007FC229 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1AEF37782DD0C041007FC229 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AEF37712DD0C01B007FC229 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
