@@ -1,4 +1,4 @@
-import Bike
+import BikeCore
 import Contacts
 import CoreLocation
 import Foundation

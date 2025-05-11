@@ -1,4 +1,4 @@
-import Bike
+import BikeCore
 import SwiftUI
 
 /// Loads and displays all the bike stats.

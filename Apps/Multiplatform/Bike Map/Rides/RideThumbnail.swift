@@ -1,4 +1,4 @@
-import Bike
+import BikeCore
 import SwiftUI
 
 /// A thumbnail for a bike ride.

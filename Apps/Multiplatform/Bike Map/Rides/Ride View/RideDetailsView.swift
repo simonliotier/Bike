@@ -1,4 +1,4 @@
-import Bike
+import BikeCore
 import SwiftUI
 
 /// Displays the ride details (duration, speed...) in a grid.

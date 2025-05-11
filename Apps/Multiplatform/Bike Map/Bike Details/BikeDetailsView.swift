@@ -1,5 +1,5 @@
 import Alamofire
-import Bike
+import BikeCore
 import MapKit
 import SwiftUI
 

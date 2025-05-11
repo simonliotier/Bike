@@ -1,4 +1,4 @@
-import Bike
+import BikeCore
 import SwiftUI
 
 /// Displays the full list of rides.

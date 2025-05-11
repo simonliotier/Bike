@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Bike",
+    name: "BikeCore",
     platforms: [
         .iOS(.v18),
         .macOS(.v15),
@@ -13,8 +13,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Bike",
-            targets: ["Bike"]
+            name: "BikeCore",
+            targets: ["BikeCore"]
         )
     ],
     dependencies: [
@@ -25,7 +25,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Bike",
+            name: "BikeCore",
             dependencies: [
                 .product(name: "Alamofire", package: "Alamofire"),
                 .product(name: "KeychainSwift", package: "keychain-swift")
@@ -35,8 +35,8 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "BikeTests",
-            dependencies: ["Bike"]
+            name: "BikeCoreTests",
+            dependencies: ["BikeCore"]
         )
     ]
 )

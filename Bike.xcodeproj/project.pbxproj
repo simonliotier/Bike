@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		1A61FCC32D32DA9D00B95AF6 /* VariableBlur in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 1A61FCC22D32DA9D00B95AF6 /* VariableBlur */; };
 		1A9190602D69E7AA0053A846 /* Bike Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1A9190532D69E7A90053A846 /* Bike Watch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1A9190662D69E7EB0053A846 /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9190652D69E7EB0053A846 /* Bike */; };
-		1A9A072A2C0768DE0013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A07292C0768DE0013E68D /* Bike */; };
-		1A9A072C2C0769360013E68D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9A072B2C0769360013E68D /* Bike */; };
 		1AC1A66B2D73C27800B2E47D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28672B543DA700020097 /* WidgetKit.framework */; };
 		1AC1A66C2D73C27800B2E47D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28692B543DA700020097 /* SwiftUI.framework */; };
 		1AC1A6752D73C27900B2E47D /* Bike Widget Watch.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1AC1A66A2D73C27800B2E47D /* Bike Widget Watch.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1AC1A6D22D73C84600B2E47D /* Bike in Frameworks */ = {isa = PBXBuildFile; productRef = 1AC1A6D12D73C84600B2E47D /* Bike */; };
 		1ACF28682B543DA700020097 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28672B543DA700020097 /* WidgetKit.framework */; };
 		1ACF286A2B543DA700020097 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ACF28692B543DA700020097 /* SwiftUI.framework */; };
 		1ACF28752B543DA900020097 /* Bike Widget Multiplatform.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1ACF28652B543DA700020097 /* Bike Widget Multiplatform.appex */; platformFilters = (ios, macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1AEF3B002DD0F012007FC229 /* BikeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1AEF3AFF2DD0F012007FC229 /* BikeCore */; };
+		1AEF3B022DD0F019007FC229 /* BikeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1AEF3B012DD0F019007FC229 /* BikeCore */; };
+		1AEF3B042DD0F01E007FC229 /* BikeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1AEF3B032DD0F01E007FC229 /* BikeCore */; };
+		1AEF3B062DD0F025007FC229 /* BikeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 1AEF3B052DD0F025007FC229 /* BikeCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,13 +83,13 @@
 
 /* Begin PBXFileReference section */
 		1A2F63A22DD0A2080067BB2B /* Bike.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Bike.xcconfig; sourceTree = "<group>"; };
-		1A6EAD1D2AD56B420043E524 /* Bike Multiplatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike Multiplatform.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A6EAD1D2AD56B420043E524 /* Bike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9190532D69E7A90053A846 /* Bike Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A9A07282C0768C40013E68D /* Bike */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Bike; sourceTree = "<group>"; };
 		1AC1A66A2D73C27800B2E47D /* Bike Widget Watch.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Bike Widget Watch.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACF28652B543DA700020097 /* Bike Widget Multiplatform.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Bike Widget Multiplatform.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACF28672B543DA700020097 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1ACF28692B543DA700020097 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		1AEF3AFE2DD0F003007FC229 /* BikeCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BikeCore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -233,7 +233,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A9A072A2C0768DE0013E68D /* Bike in Frameworks */,
+				1AEF3B002DD0F012007FC229 /* BikeCore in Frameworks */,
 				1A61FCC32D32DA9D00B95AF6 /* VariableBlur in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,7 +242,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A9190662D69E7EB0053A846 /* Bike in Frameworks */,
+				1AEF3B022DD0F019007FC229 /* BikeCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,8 +250,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AC1A6D22D73C84600B2E47D /* Bike in Frameworks */,
 				1AC1A66C2D73C27800B2E47D /* SwiftUI.framework in Frameworks */,
+				1AEF3B062DD0F025007FC229 /* BikeCore in Frameworks */,
 				1AC1A66B2D73C27800B2E47D /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,8 +260,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A9A072C2C0769360013E68D /* Bike in Frameworks */,
 				1ACF286A2B543DA700020097 /* SwiftUI.framework in Frameworks */,
+				1AEF3B042DD0F01E007FC229 /* BikeCore in Frameworks */,
 				1ACF28682B543DA700020097 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,7 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				1A2F63A22DD0A2080067BB2B /* Bike.xcconfig */,
-				1A9A07282C0768C40013E68D /* Bike */,
+				1AEF3AFE2DD0F003007FC229 /* BikeCore */,
 				1AC1A70A2D7503C100B2E47D /* Apps */,
 				1AE4D5C92CA8681600BA8BB4 /* Widgets */,
 				1ACF28662B543DA700020097 /* Frameworks */,
@@ -284,7 +284,7 @@
 		1A6EAD1E2AD56B420043E524 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A6EAD1D2AD56B420043E524 /* Bike Multiplatform.app */,
+				1A6EAD1D2AD56B420043E524 /* Bike.app */,
 				1ACF28652B543DA700020097 /* Bike Widget Multiplatform.appex */,
 				1A9190532D69E7A90053A846 /* Bike Watch.app */,
 				1AC1A66A2D73C27800B2E47D /* Bike Widget Watch.appex */,
@@ -323,11 +323,11 @@
 			);
 			name = "Bike Multiplatform";
 			packageProductDependencies = (
-				1A9A07292C0768DE0013E68D /* Bike */,
 				1A61FCC22D32DA9D00B95AF6 /* VariableBlur */,
+				1AEF3AFF2DD0F012007FC229 /* BikeCore */,
 			);
 			productName = Decathlon;
-			productReference = 1A6EAD1D2AD56B420043E524 /* Bike Multiplatform.app */;
+			productReference = 1A6EAD1D2AD56B420043E524 /* Bike.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1A9190522D69E7A90053A846 /* Bike Watch */ = {
@@ -350,7 +350,7 @@
 			);
 			name = "Bike Watch";
 			packageProductDependencies = (
-				1A9190652D69E7EB0053A846 /* Bike */,
+				1AEF3B012DD0F019007FC229 /* BikeCore */,
 			);
 			productName = "BikeWatch Watch App";
 			productReference = 1A9190532D69E7A90053A846 /* Bike Watch.app */;
@@ -371,7 +371,7 @@
 			);
 			name = "Bike Widget Watch";
 			packageProductDependencies = (
-				1AC1A6D12D73C84600B2E47D /* Bike */,
+				1AEF3B052DD0F025007FC229 /* BikeCore */,
 			);
 			productName = "Bike Watch WidgetsExtension";
 			productReference = 1AC1A66A2D73C27800B2E47D /* Bike Widget Watch.appex */;
@@ -395,7 +395,7 @@
 			);
 			name = "Bike Widget Multiplatform";
 			packageProductDependencies = (
-				1A9A072B2C0769360013E68D /* Bike */,
+				1AEF3B032DD0F01E007FC229 /* BikeCore */,
 			);
 			productName = BikeWidgetExtension;
 			productReference = 1ACF28652B543DA700020097 /* Bike Widget Multiplatform.appex */;
@@ -715,7 +715,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tech.conneq.decathlon;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Bike;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -755,7 +755,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tech.conneq.decathlon;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Bike;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1038,22 +1038,6 @@
 			package = 1A61FCC12D32DA9D00B95AF6 /* XCRemoteSwiftPackageReference "VariableBlur" */;
 			productName = VariableBlur;
 		};
-		1A9190652D69E7EB0053A846 /* Bike */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Bike;
-		};
-		1A9A07292C0768DE0013E68D /* Bike */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Bike;
-		};
-		1A9A072B2C0769360013E68D /* Bike */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Bike;
-		};
-		1AC1A6D12D73C84600B2E47D /* Bike */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Bike;
-		};
 		1AEF37722DD0C033007FC229 /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1AEF37712DD0C01B007FC229 /* XCRemoteSwiftPackageReference "SwiftLint" */;
@@ -1073,6 +1057,22 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1AEF37712DD0C01B007FC229 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		1AEF3AFF2DD0F012007FC229 /* BikeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BikeCore;
+		};
+		1AEF3B012DD0F019007FC229 /* BikeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BikeCore;
+		};
+		1AEF3B032DD0F01E007FC229 /* BikeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BikeCore;
+		};
+		1AEF3B052DD0F025007FC229 /* BikeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BikeCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

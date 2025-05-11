@@ -1,4 +1,4 @@
-import Bike
+import BikeCore
 import SwiftUI
 
 /// Wrapper around the data that are displayed in the `BideDetails` popover.

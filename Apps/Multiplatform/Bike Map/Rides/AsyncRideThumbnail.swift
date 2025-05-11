@@ -1,4 +1,4 @@
-import Bike
+import BikeCore
 import SwiftUI
 
 /// A view that asynchronously loads and displays a thumbnail of a ride.

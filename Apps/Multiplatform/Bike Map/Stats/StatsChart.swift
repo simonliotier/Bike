@@ -1,4 +1,4 @@
-import Bike
+import BikeCore
 import Charts
 import SwiftUI
 

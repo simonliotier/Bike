@@ -1,4 +1,4 @@
-import Bike
+import BikeCore
 import Foundation
 import SwiftUI
 import WidgetKit

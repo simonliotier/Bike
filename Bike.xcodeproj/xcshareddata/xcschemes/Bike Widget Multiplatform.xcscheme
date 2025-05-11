@@ -31,7 +31,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1A6EAD1C2AD56B420043E524"
-               BuildableName = "Bike Multiplatform.app"
+               BuildableName = "Bike.app"
                BlueprintName = "Bike Multiplatform"
                ReferencedContainer = "container:Bike.xcodeproj">
             </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A6EAD1C2AD56B420043E524"
-            BuildableName = "Bike Multiplatform.app"
+            BuildableName = "Bike.app"
             BlueprintName = "Bike Multiplatform"
             ReferencedContainer = "container:Bike.xcodeproj">
          </BuildableReference>
@@ -108,7 +108,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1A6EAD1C2AD56B420043E524"
-            BuildableName = "Bike Multiplatform.app"
+            BuildableName = "Bike.app"
             BlueprintName = "Bike Multiplatform"
             ReferencedContainer = "container:Bike.xcodeproj">
          </BuildableReference>
