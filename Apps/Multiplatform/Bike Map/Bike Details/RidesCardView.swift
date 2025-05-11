@@ -26,10 +26,12 @@ struct RidesCardView: View {
                 Text(ride.formattedDate)
                     .font(.callout)
                     .fontDesign(.rounded)
+                    .lineLimit(1)
                 Text(ride.formattedDetails)
                     .font(.footnote)
                     .fontDesign(.rounded)
                     .foregroundStyle(.secondary)
+                    .lineLimit(1)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
