@@ -51,7 +51,6 @@ struct BikeDetailsView: View {
             #endif
         }
         .padding()
-        .presentationBackground(.regularMaterial)
         .presentationBackgroundInteraction(.enabled)
         #if os(iOS)
             // On iOS, we set an ideal width that will be used to size the popover on iPad, but will be ignored by the
@@ -99,7 +98,7 @@ struct BikeDetailsView: View {
         .font(.subheadline)
         .textCase(nil)
         .listRowInsets(.init())
-        .padding(.bottom)
+        .padding(8)
     }
 
     @available(tvOS, unavailable)

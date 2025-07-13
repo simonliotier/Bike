@@ -10,7 +10,7 @@ struct RideRow: View {
         HStack {
             AsyncRideThumbnail(ride: ride)
                 .frame(width: 50, height: 50)
-                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 4, height: 4)))
+                .clipShape(RoundedRectangle(cornerRadius: 16))
             VStack(alignment: .leading) {
                 Text(ride.formattedDate)
                 Text(ride.formattedTitle)

@@ -10,7 +10,7 @@ struct MaterialButtonStyle: ButtonStyle {
             .padding()
         #endif
             .background(content: {
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: 24)
                     .fill(.white)
                     .opacity(colorScheme == .dark ? 0.1 : 0.9)
             })

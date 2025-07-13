@@ -13,10 +13,20 @@ struct DismissButton: View {
             Image(systemName: "multiply")
                 .font(.headline)
         }
-        .tint(.secondary)
-        .buttonStyle(.bordered)
-        .buttonBorderShape(.circle)
-        .frame(width: 30, height: 30)
         .accessibilityLabel("Close")
     }
+}
+
+#Preview {
+    Color.clear
+        .sheet(isPresented: .constant(true)) {
+            NavigationStack {
+                List {}
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            DismissButton()
+                        }
+                    }
+            }
+        }
 }
