@@ -15,7 +15,6 @@ import AppKit
 public typealias OSImage = UIImage
 #elseif canImport(AppKit)
 public typealias OSImage = NSImage
-extension OSImage: @unchecked @retroactive Sendable {}
 #endif
 
 public extension Image {

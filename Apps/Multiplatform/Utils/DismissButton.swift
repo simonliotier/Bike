@@ -23,7 +23,7 @@ struct DismissButton: View {
             NavigationStack {
                 List {}
                     .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
+                        ToolbarItem(placement: .automatic) {
                             DismissButton()
                         }
                     }

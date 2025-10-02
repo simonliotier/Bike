@@ -182,9 +182,11 @@ struct BikeDetailsView: View {
     /// Open Apple Maps to display direction to the bike.
     @available(tvOS, unavailable)
     func openDirection() async throws {
-        let bikeCLPlacemark = try await bike.getPlacemark()
-        let bikeMKPlacemark = MKPlacemark(placemark: bikeCLPlacemark)
-        let bikeMapItem = MKMapItem(placemark: bikeMKPlacemark)
+        let bikePlacemark = try await bike.getPlacemark()
+
+        guard let location = bikePlacemark.location else { return }
+
+        let bikeMapItem = MKMapItem(location: location, address: nil)
 
         let launchOptions = [
             MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking
@@ -238,7 +240,6 @@ struct BikeDetailsView: View {
                     .environment(Client.preview)
             }
         #else
-
             .popover(isPresented: .constant(true), attachmentAnchor: .point(.center), arrowEdge: .trailing) {
                 BikeDetailsView(bike: .preview,
                                 bikeDetails: .init(lastRides: .previewLast3, weekStats: .previewWeek),
