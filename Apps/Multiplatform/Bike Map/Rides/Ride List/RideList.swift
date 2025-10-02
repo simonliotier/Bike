@@ -13,7 +13,7 @@ struct RideList: View {
         .map { yearMonth, rides in
             MonthSection(yearMonth: yearMonth, rides: rides)
         }
-        .sorted(using: KeyPathComparator(\.yearMonth, order: .reverse))
+        .sorted { $0.yearMonth > $1.yearMonth }
     }
 
     var body: some View {
